@@ -4,7 +4,7 @@ description: "Conducts video analysis of learning behavior for children/students
 version: "1.0.4"
 ---
 
-# Child Learning Behavior Analysis Tool | 孩子学习行为分析工具
+# Child Learning Behavior Analysis Tool | 孩子学习行为分析工具 1.0.5
 
 Based on advanced computer vision and behavior recognition algorithms, this feature is specifically designed for
 analyzing the learning behaviors of children and students. The system utilizes cameras to capture key behaviors during
