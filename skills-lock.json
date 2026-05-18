@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "study-analysis": {
+      "source": "smyx-sunjinhui/smyx-open-claw-skills",
+      "sourceType": "github",
+      "computedHash": "7b25c62c1a7e56050a15679df960b95caa5dada857d6ad5c744f8a18ad06d8ef"
+    }
+  }
+}
