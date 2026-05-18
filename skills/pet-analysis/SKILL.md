@@ -1,7 +1,6 @@
 ---
 name: "pet-analysis"
-description: "Triggers when a user provides a video URL or file of a pet (cat/dog/bird) for analysis; supports local video uploads or network URLs to call server-side APIs for health checks, analyzing features like fur, body, and face to identify potential diseases and generate a "Pet Safety Guardian" health report. | 猫狗宠物健康诊断分析工具，当用户提供猫/狗/鸟等宠物的视频 URL 或文件需要分析时，触发本技能进行宠物健康诊断分析；支持通过上传本地视频或网络视频 URL，调用服务端 API 进行宠物健康检查，分析毛发、身体、脸部等特征，识别潜在疾病并输出宠安卫士健康报告"
-requires: [ smyx-common, face-analysis ]
+description: "Triggers when a user provides a video URL or file of a pet (cat/dog/bird) for analysis; supports local video uploads or network URLs to call server-side APIs for health checks, analyzing features like fur, body, and face to identify potential diseases and generate a Pet Safety Guardian health report. | 猫狗宠物健康诊断分析工具，当用户提供猫/狗/鸟等宠物的视频 URL 或文件需要分析时，触发本技能进行宠物健康诊断分析；支持通过上传本地视频或网络视频 URL，调用服务端 API 进行宠物健康检查，分析毛发、身体、脸部等特征，识别潜在疾病并输出宠安卫士健康报告"
 ---
 
 # 🔴 强制依赖声明
