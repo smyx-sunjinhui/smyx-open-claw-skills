@@ -103,7 +103,7 @@ class ConstantEnum(BaseEnum):
         WUHONG = "WUHONG"
         COZE = "COZE"
         SKILL_HUB = "SKILL_HUB"
-        SKILLS_SH = "SKILLS_SH"
+        GIT_HUB = "GIT_HUB"
         CLAW_HUB = "CLAW_HUB"
         FEISHU = "FEISHU"
         DINGTALK = "DINGTALK"
@@ -114,7 +114,7 @@ class ConstantEnum(BaseEnum):
 
     APP__ID = ""
 
-    APP__SOURCE = SourceEnum.SKILLS_SH.value
+    APP__SOURCE = SourceEnum.GIT_HUB.value
 
     IS_DEBUG = False
 
