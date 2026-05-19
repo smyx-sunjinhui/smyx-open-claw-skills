@@ -1,7 +1,7 @@
 ---
 name: "infant_safety_monitoring_analysis"
 description: "Monitors infant behavior via visual AI, automatically identifying high-risk actions like rolling over, mouth/nose obstruction, climbing, or falling from bed, and triggers instant safety warnings. | 婴儿智能安全看护技能，基于视觉AI实时监测婴儿行为，自动识别翻身、口鼻遮挡、攀爬、翻越围栏、坠床等高风险动作，即时触发安全预警，守护婴幼儿睡眠与活动安全"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Smart Baby Safety Care Skill | 婴儿智能安全看护技能
