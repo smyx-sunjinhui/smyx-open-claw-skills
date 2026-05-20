@@ -1,7 +1,7 @@
 ---
 name: "human-detection-analysis"
 description: "Automatically detects personnel in target areas based on computer vision. Supports real-time video stream detection and is suitable for monitoring personnel access in parks, offices, and restricted areas. | 区域人形检测技能，基于计算机视觉自动检测目标区域内出现的人员，支持视频流实时检测，适用于园区、办公室、禁入区域等人员出入监测场景"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Regional Humanoid Detection Skill | 区域人形检测技能
@@ -33,7 +33,7 @@ trajectories, helping to enhance regional security control capabilities and pers
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史检测报告、人形检测报告清单、检测报告列表、查询历史报告、显示所有检测报告、人形检测历史记录，查询人形检测分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有检测报告"、"
        显示所有人形检测报告"、"查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.human_detection_analysis --list --open-id` 参数调用 API
