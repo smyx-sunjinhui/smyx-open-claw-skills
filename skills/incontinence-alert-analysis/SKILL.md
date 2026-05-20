@@ -1,7 +1,7 @@
 ---
 name: "incontinence_alert_analysis"
 description: "Automatically identifies wet clothing and abnormal excretion via visual AI. Instantly notifies caregivers to improve care for incontinent elderly, bedridden patients, and infants, reducing skin issues and complications. | 智能失禁状态提醒技能，基于视觉AI自动识别衣物潮湿、排泄异常等状况，第一时间推送通知给看护人员，提升失能老人、卧床病人、婴幼儿的护理质量，减少皮肤问题和并发症"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Smart Incontinence Status Alert Skill | 智能失禁状态提醒技能
@@ -34,7 +34,7 @@ rash, and infection, while enhancing nursing quality and response efficiency.
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史护理报告、历史预警记录、失禁提醒报告清单、查询历史报告、查看护理报告列表、显示所有预警记录、显示失禁分析报告，查询失禁状态提醒报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频/图片文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频/图片文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有护理报告"、"显示所有预警记录"、"
        查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.incontinence_alert_analysis --list --open-id` 参数调用 API
@@ -120,7 +120,8 @@ rash, and infection, while enhancing nursing quality and response efficiency.
 - 本工具涉及个人隐私，请严格保密检测记录，仅授权看护人员访问
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"护理对象"、"分析时间"、"预警等级"、"点击查看"五列，其中"报告名称"列使用`失禁状态提醒报告-{记录id}`形式拼接，点击查看列使用
   `[🔗 查看报告](reportImageUrl)`
   格式的超链接，用户点击即可直接跳转到对应的完整报告页面。
