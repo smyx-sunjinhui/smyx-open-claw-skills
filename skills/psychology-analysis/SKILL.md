@@ -1,13 +1,14 @@
 ---
 name: "psychology-analysis"
 description: "Analyzes human mental health and psychological behavior, supports identifying common psychological problem tendencies through video analysis, and provides structured mental health analysis reports and improvement suggestions. | 心理健康分析工具，针对人的心理健康和心理行为进行分析，支持通过视频分析识别常见心理问题倾向，提供结构化心理健康分析报告和改善建议"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Mental Health Analysis Tool | 心理健康分析工具
 
 Based on advanced non-contact physiological signal detection and affective computing technologies, this feature captures
-subtle facial blood flow changes (rPPG) and micro-expression characteristics (FACS) via high-precision cameras to deeply
+subtle facial blood flow chan ges (rPPG) and micro-expression characteristics (FACS) via high-precision cameras to
+deeply
 analyze user stress levels, anxiety tendencies, and depression tendencies. By leveraging remote photoplethysmography to
 restore physiological indicators like Heart Rate Variability (HRV) and combining this with AI emotion recognition
 algorithms to capture emotional fluctuations in micro-expressions, the system accurately quantifies mental health
@@ -36,7 +37,7 @@ intervention of psychological issues.
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史心理报告、心理健康报告清单、心理分析报告列表、显示所有心理报告，查询心理健康分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有心理报告"、"
        显示所有心理分析报告"、"
        查看历史报告"等），**必须**：
@@ -120,7 +121,8 @@ intervention of psychological issues.
 - **重要声明**：本分析仅供心理健康参考，不能替代专业心理医生诊断或治疗。如有明确心理困扰，请及时寻求专业帮助
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"分析类型"、"分析时间"、"点击查看"四列，其中"报告名称"列使用`心理健康分析报告-{记录id}`形式拼接, "点击查看"列使用
   `[🔗 查看报告](reportImageUrl)`
   格式的超链接，用户点击即可直接跳转到对应的完整报告页面。

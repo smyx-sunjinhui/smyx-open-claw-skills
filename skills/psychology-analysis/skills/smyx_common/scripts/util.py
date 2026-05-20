@@ -379,10 +379,11 @@ class RequestUtil(BaseUtil):
                     safe_headers[k] = v[:20] + "..."
                 else:
                     safe_headers[k] = v
-            print(f"🔄 请求拦截, URL:{url}", "method", method, "params", params, "data", data, "headers", safe_headers,
-                  "options", options,
-                  "timeout",
-                  timeout)
+            ConstantEnum.is_debug() and print(f"🔄 请求拦截, URL:{url}", "method", method, "params", params, "data",
+                                              data, "headers", safe_headers,
+                                              "options", options,
+                                              "timeout",
+                                              timeout)
             response = requests.request(method, url, *args, json=data, params=params, headers=headers,
                                         timeout=int(timeout), **argss)
             response_text0 = response.text
@@ -428,13 +429,14 @@ class RequestUtil(BaseUtil):
             response_json_data = response_json.get("data", response_json.get("result"))
             response_json_data = response_json_data.get("records") if response_json_data and type(
                 response_json_data) == dict and "records" in response_json_data else response_json_data
-            print(f"✅ 请求拦截, 成功:{response_text}, url:{url}", "method", method, "params", params,
-                  "data",
-                  data,
-                  "headers",
-                  headers,
-                  "timeout",
-                  timeout)
+            ConstantEnum.is_debug() and print(f"✅ 请求拦截, 成功:{response_text}, url:{url}", "method", method,
+                                              "params", params,
+                                              "data",
+                                              data,
+                                              "headers",
+                                              headers,
+                                              "timeout",
+                                              timeout)
             return response_json_data
         except Exception as e:
             CommonUtil.trace_exception_stack(e)
