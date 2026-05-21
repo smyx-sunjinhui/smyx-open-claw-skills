@@ -1,7 +1,7 @@
 ---
 name: "autism-analysis"
 description: "Performs special video analysis on behavioral characteristics of children with autism, identifies core symptom features, provides structured analysis reports and intervention recommendations. | 孤独症谱系障碍行为分析工具，针对儿童孤独症行为特征进行专项视频分析，识别核心症状特征，提供结构化分析报告和干预建议"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Autism Spectrum Disorder Behavior Analysis Tool | 孤独症谱系障碍行为分析工具
@@ -43,7 +43,7 @@ and objective insights, offering robust support for early detection and evidence
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史孤独症报告、孤独症筛查报告清单、自闭症分析报告列表、显示所有孤独症报告，查询孤独症分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有孤独症报告"、"
        显示所有自闭症筛查报告"、"
        查看历史报告"等），**必须**：
@@ -148,7 +148,8 @@ and objective insights, offering robust support for early detection and evidence
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"分析类型"、"分析时间"、"点击查看"四列，其中"报告名称"列使用`孤独症分析报告-{记录id}`形式拼接, "点击查看"列使用
   `[🔗 查看报告](reportImageUrl)`
   格式的超链接，用户点击即可直接跳转到对应的完整报告页面。
