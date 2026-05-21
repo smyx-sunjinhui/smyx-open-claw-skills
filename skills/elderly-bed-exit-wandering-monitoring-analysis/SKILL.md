@@ -1,7 +1,7 @@
 ---
 name: "elderly-bed-exit-wandering-monitoring-analysis"
 description: "Identifies abnormal behaviors such as getting out of bed at night, prolonged wandering, and remaining motionless for extended periods. It is suitable for night-time safety monitoring in nursing homes and for elderly people living alone. | 老人离床徘徊监测技能，识别夜间起床离床、长时间徘徊、长时间静止不动异常行为，适用于养老院、独居老人夜间安全监测"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Elderly Bed-Exit & Wandering Monitor | 老人离床徘徊监测技能
@@ -40,7 +40,7 @@ the risks of falls and sudden medical emergencies.
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史监测报告、离床监测报告清单、监测报告列表、查询历史监测报告、显示所有监测报告、离床行为分析报告，查询老人离床徘徊监测分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有监测报告"、"显示所有夜间监测"、"
        查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.elderly_bed_exit_wandering_monitoring_analysis --list --open-id` 参数调用 API
@@ -134,7 +134,8 @@ the risks of falls and sudden medical emergencies.
 - **⚠️ 重要提示**：本识别结果仅供安全护理参考，不能替代人工检查和人工确认，发现异常报警请及时通知护理人员现场查看
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"分析时间"、"异常行为类型"、"是否报警"、"点击查看"五列，其中"报告名称"列使用`老人离床徘徊监测报告-{记录id}`
   形式拼接, "点击查看"列使用
   `[🔗 查看报告](reportImageUrl)`
