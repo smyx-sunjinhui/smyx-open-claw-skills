@@ -1,7 +1,7 @@
 ---
 name: "familiar-person-recognition-analysis"
 description: "Identifies acquaintances in videos or images through face photo comparison. Supports database enrollment, and the recognition results tell you who is at which location. Suitable for identity verification in homes and office areas. | 熟人识别分析技能，通过人脸图片比对识别视频/图片中的熟人，支持底库录入，识别结果告诉你哪个位置是谁，适用于家庭、办公区域身份核验"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Acquaintance Recognition & Analysis Skill | 熟人识别分析技能
@@ -36,7 +36,7 @@ this technology provides an efficient and precise intelligent solution for ident
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史识别报告、熟人识别报告清单、识别报告列表、查询历史识别报告、显示所有识别报告、熟人识别分析报告，查询熟人识别分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者图片/视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者图片/视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有识别报告"、"显示所有识别结果"、"
        查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.familiar_person_recognition_analysis --list --open-id` 参数调用 API
@@ -123,7 +123,8 @@ this technology provides an efficient and precise intelligent solution for ident
 - 识别结果仅供参考，不能用于法定身份核验
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"输入类型"、"分析时间"、"识别人数"、"点击查看"五列，其中"报告名称"列使用`熟人识别分析报告-{记录id}`形式拼接, "
   点击查看"列使用
   `[🔗 查看报告](reportImageUrl)`
