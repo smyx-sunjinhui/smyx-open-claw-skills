@@ -1,7 +1,7 @@
 ---
 name: "sport-analysis"
 description: "Conducts video safety risk analysis for participants in outdoor sports competitions, long-distance running, marathons, etc.; identifies sports injuries and sudden health risks, outputs professional analysis reports, and provides timely warnings to ensure sports safety. | 户外体育赛事风险分析工具，针对户外体育比赛、长跑马拉松等运动项目的参赛人员进行视频安全风险分析，识别运动损伤和突发健康风险，输出专业分析报告，及时预警保障运动安全"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Outdoor Sports Event Risk Analysis Tool | 户外体育赛事风险分析工具
@@ -36,7 +36,7 @@ provide a basis for rapid response by event medical teams, comprehensively safeg
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史赛事报告、体育风险分析报告清单、运动分析列表、显示所有体育报告，查询户外体育风险分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有体育报告"、"
        显示所有户外赛事风险分析报告"、"
        查看历史报告"等），**必须**：
@@ -172,7 +172,8 @@ provide a basis for rapid response by event medical teams, comprehensively safeg
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"分析类型"、"分析时间"、"点击查看"四列，其中"报告名称"列使用`户外体育风险分析报告-{记录id}`形式拼接, "点击查看"
   列使用
   `[🔗 查看报告](reportImageUrl)`
