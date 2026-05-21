@@ -1,7 +1,7 @@
 ---
 name: "plant-nutrition-diagnosis-analysis"
 description: "Diagnoses plant nutrient deficiency or excess based on computer vision and plant physiology, outputs targeted fertilization suggestions for precision nutrient management. | 植物营养诊断技能，基于计算机视觉与植物生理学，通过叶片特征诊断氮磷钾及微量元素缺乏或过剩，输出精准施肥建议"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Plant Nutrition Diagnosis Skill | 植物营养诊断技能
@@ -50,7 +50,7 @@ quickly correct nutrient disorders and maintain healthy plant growth.
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史诊断报告、营养诊断报告清单、诊断报告列表、查询历史诊断报告、显示所有诊断报告、植物营养分析报告，查询植物营养诊断分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频/图片文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频/图片文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有诊断报告"、"
        显示所有植物营养诊断"、"
        查看历史报告"等），**必须**：
@@ -142,7 +142,8 @@ quickly correct nutrient disorders and maintain healthy plant growth.
 - 诊断结果仅供施肥参考，具体施肥方案请结合土壤检测结果和当地农业技术推广部门建议
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"诊断植株数"、"分析时间"、"点击查看"四列，其中"报告名称"列使用`植物营养诊断报告-{记录id}`形式拼接, "点击查看"
   列使用
   `[🔗 查看报告](reportImageUrl)`
