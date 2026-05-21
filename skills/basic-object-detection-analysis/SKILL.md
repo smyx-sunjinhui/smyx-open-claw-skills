@@ -1,7 +1,7 @@
 ---
 name: "basic-object-detection-analysis"
 description: "Detects people, vehicles, non-motorized vehicles, pets, and parcels appearing in the target area. Supports video stream and image detection, suitable for general security surveillance scenarios. | 基础目标检测技能，检测出目标区域内出现的人、车、非机动车、宠物、包裹，支持视频流和图片检测，适用于通用安防监控场景"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Basic Object Detection Skill | 基础目标检测技能
@@ -40,7 +40,7 @@ capabilities to anomalies, facilitating 24/7 intelligent security protection.
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史检测报告、目标检测报告清单、检测报告列表、查询历史报告、显示所有检测报告、目标检测历史记录，查询基础目标检测分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频/图片文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频/图片文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有检测报告"、"
        显示所有目标检测报告"、"查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.basic_object_detection_analysis --list --open-id` 参数调用
