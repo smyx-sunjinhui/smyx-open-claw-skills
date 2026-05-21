@@ -2,14 +2,14 @@
 
 ## 接口地址
 
-`POST https://your-api-server.com/api/v1/face-analysis`
+`POST https://your-api-server.com/api/v1/common-analysis`
 
 ## 请求头
 
-| 字段           | 必选 | 说明                             |
-|--------------|----|--------------------------------|
-| X-API-Key    | 是  | API访问密钥                        |
-| Content-Type | 是  | 文件上传 或 application/json（URL模式） |
+| 字段           | 必选 | 说明                            |
+|--------------|----|-------------------------------|
+| X-API-Key    | 是  | API访问密钥                       |
+| Content-Type | 是  | 文件上传或 application/json（URL模式） |
 
 ## 请求参数
 

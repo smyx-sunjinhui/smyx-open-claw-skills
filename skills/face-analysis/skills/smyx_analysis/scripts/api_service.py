@@ -4,9 +4,7 @@ import os
 import sys
 
 from .config import ApiEnum, ConstantEnum
-
 from skills.smyx_common.scripts.api_service import ApiService as ApiServiceBase
-from skills.smyx_common.scripts.util import RequestUtil
 
 
 class ApiService(ApiServiceBase):

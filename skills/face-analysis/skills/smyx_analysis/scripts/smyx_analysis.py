@@ -52,11 +52,11 @@ def show_analyze_list(open_id, start_time=None, end_time=None):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="中医面诊分析工具")
+    parser = argparse.ArgumentParser(description="视频分析工具")
     parser.add_argument("--input", help="本地MP4视频文件路径")
     parser.add_argument("--url", help="网络视频MP4的URL地址")
     parser.add_argument("--open-id", required=True, help="当前用户的OpenID/UserId/用户名/手机号")
-    parser.add_argument("--list", action='store_true', help="显示面诊视频历史列表清单")
+    parser.add_argument("--list", action='store_true', help="显示视频历史列表清单")
     parser.add_argument("--api-url", help="服务端API地址")
     parser.add_argument("--api-key", help="API访问密钥（必需）")
     parser.add_argument("--output", help="结果输出文件路径")
@@ -84,7 +84,7 @@ def main():
             print("❌ 错误: 必须提供 --input 或 --url 参数")
             exit(1)
 
-        print("🔍 正在分析面诊视频，请稍候...")
+        print("🔍 正在分析视频，请稍候...")
         output_content = analyze_video(
             input_path=args.input,
             url=args.url,
@@ -106,7 +106,7 @@ def main():
 
     except Exception as e:
         traceback.print_stack()
-        print(f"❌ 面诊分析失败: {str(e)}")
+        print(f"❌ 分析失败: {str(e)}")
         exit(1)
 
 

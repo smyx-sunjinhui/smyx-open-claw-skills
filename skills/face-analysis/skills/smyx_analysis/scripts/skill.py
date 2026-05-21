@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
-import json
+import datetime
+import os
+import sys
 
 from .config import ApiEnum, ConstantEnum
 
+from .api_service import ApiService
+
+from skills.smyx_common.scripts.util import CommonUtil, JsonUtil
+from skills.smyx_common.scripts.config import ApiEnum as ApiEnumBase
+from skills.smyx_common.scripts.base import BaseSkill
 from skills.smyx_common.scripts.api_service import ApiService as ApiServiceBase
 
-from skills.smyx_analysis.scripts.skill import Skill as SkillParent
-from skills.smyx_common.scripts.util import JsonUtil, CommonUtil
 
-
-class Skill(SkillParent):
+class Skill(BaseSkill, ApiService):
     def __init__(self):
         super().__init__()
 
@@ -32,7 +36,7 @@ class Skill(SkillParent):
         return result_json
 
     def get_output_analysis_content_head(self, result=None):
-        return f"📊 面诊分析结构化结果"
+        return f"📊 分析报告结构化结果"
 
     def get_output_analysis_content_foot(self, result):
         result_id = result.get('id', {})
@@ -131,9 +135,9 @@ class Skill(SkillParent):
         return response
 
     def get_output_analysis_list(self, pageNum=None, pageSize=None, *args, **argss):
-        """获取面诊报告清单
-        优化规则：只要API服务接口返回面诊报告清单，直接输出API返回的结果，
-        无需汇总上下文中的面诊分析报告，以接口返回为准
+        """获取报告清单
+        优化规则：只要API服务接口返回报告清单，直接输出API返回的结果，
+        无需汇总上下文中的分析报告，以接口返回为准
         """
 
         def _get_analysis_export_url(request_id=None):
@@ -158,9 +162,9 @@ class Skill(SkillParent):
             return "⚠️ 暂无分析报告记录"
 
     def __get_output_analysis_list(self, pageNum=None, pageSize=None, *args, **argss):
-        """获取面诊报告清单
-        优化规则：只要API服务接口返回面诊报告清单，直接输出API返回的结果，
-        无需汇总上下文中的面诊分析报告，以接口返回为准
+        """获取报告清单
+        优化规则：只要API服务接口返回报告清单，直接输出API返回的结果，
+        无需汇总上下文中的分析报告，以接口返回为准
         """
 
         def _get_analysis_export_url(request_id=None):
@@ -205,10 +209,10 @@ class Skill(SkillParent):
             return f"⚠️ 获取报告列表失败：response type={type(response)}"
 
         if not records:
-            return "⚠️ 暂无面诊分析报告记录"
+            return "⚠️ 暂无分析报告记录"
 
-        output_all = f"📋 历史面诊分析报告清单（共 {total} 份）\n\n"
-        output_all += "| 报告名称 | 分析时间 | 体质判断 | 点击查看 |\n"
+        output_all = f"📋 历史分析报告清单（共 {total} 份）\n\n"
+        output_all += "| 报告名称 | 分析时间 | 结果判断 | 点击查看 |\n"
         output_all += "|----------|----------|----------|----------|\n"
 
         # 处理第一页
@@ -226,7 +230,7 @@ class Skill(SkillParent):
                 face_ai = item.get('faceAnalysisResponse', {}) or {}
                 health_assessment = face_ai.get('healthAssessment', {}) or {}
                 subject = health_assessment.get('subject', '未知')
-            report_name = f"面诊分析报告-{report_id}"
+            report_name = f"分析报告-{report_id}"
             report_url = _get_analysis_export_url(report_id)
             output_all += f"| {report_name} | {create_time} | {subject} | [🔗 查看报告]({report_url}) |\n"
 
@@ -253,11 +257,11 @@ class Skill(SkillParent):
                     face_ai = item.get('faceAnalysisResponse', {}) or {}
                     health_assessment = face_ai.get('healthAssessment', {}) or {}
                     subject = health_assessment.get('subject', '未知')
-                report_name = f"面诊分析报告-{report_id}"
+                report_name = f"分析报告-{report_id}"
                 report_url = _get_analysis_export_url(report_id)
                 output_all += f"| {report_name} | {create_time} | {subject} | [🔗 查看报告]({report_url}) |\n"
 
-        output_all += "\n> 注：面诊分析结果仅供健康参考，不能替代专业医疗诊断。"
+        output_all += "\n> 注：分析结果仅供参考。"
         return output_all
 
 
