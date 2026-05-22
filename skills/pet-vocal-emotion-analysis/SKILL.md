@@ -1,7 +1,7 @@
 ---
 name: "pet-vocal-emotion-analysis"
 description: "Recognizes cat and dog barks through pet voiceprint AI, translates and outputs emotions and behavioral intentions such as happiness, excitement, anger, anxiety, pain, vigilance, and attention-seeking, enabling human-pet smart interaction. | 宠物叫声情绪解析技能，通过宠物声纹AI识别猫狗叫声，翻译输出开心、兴奋、愤怒、焦虑、痛苦、警惕、求关注等情绪与行为意图，实现人宠智能交互"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Pet Vocal Emotion Analysis Skill | 宠物叫声情绪解析技能
@@ -44,7 +44,7 @@ understand their pets' needs more scientifically.
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史解析报告、情绪解析报告清单、解析报告列表、查询历史解析、显示所有解析报告、宠物情绪分析报告，查询宠物叫声情绪解析分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者音频/视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者音频/视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有解析报告"、"显示历史解析"、"
        查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.pet_vocal_emotion_analysis --list --open-id` 参数调用 API
@@ -107,7 +107,7 @@ understand their pets' needs more scientifically.
     3. **执行宠物叫声情绪解析分析**
         - 调用 `-m scripts.pet_vocal_emotion_analysis` 处理输入（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地音频/视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地音频/视频文件路径
             - `--url`: 网络音频/视频 URL 地址（API 服务自动下载）
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示历史宠物叫声情绪解析分析报告列表清单（可以输入起始日期参数过滤数据范围）
@@ -122,19 +122,20 @@ understand their pets' needs more scientifically.
 ## 资源索引
 
 - 必要脚本：见 [scripts/pet_vocal_emotion_analysis.py](scripts/pet_vocal_emotion_analysis.py)(用途：调用 API
-  进行宠物叫声情绪解析分析，本地文件使用 multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+  进行宠物叫声情绪解析分析，本地文件上传，网络 URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 支持格式：mp3/wav/mp4/avi/mov，最大 100MB
+- 支持格式：mp3/wav/mp4/avi/mov，最大 10MB
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 识别准确率受环境噪音、叫声清晰度等因素影响，结果仅供娱乐互动参考
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"宠物种类"、"识别情绪"、"置信度"、"解析时间"、"点击查看"六列，其中"报告名称"列使用`宠物叫声情绪解析报告-{记录id}`
   形式拼接, "点击查看"列使用
   `[🔗 查看报告](reportImageUrl)`
