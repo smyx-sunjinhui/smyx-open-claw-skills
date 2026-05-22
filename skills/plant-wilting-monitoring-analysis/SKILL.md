@@ -1,7 +1,7 @@
 ---
 name: "plant-wilting-monitoring-analysis"
 description: "Early monitoring of plant wilting based on hyperspectral imaging and computer vision, captures early wilting signs before visible symptoms, provides early warning for precision irrigation and disease control. | 植物枯萎监测技能，基于高光谱成像与计算机视觉，在肉眼可见症状前捕捉早期枯萎迹象，为精准灌溉和病害防控提供早期预警"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Plant Wilting Monitoring Skill | 植物枯萎监测技能
@@ -47,7 +47,7 @@ providing critical early warning and decision support for precision irrigation a
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史监测报告、枯萎监测报告清单、监测报告列表、查询历史监测报告、显示所有监测报告、植物枯萎分析报告，查询植物枯萎监测分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频/图片文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频/图片文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有监测报告"、"
        显示所有植物枯萎监测"、"
        查看历史报告"等），**必须**：
@@ -111,7 +111,7 @@ providing critical early warning and decision support for precision irrigation a
     3. **执行植物枯萎监测分析**
         - 调用 `-m scripts.plant_wilting_monitoring_analysis` 处理输入（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频/图片文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频/图片文件路径
             - `--url`: 网络视频/图片 URL 地址（API 服务自动下载）
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示历史植物枯萎监测分析报告列表清单（可以输入起始日期参数过滤数据范围）
@@ -126,7 +126,7 @@ providing critical early warning and decision support for precision irrigation a
 ## 资源索引
 
 - 必要脚本：见 [scripts/plant_wilting_monitoring_analysis.py](scripts/plant_wilting_monitoring_analysis.py)
-  (用途：调用 API 进行植物枯萎监测分析，本地文件使用 multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+  (用途：调用 API 进行植物枯萎监测分析，本地文件上传，网络 URL 由 API 服务自动下载)
 
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
@@ -139,7 +139,8 @@ providing critical early warning and decision support for precision irrigation a
 - 监测结果作为早期预警参考，最终诊断请结合田间实际情况和植保专家判断
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"监测植株数"、"分析时间"、"点击查看"四列，其中"报告名称"列使用`植物枯萎监测报告-{记录id}`形式拼接, "点击查看"
   列使用
   `[🔗 查看报告](reportImageUrl)`
