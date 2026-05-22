@@ -1,7 +1,7 @@
 ---
 name: "visual-qa-analysis"
 description: "Conducts open-ended Q&A on image content based on computer vision and large language models, supporting any questions to receive natural language responses. | 大模型视觉问答（VQA）技能，基于计算机视觉和大语言模型对图片内容进行开放式问答，支持任意提问得到自然语言回答"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Large Model Visual Question Answering Skill | 大模型视觉问答技能
@@ -39,7 +39,7 @@ and educational assistance.
        ：查看历史问答记录、视觉问答历史、问答记录清单、查询历史问答，显示所有问答记录
     4. 用户提供图片后附带问题，如"这张图片里有什么？"，直接触发视觉问答
 - 自动行为：
-    1. 如果用户上传了图片文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了图片文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史问答查询关键词，**必须**：
         - 直接使用 `python -m scripts.visual_qa_analysis --list --open-id` 参数调用 API
           查询云端的历史问答数据
@@ -94,7 +94,7 @@ and educational assistance.
     3. **执行视觉问答**
         - 调用 `-m scripts.visual_qa_analysis` 处理图片（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地图片文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地图片文件路径
             - `--url`: 网络图片 URL 地址（API 服务自动下载）
             - `--question`: 用户提出的问题（必填）
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
@@ -109,8 +109,8 @@ and educational assistance.
 
 ## 资源索引
 
-- 必要脚本：见 [scripts/visual_qa_analysis.py](scripts/visual_qa_analysis.py)(用途：调用 API 进行视觉问答，本地文件使用
-  multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+- 必要脚本：见 [scripts/visual_qa_analysis.py](scripts/visual_qa_analysis.py)(用途：调用 API 进行视觉问答，本地文件上传，网络
+  URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和图片格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
