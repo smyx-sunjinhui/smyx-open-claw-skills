@@ -1,7 +1,7 @@
 ---
 name: "sleep-quality-analysis"
 description: "Identifies sleep stages including falling asleep, light sleep, deep sleep, and REM; monitors body movement, nighttime awakenings, and sleep apnea, suitable for sleep monitoring scenarios. | 睡眠质量分析技能，识别入睡、浅睡、深睡、快速眼动阶段，监测体动、夜间觉醒、睡眠呼吸暂停，适用于睡眠监测场景"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Sleep Quality Analysis Skill | 睡眠质量分析技能
@@ -36,7 +36,7 @@ devices, providing users with a scientific and comfortable sleep health manageme
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史分析报告、睡眠质量分析报告清单、分析报告列表、查询历史报告、显示所有分析报告、睡眠质量分析历史记录，查询睡眠质量分析分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有分析报告"、"
        显示所有睡眠质量报告"、"查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.sleep_quality_analysis --list --open-id` 参数调用 API
@@ -91,7 +91,7 @@ devices, providing users with a scientific and comfortable sleep health manageme
     3. **执行睡眠质量分析**
         - 调用 `-m scripts.sleep_quality_analysis` 处理视频文件（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示睡眠质量分析历史分析报告列表清单（可以输入起始日期参数过滤数据范围）
@@ -105,21 +105,22 @@ devices, providing users with a scientific and comfortable sleep health manageme
 
 ## 资源索引
 
-- 必要脚本：见 [scripts/sleep_quality_analysis.py](scripts/sleep_quality_analysis.py)(用途：调用 API 进行睡眠质量分析，本地文件使用
-  multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+- 必要脚本：见 [scripts/sleep_quality_analysis.py](scripts/sleep_quality_analysis.py)(用途：调用 API 进行睡眠质量分析，本地文件上传，网络
+  URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 视频要求：支持 mp4/avi/mov 格式，最大 100MB
+- 视频要求：支持 mp4/avi/mov 格式，最大 10MB
 - 建议视频时长不少于 30 分钟以反映完整睡眠周期
 - 本技能仅作睡眠质量参考，不能替代专业睡眠监测设备和医生诊断
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"分析时间"、"睡眠评分"、"点击查看"四列，其中"报告名称"列使用`睡眠质量分析报告-{记录id}`形式拼接, "点击查看"列使用
   `[🔗 查看报告](reportImageUrl)`
   格式的超链接，用户点击即可直接跳转到对应的完整报告页面。
