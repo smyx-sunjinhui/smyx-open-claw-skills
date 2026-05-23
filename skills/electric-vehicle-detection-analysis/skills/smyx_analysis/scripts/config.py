@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# 中医面诊分析工具配置文件
 import os
 import sys
 
@@ -11,11 +10,11 @@ SceneCodeEnum = ConstantEnumBase.SceneCodeEnum
 
 
 class ApiEnum(ApiEnumBase):
-    ANALYSIS_URL = "/web/health-analysis/v2/start-health-analysis"
+    ANALYSIS_URL = ""
 
-    ANALYSIS_RESULT_URL = "/web/health-analysis/get-health-analysis-result"
+    ANALYSIS_RESULT_URL = ""
 
-    PAGE_URL = "/web/health-analysis/page-health-analysis-result"
+    PAGE_URL = ""
 
     DETAIL_EXPORT_URL = ApiEnumBase.BASE_URL_HEALTH + "/health/order/api/getReportDetailExport?id="
 
