@@ -1,7 +1,7 @@
 ---
 name: "pet-behavior-detection-analysis"
 description: "Identifies common abnormal pet behaviors such as scratching, biting, destructive chewing, jumping, digging, chasing, and separation anxiety, helping owners understand their pet's habits. | 宠物行为识别技能，识别抓挠、啃咬、拆家、跳跃、刨地、追逐、独处焦虑等常见宠物异常行为，帮助主人了解宠物行为习惯"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Pet Behavior Recognition Skill | 宠物行为识别技能
@@ -37,7 +37,7 @@ health references and medical advice.
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史行为报告、宠物行为分析报告清单、行为识别报告列表、查询历史行为分析
 - 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词，**必须**：
         - 直接使用 `python -m scripts.pet_behavior_detection_analysis --list --open-id` 参数调用 API
           查询云端的历史行为数据
@@ -91,7 +91,7 @@ health references and medical advice.
     3. **执行宠物行为识别**
         - 调用 `-m scripts.pet_behavior_detection_analysis` 处理视频（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--duration-min`: 统计时长（分钟），默认自动识别
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
@@ -107,19 +107,20 @@ health references and medical advice.
 ## 资源索引
 
 - 必要脚本：见 [scripts/pet_behavior_detection_analysis.py](scripts/pet_behavior_detection_analysis.py)(用途：调用 API
-  进行宠物行为识别，本地文件使用 multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+  进行宠物行为识别，本地文件上传，网络 URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 支持格式：视频支持 mp4/avi/mov 格式，最大 100MB
+- 支持格式：视频支持 mp4/avi/mov 格式，最大 10MB
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 分析结果仅供参考，行为矫正建议请咨询专业宠物训练师
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"分析时间"、"异常行为次数"、"点击查看"四列，其中"报告名称"列使用`宠物行为分析报告-{记录id}`形式拼接, "点击查看"
   列使用
   `[🔗 查看报告](reportImageUrl)`格式的超链接，用户点击即可直接跳转到对应的完整报告页面。
