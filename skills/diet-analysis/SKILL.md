@@ -1,7 +1,7 @@
 ---
 name: "diet-analysis"
 description: "Analyzes videos to evaluate human eating behaviors, habits, and dietary patterns. It identifies tendencies towards unhealthy eating and provides structured analysis reports along with nutritional improvement recommendations. | 饮食行为健康分析工具，针对人的饮食行为、进食习惯、饮食结构进行视频分析，识别不良饮食行为倾向，提供结构化分析报告和营养改善建议"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Dietary Behavior Health Analyzer | 饮食行为健康分析工具
@@ -33,7 +33,7 @@ breakdown of the food types, portion proportions, and nutritional structure on t
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史饮食报告、饮食分析报告清单、饮食行为分析列表、显示所有饮食报告，查询饮食行为分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有饮食报告"、"
        显示所有饮食分析报告"、"
        查看历史报告"等），**必须**：
@@ -81,18 +81,9 @@ breakdown of the food types, portion proportions, and nutritional structure on t
 **在执行饮食行为分析前，必须按以下优先级顺序获取 open-id：**
 
 ```
-第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置/api-key 为空)
-第 2 步：检查 workspace 公共目录的配置文件
-        路径：${OPENCLAW_WORKSPACE}/skills/smyx_common/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置)
-第 3 步：检查用户是否在消息中明确提供了 open-id
+第 1 步：检查用户是否在消息中明确提供了 open-id
         ↓ (未提供)
-第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
+第 2 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
 ```
 
 **⚠️ 关键约束：**
@@ -100,7 +91,6 @@ breakdown of the food types, portion proportions, and nutritional structure on t
 - **禁止**自行假设,自行推导,自行生成 open-id 值（如 openclaw-control-ui、default、dietC113、diet123 等）
 - **禁止**跳过 open-id 验证直接调用 API
 - **必须**在获取到有效 open-id 后才能继续执行分析
-- 如果用户拒绝提供 open-id，说明用途（用于保存和查询饮食分析报告记录），并询问是否继续
 
 ---
 
@@ -114,10 +104,10 @@ breakdown of the food types, portion proportions, and nutritional structure on t
     3. **执行饮食行为分析**
         - 调用 `-m scripts.diet_analysis` 处理视频文件（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--analysis-type`: 分析类型，可选值：comprehensive/speed/habit/structure/risk，默认 comprehensive（综合分析）
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
+            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取, 再通过 SHA-256 算法生成唯一标识传入）
             - `--list`: 显示饮食行为分析历史报告列表清单（可以输入起始日期参数过滤数据范围）
             - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
@@ -129,8 +119,9 @@ breakdown of the food types, portion proportions, and nutritional structure on t
 
 ## 资源索引
 
-- 必要脚本：见 [scripts/diet_analysis.py](scripts/diet_analysis.py)(用途：调用 API 进行饮食行为分析，本地文件使用
-  multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+- 必要脚本：见 [scripts/diet_analysis.py](scripts/diet_analysis.py)(用途：调用 API 进行饮食行为分析，本地文件上传(
+  https)，网络 URL
+  由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
@@ -138,11 +129,12 @@ breakdown of the food types, portion proportions, and nutritional structure on t
 
 - **重要声明**：本分析仅供饮食健康参考，不能替代专业营养师或医师诊断。明确营养问题请尽早咨询专业人士
 - 仅在需要时读取参考文档，保持上下文简洁
-- 视频要求：支持 mp4/avi/mov 格式，最大 100MB
+- 视频要求：支持 mp4/avi/mov 格式，最大 10MB
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"分析类型"、"分析时间"、"点击查看"四列，其中"报告名称"列使用`饮食分析报告-{记录id}`形式拼接, "点击查看"列使用
   `[🔗 查看报告](reportImageUrl)`
   格式的超链接，用户点击即可直接跳转到对应的完整报告页面。
@@ -155,20 +147,20 @@ breakdown of the food types, portion proportions, and nutritional structure on t
 
 ```bash
 # 综合饮食行为分析（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.diet_analysis --input /path/to/meal_video.mp4 --analysis-type comprehensive --open-id openclaw-control-ui
+python -m scripts.diet_analysis --input /path/to/meal_video.mp4 --analysis-type comprehensive --open-id {SHA-256 算法生成 open-id}
 
 # 进食速度专项分析（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.diet_analysis --url https://example.com/meal_video.mp4 --analysis-type speed --open-id openclaw-control-ui
+python -m scripts.diet_analysis --url https://example.com/meal_video.mp4 --analysis-type speed --open-id {SHA-256 算法生成 open-id}
 
 # 进餐习惯专项分析（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.diet_analysis --input /path/to/habit_video.mp4 --analysis-type habit --open-id openclaw-control-ui
+python -m scripts.diet_analysis --input /path/to/habit_video.mp4 --analysis-type habit --open-id {SHA-256 算法生成 open-id}
 
 # 显示历史分析报告/显示分析报告清单列表/显示历史饮食报告（自动触发关键词：查看历史饮食报告、历史报告、饮食报告清单等）
-python -m scripts.diet_analysis --list --open-id openclaw-control-ui
+python -m scripts.diet_analysis --list --open-id {SHA-256 算法生成 open-id}
 
 # 输出精简报告
-python -m scripts.diet_analysis --input video.mp4 --analysis-type comprehensive --open-id your-open-id --detail basic
+python -m scripts.diet_analysis --input video.mp4 --analysis-type comprehensive --open-id {SHA-256 算法生成 open-id} --detail basic
 
 # 保存结果到文件
-python -m scripts.diet_analysis --input video.mp4 --analysis-type comprehensive --open-id your-open-id --output result.json
+python -m scripts.diet_analysis --input video.mp4 --analysis-type comprehensive --open-id {SHA-256 算法生成 open-id} --output result.json
 ```
