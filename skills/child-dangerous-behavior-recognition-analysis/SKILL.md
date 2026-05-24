@@ -1,7 +1,7 @@
 ---
 name: "child-dangerous-behavior-recognition-analysis"
 description: "Detects climbing, playing with fire, touching power sources, and dangerous actions near windows, providing real-time alerts. It is suitable for child safety supervision in scenarios such as homes, kindergartens, and nurseries. | 儿童危险行为识别技能，识别攀爬、玩火、触电源、窗边危险动作并实时预警，适用于家庭、幼儿园、托儿所等场景儿童安全监护"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Child Hazardous Behavior Recognition Tool | 儿童危险行为识别分析工具
@@ -41,7 +41,7 @@ supervision efficiency.
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史识别报告、危险行为识别报告清单、识别报告列表、查询历史报告、显示所有识别报告、儿童危险行为识别历史记录，查询儿童危险行为识别分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有识别报告"、"
        显示所有儿童安全报告"、"查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.child_dangerous_behavior_recognition_analysis --list --open-id`
@@ -97,7 +97,7 @@ supervision efficiency.
     3. **执行儿童危险行为识别**
         - 调用 `-m scripts.child_dangerous_behavior_recognition_analysis` 处理视频文件（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--alert-threshold`: 危险行为预警阈值，高于该分值发出预警，默认 0.6
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
@@ -115,7 +115,7 @@ supervision efficiency.
 -
 
 必要脚本：见 [scripts/child_dangerous_behavior_recognition_analysis.py](scripts/child_dangerous_behavior_recognition_analysis.py)(
-用途：调用 API 进行儿童危险行为识别，本地文件使用 multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+用途：调用 API 进行儿童危险行为识别，本地文件上传，网络 URL 由 API 服务自动下载)
 
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
@@ -123,7 +123,7 @@ supervision efficiency.
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 视频要求：支持 mp4/avi/mov 格式，最大 100MB
+- 视频要求：支持 mp4/avi/mov 格式，最大 10MB
 - 本技能仅作儿童安全监护辅助，发现危险预警请立即确认
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 禁止临时生成脚本，只能用技能本身的脚本
