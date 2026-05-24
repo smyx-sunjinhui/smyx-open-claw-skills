@@ -1,7 +1,7 @@
 ---
 name: "custom-timelapse-analysis"
 description: "Generates condensed album highlights based on specified keywords or targets. It extracts specific target segments from long videos and compiles them into an exciting summary. | 时光相册自定义浓缩分析技能，基于指定关键词/目标生成时光相册浓缩集锦，从长视频中提取特定目标片段，整理生成精彩汇总"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Time-Lapse Album Custom Summarization Skill | 时光相册自定义浓缩分析技能
@@ -41,7 +41,7 @@ videos.
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史浓缩报告、时光相册报告清单、浓缩报告列表、查询历史浓缩报告、显示所有浓缩报告、时光浓缩分析报告，查询自定义时光相册浓缩分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有浓缩报告"、"显示所有时光相册"、"
        查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.custom_timelapse --list --open-id` 参数调用 API
@@ -96,7 +96,7 @@ videos.
     3. **执行时光相册自定义浓缩分析**
         - 调用 `-m scripts.custom_timelapse` 处理视频（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--text`: 自定义提取目标/关键词描述
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
@@ -111,8 +111,8 @@ videos.
 
 ## 资源索引
 
-- 必要脚本：见 [scripts/custom_timelapse.py](scripts/custom_timelapse.py)(用途：调用 API 进行时光相册自定义浓缩分析，本地文件使用
-  multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+- 必要脚本：见 [scripts/custom_timelapse.py](scripts/custom_timelapse.py)(用途：调用 API 进行时光相册自定义浓缩分析，本地文件上传，网络
+  URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
@@ -124,7 +124,8 @@ videos.
 - 分析结果仅供整理使用，请注意保护个人隐私
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"自定义目标"、"分析时间"、"提取片段数"、"点击查看"五列，其中"报告名称"列使用`时光相册浓缩分析报告-{记录id}`
   形式拼接, "点击查看"列使用
   `[🔗 查看报告](reportImageUrl)`
