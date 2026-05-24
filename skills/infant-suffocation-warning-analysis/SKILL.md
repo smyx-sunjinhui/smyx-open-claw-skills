@@ -1,7 +1,7 @@
 ---
 name: "infant-suffocation-warning-analysis"
 description: "Identifies prone sleeping positions, head covering, and occlusion of the mouth/nose by bedding or clothing; provides real-time high-risk alerts to safeguard infant sleep safety. | 婴儿趴睡窒息预警技能，识别俯卧睡姿、蒙头、口鼻被被褥/衣物遮挡，高风险实时报警，守护婴儿睡眠安全"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Infant Prone Sleeping Asphyxia Alert Skill | 婴儿趴睡窒息预警技能
@@ -37,7 +37,7 @@ SIDS) and accidental suffocation, building a zero-dead-angle sleep safety barrie
     3. 当用户提及以下关键词时，**自动触发历史预警记录查询功能**
        ：查看历史预警记录、婴儿睡眠安全历史、预警记录清单、查询历史风险报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史查询关键词，**必须**：
         - 直接使用 `python -m scripts.infant_suffocation_warning_analysis --list --open-id` 参数调用 API
           查询云端的历史预警数据
@@ -91,7 +91,7 @@ SIDS) and accidental suffocation, building a zero-dead-angle sleep safety barrie
     3. **执行风险预警分析**
         - 调用 `-m scripts.infant_suffocation_warning_analysis` 处理视频（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--sensitivity`: 报警灵敏度，可选 1-5，数值越高越敏感（默认 3）
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
@@ -107,14 +107,14 @@ SIDS) and accidental suffocation, building a zero-dead-angle sleep safety barrie
 ## 资源索引
 
 - 必要脚本：见 [scripts/infant_suffocation_warning_analysis.py](scripts/infant_suffocation_warning_analysis.py)(用途：调用
-  API 进行婴儿趴睡窒息风险预警分析，本地文件使用 multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+  API 进行婴儿趴睡窒息风险预警分析，本地文件上传，网络 URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 支持格式：视频支持 mp4/avi/mov 格式，最大 100MB
+- 支持格式：视频支持 mp4/avi/mov 格式，最大 10MB
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - **本技能为辅助监测工具，不能替代成人看护**，发现高风险请立即检查宝宝状况，必要时及时就医
 - 禁止临时生成脚本，只能用技能本身的脚本
