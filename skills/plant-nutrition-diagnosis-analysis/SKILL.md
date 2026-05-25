@@ -1,7 +1,7 @@
 ---
 name: "plant-nutrition-diagnosis-analysis"
 description: "Diagnoses plant nutrient deficiency or excess based on computer vision and plant physiology, outputs targeted fertilization suggestions for precision nutrient management. | 植物营养诊断技能，基于计算机视觉与植物生理学，通过叶片特征诊断氮磷钾及微量元素缺乏或过剩，输出精准施肥建议"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Plant Nutrition Diagnosis Skill | 植物营养诊断技能
@@ -114,7 +114,7 @@ quickly correct nutrient disorders and maintain healthy plant growth.
     3. **执行植物营养诊断分析**
         - 调用 `-m scripts.plant_nutrition_diagnosis_analysis` 处理输入（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频/图片文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频/图片文件路径
             - `--url`: 网络视频/图片 URL 地址（API 服务自动下载）
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示历史植物营养诊断分析报告列表清单（可以输入起始日期参数过滤数据范围）
@@ -129,7 +129,7 @@ quickly correct nutrient disorders and maintain healthy plant growth.
 ## 资源索引
 
 - 必要脚本：见 [scripts/plant_nutrition_diagnosis_analysis.py](scripts/plant_nutrition_diagnosis_analysis.py)
-  (用途：调用 API 进行植物营养诊断分析，本地文件使用 multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+  (用途：调用 API 进行植物营养诊断分析，本地文件上传，网络 URL 由 API 服务自动下载)
 
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
