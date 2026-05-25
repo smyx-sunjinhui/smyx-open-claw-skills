@@ -24,11 +24,13 @@ class Skill(BaseSkill, ApiService):
         if result_json_pure_text:
             result_json = JsonUtil.parse(result_json_pure_text, result_json_pure_text)
 
-        result_json_common_ai_response = result_json.get("commonAiResponse")
+        result_json_common_ai_response = result_json.get("commonAiResponse") if isinstance(result_json,
+                                                                                           dict) else result_json
         if result_json_common_ai_response:
             result_json = result_json_common_ai_response
 
-        result_json_health_ai_response = result_json.get("healthAiResponse")
+        result_json_health_ai_response = result_json.get("healthAiResponse") if isinstance(result_json,
+                                                                                           dict) else result_json
         if result_json_health_ai_response:
             result_json = result_json_health_ai_response
 

@@ -103,7 +103,7 @@ class JsonUtil(BaseUtil):
         try:
             return json.loads(json_str)
         except Exception as e:
-            CommonUtil.trace_exception_stack(e)
+            # CommonUtil.trace_exception_stack(e)
             pass
         return default_json
 
