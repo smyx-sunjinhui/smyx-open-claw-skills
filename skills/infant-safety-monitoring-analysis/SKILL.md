@@ -1,7 +1,7 @@
 ---
 name: "infant_safety_monitoring_analysis"
 description: "Monitors infant behavior via visual AI, automatically identifying high-risk actions like rolling over, mouth/nose obstruction, climbing, or falling from bed, and triggers instant safety warnings. | 婴儿智能安全看护技能，基于视觉AI实时监测婴儿行为，自动识别翻身、口鼻遮挡、攀爬、翻越围栏、坠床等高风险动作，即时触发安全预警，守护婴幼儿睡眠与活动安全"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Smart Baby Safety Care Skill | 婴儿智能安全看护技能
@@ -33,7 +33,7 @@ passive supervision to active protection, and building a solid safety line of de
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史安全报告、历史看护报告、婴儿安全报告清单、查询历史报告、查看看护报告列表、显示所有安全报告、显示婴儿安全分析报告，查询婴儿安全看护报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频/图片文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频/图片文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有安全报告"、"显示所有看护报告"、"
        查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.infant_safety_monitoring_analysis --list --open-id` 参数调用 API
@@ -88,7 +88,7 @@ passive supervision to active protection, and building a solid safety line of de
     3. **执行婴儿安全看护分析**
         - 调用 `-m scripts.infant_safety_monitoring_analysis` 处理视频文件（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--infant-age-group`: 婴儿年龄段，可选值：newborn(0-3个月), infant(3-12个月), toddler(1-3岁), other，默认
               other
@@ -106,19 +106,20 @@ passive supervision to active protection, and building a solid safety line of de
 
 - 必要脚本：见 [scripts/infant_safety_monitoring_analysis.py](scripts/infant_safety_monitoring_analysis.py)(用途：调用 API
   进行婴儿安全看护分析，本地文件使用
-  multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+  支持文件上传 方式上传，网络 URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 视频要求：支持 mp4/avi/mov 格式，最大 100MB
+- 视频要求：支持 mp4/avi/mov 格式，最大 10MB
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 分析结果仅供安全参考，不能替代专业看护和家长实时监护
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"婴儿年龄段"、"分析时间"、"点击查看"四列，其中"报告名称"列使用`婴儿安全看护分析报告-{记录id}`形式拼接, "
   点击查看"列使用
   `[🔗 查看报告](reportImageUrl)`
