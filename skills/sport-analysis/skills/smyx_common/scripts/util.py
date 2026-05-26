@@ -103,7 +103,7 @@ class JsonUtil(BaseUtil):
         try:
             return json.loads(json_str)
         except Exception as e:
-            CommonUtil.trace_exception_stack(e)
+            # CommonUtil.trace_exception_stack(e)
             pass
         return default_json
 
@@ -407,13 +407,14 @@ class RequestUtil(BaseUtil):
                 cls.authorization_retry_count += 1
                 return cls.http_request(method, url, data, params, headers, options, *args, timeout=timeout, **argss)
             elif status_code == 402:
-                print(f"❌ 请求拦截, 使用失败:{response_text}, url:{url}", "method", method, "params", params,
-                      "data",
-                      data,
-                      "headers",
-                      headers,
-                      "timeout",
-                      timeout)
+                ConstantEnum.is_debug() and print(f"❌ 请求拦截, 使用失败:{response_text}, url:{url}", "method", method,
+                                                  "params", params,
+                                                  "data",
+                                                  data,
+                                                  "headers",
+                                                  headers,
+                                                  "timeout",
+                                                  timeout)
                 return f'''⚠️ 因账户余额不足, 技能使用失败, 请按照如下步骤进行充值: 
 👉 1. 先输入命令 "安装支付技能 smyx-payment", 等待安装完成. (如果已经安装支付技能过则忽略此步骤)
 👉 2. 再输入命令 "技能账户充值", 然后跟随系统提示操作后即可继续使用技能.
@@ -442,7 +443,7 @@ class RequestUtil(BaseUtil):
         except Exception as e:
             CommonUtil.trace_exception_stack(e)
             response_text = _.get(e.args, '0.text')
-            print(
+            ConstantEnum.is_debug() and print(
                 f"❌ 请求拦截, 失败: {e}, e.response.text: {response_text}, url:{url}",
                 "method",
                 method,
