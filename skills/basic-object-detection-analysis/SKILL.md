@@ -1,7 +1,7 @@
 ---
 name: "basic-object-detection-analysis"
 description: "Detects people, vehicles, non-motorized vehicles, pets, and parcels appearing in the target area. Supports video stream and image detection, suitable for general security surveillance scenarios. | 基础目标检测技能，检测出目标区域内出现的人、车、非机动车、宠物、包裹，支持视频流和图片检测，适用于通用安防监控场景"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Basic Object Detection Skill | 基础目标检测技能
@@ -96,7 +96,7 @@ capabilities to anomalies, facilitating 24/7 intelligent security protection.
     3. **执行基础目标检测**
         - 调用 `-m scripts.basic_object_detection_analysis` 处理素材（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频/图片文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频/图片文件路径
             - `--url`: 网络视频/图片 URL 地址（API 服务自动下载）
             - `--media-type`: 媒体类型，可选值：video/image，默认 video
             - `--confidence-threshold`: 置信度阈值，低于该分值不输出，默认 0.5
@@ -113,14 +113,14 @@ capabilities to anomalies, facilitating 24/7 intelligent security protection.
 ## 资源索引
 
 - 必要脚本：见 [scripts/basic_object_detection_analysis.py](scripts/basic_object_detection_analysis.py)(用途：调用 API
-  进行基础目标检测，本地文件使用 multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+  进行基础目标检测，本地文件上传，网络 URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和媒体格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 支持格式：视频支持 mp4/avi/mov 格式，图片支持 jpg/png/jpeg 格式，最大 100MB
+- 支持格式：视频支持 mp4/avi/mov 格式，图片支持 jpg/png/jpeg 格式，最大 10MB
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 分析结果仅供安防管理参考，具体处置请按单位相关规定执行
 - 禁止临时生成脚本，只能用技能本身的脚本
