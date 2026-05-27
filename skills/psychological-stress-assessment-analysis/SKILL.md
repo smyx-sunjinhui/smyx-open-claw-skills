@@ -1,7 +1,7 @@
 ---
 name: "psychological-stress-assessment-analysis"
 description: "Combines facial blood flow and emotional characteristics to analyze stress index, anxiety tendency, and depression tendency, suitable for mental health monitoring scenarios. | 心理压力评估技能，结合面部血流与情绪特征，分析压力指数、焦虑倾向、抑郁倾向，适用于心理健康监测场景"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Psychological Stress Assessment Skill | 心理压力评估技能
@@ -36,7 +36,7 @@ intervention of psychological issues.
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史评估报告、心理压力评估报告清单、评估报告列表、查询历史报告、显示所有评估报告、心理压力评估历史记录，查询心理压力评估分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频/图片文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频/图片文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有评估报告"、"
        显示所有压力评估报告"、"查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.psychological_stress_assessment_analysis --list --open-id` 参数调用 API
@@ -91,7 +91,7 @@ intervention of psychological issues.
     3. **执行心理压力评估**
         - 调用 `-m scripts.psychological_stress_assessment_analysis` 处理视频文件（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--media-type`: 媒体类型，可选值：video/image，默认 video
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
@@ -109,7 +109,7 @@ intervention of psychological issues.
 -
 
 必要脚本：见 [scripts/psychological_stress_assessment_analysis.py](scripts/psychological_stress_assessment_analysis.py)(
-用途：调用 API 进行心理压力评估，本地文件使用 multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+用途：调用 API 进行心理压力评估，本地文件上传，网络 URL 由 API 服务自动下载)
 
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
@@ -117,7 +117,7 @@ intervention of psychological issues.
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 视频要求：支持 mp4/avi/mov 格式，最大 100MB
+- 视频要求：支持 mp4/avi/mov 格式，最大 10MB
 - 建议视频时长不少于 2 分钟以反映真实压力状态
 - 本技能仅作心理健康评估参考，不能替代专业心理咨询和临床诊断，发现持续异常请及时寻求专业帮助
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
