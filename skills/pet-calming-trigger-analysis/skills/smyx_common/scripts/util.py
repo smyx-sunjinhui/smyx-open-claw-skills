@@ -103,7 +103,7 @@ class JsonUtil(BaseUtil):
         try:
             return json.loads(json_str)
         except Exception as e:
-            CommonUtil.trace_exception_stack(e)
+            # CommonUtil.trace_exception_stack(e)
             pass
         return default_json
 
@@ -170,7 +170,7 @@ class CommonUtil(BaseUtil):
 
         attempts = 0
 
-        print(f"🚀 开始执行 [{description}]...")
+        ConstantEnum.is_debug() and print(f"🚀 开始执行 [{description}]...")
 
         while attempts < max_attempts:
             attempts += 1
@@ -182,7 +182,8 @@ class CommonUtil(BaseUtil):
 
                 # 2. 检查条件
                 if check_condition(result):
-                    print(f"✅ [{description}] 成功！条件已满足 (尝试次数: {attempts}, 耗时{interval * attempts}秒)")
+                    ConstantEnum.is_debug() and print(
+                        f"✅ [{description}] 成功！条件已满足 (尝试次数: {attempts}, 耗时{interval * attempts}秒)")
                     if on_success:
                         on_success(result)
                     return result
@@ -192,7 +193,7 @@ class CommonUtil(BaseUtil):
                     on_retry(result, attempts)
                 else:
                     # 默认日志行为
-                    print(
+                    ConstantEnum.is_debug() and print(
                         f"⏳ [{description}] 条件未满足，{interval}秒后重试... ({attempts}/{max_attempts}, 耗时{interval * attempts}秒)")
 
                 time.sleep(interval)
@@ -204,12 +205,12 @@ class CommonUtil(BaseUtil):
                 else:
                     # 默认错误行为：打印错误并继续
                     logging.error(f"❌ [{description}] 发生异常: {e}")
-                    print(f"⚠️ [{description}] 遇到错误，{interval}秒后重试...")
+                    ConstantEnum.is_debug() and print(f"⚠️ [{description}] 遇到错误，{interval}秒后重试...")
 
                 time.sleep(interval)
 
         # 5. 超时处理
-        print(f"⚠️ [{description}] 失败：达到最大尝试次数 ({max_attempts})，强制停止。")
+        ConstantEnum.is_debug() and print(f"⚠️ [{description}] 失败：达到最大尝试次数 ({max_attempts})，强制停止。")
         return None
 
     @staticmethod
@@ -379,10 +380,12 @@ class RequestUtil(BaseUtil):
                     safe_headers[k] = v[:20] + "..."
                 else:
                     safe_headers[k] = v
-            print(f"🔄 请求拦截, URL:{url}", "method", method, "params", params, "data", data, "headers", safe_headers,
-                  "options", options,
-                  "timeout",
-                  timeout)
+            ConstantEnum.is_debug() and print(f"🔄 请求拦截, URL:{url}", "method", method, "params", params, "data",
+                                              data,
+                                              # "headers", safe_headers,
+                                              "options", options,
+                                              "timeout",
+                                              timeout)  ## ARK_CLAW ##
             response = requests.request(method, url, *args, json=data, params=params, headers=headers,
                                         timeout=int(timeout), **argss)
             response_text0 = response.text
@@ -391,13 +394,6 @@ class RequestUtil(BaseUtil):
             if current__user_name == "13800000000":
                 status_code = 402
             if status_code == 401 and cls.authorization_retry_count < cls.AUTHORIZATION_RETRY_COUNT_MAX:
-                # print(f"❌ 请求拦截, 鉴权失败:{response_text}, url:{url}", "method", method, "params", params,
-                #       "data",
-                #       data,
-                #       "headers",
-                #       headers,
-                #       "timeout",
-                #       timeout)
                 ApiEnum.TOKEN = ApiEnum.OPEN_TOKEN = None
                 if found_user:
                     found_user.token = found_user.open_token = None
@@ -405,19 +401,19 @@ class RequestUtil(BaseUtil):
                 cls.authorization_retry_count += 1
                 return cls.http_request(method, url, data, params, headers, options, *args, timeout=timeout, **argss)
             elif status_code == 402:
-                print(f"❌ 请求拦截, 使用失败:{response_text}, url:{url}", "method", method, "params", params,
-                      "data",
-                      data,
-                      "headers",
-                      headers,
-                      "timeout",
-                      timeout)
+                ConstantEnum.is_debug() and print(f"❌ 请求拦截, 使用失败:{response_text}, url:{url}", "method", method,
+                                                  "params", params,
+                                                  "data",
+                                                  data,
+                                                  # "headers",
+                                                  # headers,
+                                                  "timeout",
+                                                  timeout)  ## ARK_CLAW ##
                 return f'''⚠️ 因账户余额不足, 技能使用失败, 请按照如下步骤进行充值: 
 👉 1. 先输入命令 "安装支付技能 smyx-payment", 等待安装完成. (如果已经安装支付技能过则忽略此步骤)
 👉 2. 再输入命令 "技能账户充值", 然后跟随系统提示操作后即可继续使用技能.
 {response_text0 or ""}
 '''
-                # f'请先输入命令 "技能账户充值", 请先确确保安装生命涌现支付技能 请先输入命令 "技能账户充值", 跟随系统提示进行充值后即可继续使用技能(). {response_text0 or ""}')
             elif status_code != 200:
                 raise requests.exceptions.RequestException(
                     response, response=response)
@@ -428,18 +424,19 @@ class RequestUtil(BaseUtil):
             response_json_data = response_json.get("data", response_json.get("result"))
             response_json_data = response_json_data.get("records") if response_json_data and type(
                 response_json_data) == dict and "records" in response_json_data else response_json_data
-            print(f"✅ 请求拦截, 成功:{response_text}, url:{url}", "method", method, "params", params,
-                  "data",
-                  data,
-                  "headers",
-                  headers,
-                  "timeout",
-                  timeout)
+            ConstantEnum.is_debug() and print(f"✅ 请求拦截, 成功:{response_text}, url:{url}", "method", method,
+                                              "params", params,
+                                              "data",
+                                              data,
+                                              # "headers",
+                                              # headers,
+                                              "timeout",
+                                              timeout)  ## ARK_CLAW ##
             return response_json_data
         except Exception as e:
             CommonUtil.trace_exception_stack(e)
             response_text = _.get(e.args, '0.text')
-            print(
+            ConstantEnum.is_debug() and print(
                 f"❌ 请求拦截, 失败: {e}, e.response.text: {response_text}, url:{url}",
                 "method",
                 method,
@@ -447,7 +444,7 @@ class RequestUtil(BaseUtil):
                 params,
                 "data", data, "headers",
                 "response", hasattr(e, 'response') and e.response,
-                headers,
+                # "headers", headers,
                 "timeout",
-                timeout)
+                timeout)  ## ARK_CLAW ##
             raise
