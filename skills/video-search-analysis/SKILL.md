@@ -1,7 +1,7 @@
 ---
 name: "video-search-analysis"
 description: "Conducts intelligent video search based on target and semantic descriptions; supports conventional target retrieval, natural language description retrieval, and vectorized model matching. | 视频搜索/视频检索智能分析技能，基于目标、语义描述进行智能视频搜索，支持常规目标检索、自然语言描述检索、向量化模型匹配"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Intelligent Video Search & Retrieval Analysis Skill | 视频搜索检索智能分析技能
@@ -40,7 +40,7 @@ surveillance and video asset management.
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史搜索报告、视频搜索报告清单、搜索报告列表、查询历史搜索报告、显示所有搜索报告、视频检索分析报告，查询视频搜索分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有搜索报告"、"显示所有检索结果"、"
        查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.video_search_analysis --list --open-id` 参数调用 API
@@ -95,7 +95,7 @@ surveillance and video asset management.
     3. **执行视频搜索智能分析**
         - 调用 `-m scripts.video_search_analysis` 处理视频（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--text`: 搜索目标/自然语言描述（说明要找什么内容）
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
@@ -110,8 +110,8 @@ surveillance and video asset management.
 
 ## 资源索引
 
-- 必要脚本：见 [scripts/video_search_analysis.py](scripts/video_search_analysis.py)(用途：调用 API 进行视频搜索分析，本地文件使用
-  multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+- 必要脚本：见 [scripts/video_search_analysis.py](scripts/video_search_analysis.py)(用途：调用 API 进行视频搜索分析，本地文件上传，网络
+  URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
@@ -123,7 +123,8 @@ surveillance and video asset management.
 - 搜索结果仅供参考，请以实际视频内容为准
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"搜索关键词"、"分析时间"、"匹配片段数"、"点击查看"五列，其中"报告名称"列使用`视频搜索分析报告-{记录id}`
   形式拼接, "点击查看"列使用
   `[🔗 查看报告](reportImageUrl)`
