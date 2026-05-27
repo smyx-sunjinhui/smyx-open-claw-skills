@@ -1,7 +1,7 @@
 ---
 name: "incontinence_alert_analysis"
 description: "Automatically identifies wet clothing and abnormal excretion via visual AI. Instantly notifies caregivers to improve care for incontinent elderly, bedridden patients, and infants, reducing skin issues and complications. | 智能失禁状态提醒技能，基于视觉AI自动识别衣物潮湿、排泄异常等状况，第一时间推送通知给看护人员，提升失能老人、卧床病人、婴幼儿的护理质量，减少皮肤问题和并发症"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Smart Incontinence Status Alert Skill | 智能失禁状态提醒技能
@@ -89,7 +89,7 @@ rash, and infection, while enhancing nursing quality and response efficiency.
     3. **执行失禁状态检测分析**
         - 调用 `-m scripts.incontinence_alert_analysis` 处理文件（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频/图片文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频/图片文件路径
             - `--url`: 网络媒体 URL 地址（API 服务自动下载）
             - `--user-type`: 护理对象类型，可选值：elderly(失能老人)/bedridden(卧床病人)/infant(婴幼儿)/other，默认 other
             - `--detection-mode`: 检测模式，可选值：real-time(实时监控)/regular-check(定时巡查)，默认 real-time
@@ -106,7 +106,7 @@ rash, and infection, while enhancing nursing quality and response efficiency.
 ## 资源索引
 
 - 必要脚本：见 [scripts/incontinence_alert_analysis.py](scripts/incontinence_alert_analysis.py)(用途：调用 API
-  进行失禁状态分析，本地文件使用 multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+  进行失禁状态分析，本地文件上传，网络 URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和媒体格式限制，场景码已设置为
   INCONTINENCE_ALERT_ANALYSIS)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
@@ -114,7 +114,7 @@ rash, and infection, while enhancing nursing quality and response efficiency.
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 格式支持：视频支持 mp4/avi/mov 格式，图片支持 jpg/png/jpeg 格式，最大 100MB
+- 格式支持：视频支持 mp4/avi/mov 格式，图片支持 jpg/png/jpeg 格式，最大 10MB
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 分析结果仅供护理参考，不能替代专业医护人员判断和人工检查
 - 本工具涉及个人隐私，请严格保密检测记录，仅授权看护人员访问
