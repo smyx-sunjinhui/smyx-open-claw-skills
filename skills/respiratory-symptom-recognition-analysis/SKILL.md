@@ -1,7 +1,7 @@
 ---
 name: "respiratory_symptom_recognition_analysis"
 description: "Based on computer vision, automatically detects coughing, phlegm, and wheezing frequency, counts the frequency of episodes, used for early health anomaly alerts, helping to detect respiratory diseases in a timely manner. | 呼吸道症状智能识别技能，基于计算机视觉自动检测咳嗽、咳痰、喘息频率，统计发作频次，用于健康异常早期提醒，帮助及时发现呼吸道疾病"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Respiratory Symptom Smart Recognition Tool | 呼吸道症状智能识别工具
@@ -35,7 +35,7 @@ signs of respiratory disease early and providing data support for timely medical
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史监测报告、历史症状报告、呼吸道识别报告清单、查询历史报告、查看监测报告列表、显示所有监测报告、显示呼吸道分析报告，查询呼吸道症状识别报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频/图片文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频/图片文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有监测报告"、"显示所有症状报告"、"
        查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.respiratory_symptom_recognition_analysis --list --open-id` 参数调用 API
@@ -90,7 +90,7 @@ signs of respiratory disease early and providing data support for timely medical
     3. **执行呼吸道症状识别分析**
         - 调用 `-m scripts.respiratory_symptom_recognition_analysis` 处理视频文件（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `monitor-scenario`: 监测场景，可选值：daily-check(日常监测)/post-op(术后康复)/hospital(病房监测)/other，默认
               other
@@ -110,7 +110,7 @@ signs of respiratory disease early and providing data support for timely medical
 -
 
 必要脚本：见 [scripts/respiratory_symptom_recognition_analysis.py](scripts/respiratory_symptom_recognition_analysis.py)(
-用途：调用 API 进行呼吸道症状分析，本地文件使用 multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+用途：调用 API 进行呼吸道症状分析，本地文件上传，网络 URL 由 API 服务自动下载)
 
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制，场景码已设置为
   RESPIRATORY_SYMPTOM_RECOGNITION_ANALYSIS)
@@ -119,13 +119,14 @@ signs of respiratory disease early and providing data support for timely medical
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 视频要求：支持 mp4/avi/mov 格式，最大 100MB
+- 视频要求：支持 mp4/avi/mov 格式，最大 10MB
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 分析结果仅供健康参考和早期异常提醒，不能替代专业医师诊断和医学检查
 - 本工具用于辅助监测，确诊请遵医嘱进行相关检查
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"监测场景"、"分析时间"、"风险等级"、"点击查看"五列，其中"报告名称"列使用`呼吸道症状监测报告-{记录id}`
   形式拼接，点击查看列使用
   `[🔗 查看报告](reportImageUrl)`
