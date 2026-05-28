@@ -1,7 +1,7 @@
 ---
 name: "pet-breed-individual-recognition-analysis"
 description: "Accurately identifies cat and dog breeds and supports distinguishing between different individuals in multi-pet households; an essential assistant for intelligent pet butlers. | 宠物品种个体识别技能，精准识别猫狗宠物品种，支持多宠家庭区分不同独立个体，智能宠物管家好帮手"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Breed & Individual Identification Skill | 宠物品种个体识别技能
@@ -16,15 +16,6 @@ environments. It provides personalized intelligent management services for pet o
 smart管家 assistant for modern multi-pet families.
 
 本功能搭载了基于深度卷积神经网络的高精度品种识别算法，能够对猫、狗等常见宠物的品种特征进行毫秒级精准判定。系统不仅涵盖了全球数百种主流及稀有品种的数据库，更针对多宠家庭场景进行了深度优化，支持在同一画面中同时识别并区分不同的宠物个体。通过建立独立的宠物身份档案，系统能够准确记录每只宠物的活动轨迹与行为习惯，有效解决多宠环境下的身份混淆问题，为宠物主人提供个性化的智能管理服务，是现代化多宠家庭不可或缺的智能管家助手
-
-## ⚠️ 强制记忆规则（最高优先级）
-
-**本技能明确约定：**
-
-- **绝对禁止读取任何本地记忆文件**：包括但不限于 `memory/YYYY-MM-DD.md`、`MEMORY.md` 等本地文件
-- **绝对禁止从 LanceDB 长期记忆中检索信息**
-- **所有历史报告查询必须从云端接口获取**，不得使用本地记忆中的历史数据
-- 即使技能调用失败或接口异常，也不得回退到本地记忆汇总
 
 ## 任务目标
 
@@ -70,18 +61,9 @@ smart管家 assistant for modern multi-pet families.
 **在执行宠物品种个体识别分析前，必须按以下优先级顺序获取 open-id：**
 
 ```
-第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置/api-key 为空)
-第 2 步：检查 workspace 公共目录的配置文件
-        路径：${OPENCLAW_WORKSPACE}/skills/smyx_common/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置)
-第 3 步：检查用户是否在消息中明确提供了 open-id
+第 1 步：检查用户是否在消息中明确提供了 open-id
         ↓ (未提供)
-第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
+第 2 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
 ```
 
 **⚠️ 关键约束：**
@@ -89,7 +71,6 @@ smart管家 assistant for modern multi-pet families.
 - **禁止**自行假设,自行推导,自行生成 open-id 值（如 openclaw-control-ui、default、petbreed123、petid456 等）
 - **禁止**跳过 open-id 验证直接调用 API
 - **必须**在获取到有效 open-id 后才能继续执行分析
-- 如果用户拒绝提供 open-id，说明用途（用于保存和查询识别报告记录），并询问是否继续
 
 ---
 
@@ -106,6 +87,7 @@ smart管家 assistant for modern multi-pet families.
             - `--input`: 本地图片/视频文件路径
             - `--url`: 网络图片/视频 URL 地址（API 服务自动下载）
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
+            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取, 再通过 SHA-256 算法生成唯一标识传入）
             - `--list`: 显示历史宠物品种个体识别分析报告列表清单（可以输入起始日期参数过滤数据范围）
             - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
@@ -145,21 +127,33 @@ smart管家 assistant for modern multi-pet families.
   | 宠物品种个体识别报告 -20260328221000001 | 2只 | 2026-03-28 22:10:
   00 | [🔗 查看报告](https://example.com/report?id=xxx) |
 
+## 📝 隐私与数据安全声明
+
+本技能在处理用户上传的视频时，严格遵守数据安全规范：
+
+- **数据脱敏处理**：
+    - 系统基于用户名/手机号生成的 SHA-256 标识仅作为匿名化脱敏处理后的用户关联信息，**不包含任何可直接识别个人身份的明文信息
+      **。
+- **安全传输**：
+    - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
+- **数据留存策略**：
+    - 云端服务器遵循“最小必要原则”，**分析任务完成后即刻删除原始视频数据，不进行持久化存储**，确保用户隐私数据不被留存或滥用。
+
 ## 使用示例
 
 ```bash
 # 识别本地图片中的宠物（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.pet_breed_individual_recognition_analysis --input /path/to/pets.jpg --open-id openclaw-control-ui
+python -m scripts.pet_breed_individual_recognition_analysis --input /path/to/pets.jpg --open-id {SHA-256 算法生成新 open-id}
 
 # 识别网络图片（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.pet_breed_individual_recognition_analysis --url https://example.com/dogs.jpg --open-id openclaw-control-ui
+python -m scripts.pet_breed_individual_recognition_analysis --url https://example.com/dogs.jpg --open-id {SHA-256 算法生成新 open-id}
 
 # 显示历史识别报告/显示识别报告清单列表/显示历史宠物识别（自动触发关键词：查看历史识别报告、历史报告、识别报告清单等）
-python -m scripts.pet_breed_individual_recognition_analysis --list --open-id openclaw-control-ui
+python -m scripts.pet_breed_individual_recognition_analysis --list --open-id {SHA-256 算法生成新 open-id}
 
 # 输出精简报告
-python -m scripts.pet_breed_individual_recognition_analysis --input pets.jpg --open-id your-open-id --detail basic
+python -m scripts.pet_breed_individual_recognition_analysis --input pets.jpg --open-id {SHA-256 算法生成新 open-id} --detail basic
 
 # 保存结果到文件
-python -m scripts.pet_breed_individual_recognition_analysis --input pets.jpg --open-id your-open-id --output result.json
+python -m scripts.pet_breed_individual_recognition_analysis --input pets.jpg --open-id {SHA-256 算法生成新 open-id} --output result.json
 ```
