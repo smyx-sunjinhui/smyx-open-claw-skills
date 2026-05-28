@@ -1,7 +1,7 @@
 ---
 name: "focus-analysis"
 description: "Real-time detection of gaze direction and facial pose to quantify states of focus, distraction, or mind-wandering. Suitable for scenarios such as classroom learning, office meetings, and driving attention monitoring. | 专注度分析技能，实时检测视线方向、面部姿态，量化专注/分心/走神状态，适用于课堂学习、办公会议、驾驶专注度监测等场景"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Concentration Analysis Skill | 专注度分析技能
@@ -34,7 +34,7 @@ operational risks.
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史分析报告、专注度分析报告清单、分析报告列表、查询历史报告、显示所有分析报告、专注度分析历史记录，查询专注度分析分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有分析报告"、"
        显示所有专注度报告"、"查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.focus_analysis --list --open-id` 参数调用 API
@@ -89,7 +89,7 @@ operational risks.
     3. **执行专注度分析**
         - 调用 `-m scripts.focus_analysis` 处理视频文件（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--analyze-duration`: 分析视频时长，单位：分钟，默认 30
             - `--focus-threshold`: 专注度阈值，低于该分值判定为分心，默认 0.6
@@ -106,21 +106,22 @@ operational risks.
 
 ## 资源索引
 
-- 必要脚本：见 [scripts/focus_analysis.py](scripts/focus_analysis.py)(用途：调用 API 进行专注度分析，本地文件使用
-  multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+- 必要脚本：见 [scripts/focus_analysis.py](scripts/focus_analysis.py)(用途：调用 API 进行专注度分析，本地文件上传，网络 URL
+  由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 视频要求：支持 mp4/avi/mov 格式，最大 100MB，建议视频时长不少于 5 分钟以反映真实专注度变化
+- 视频要求：支持 mp4/avi/mov 格式，最大 10MB，建议视频时长不少于 5 分钟以反映真实专注度变化
 - 不同场景默认判定标准有差异，可通过参数调整阈值
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 分析结果仅供参考，不能替代人工评估，具体改善方案请结合实际情况调整
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"分析时间"、"平均专注度"、"点击查看"四列，其中"报告名称"列使用`专注度分析报告-{记录id}`形式拼接, "点击查看"列使用
   `[🔗 查看报告](reportImageUrl)`
   格式的超链接，用户点击即可直接跳转到对应的完整报告页面。
