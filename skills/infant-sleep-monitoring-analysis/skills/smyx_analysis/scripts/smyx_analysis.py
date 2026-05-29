@@ -43,7 +43,7 @@ def analyze_video(input_path=None, url=None, api_url=None, api_key=None, output_
 
 def show_analyze_list(open_id, start_time=None, end_time=None):
     try:
-        output_content = skill.get_output_analysis_list()
+        output_content = skill.get_output_analysis_list(open_id=open_id)
         return output_content
 
     except requests.exceptions.RequestException as e:
