@@ -29,7 +29,7 @@ def analyze_approach(input_path=None, url=None, api_url=None, api_key=None, outp
 
 
 def show_analyze_list(open_id, start_time=None, end_time=None):
-    output_content = skill.get_output_analysis_list()
+    output_content = skill.get_output_analysis_list(open_id=open_id)
     return output_content
 
 
