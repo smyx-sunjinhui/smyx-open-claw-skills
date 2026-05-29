@@ -1,7 +1,7 @@
 ---
 name: "pet-health-monitoring-analysis"
 description: "Based on computer vision, analyzes pet health indicators such as feeding frequency, drinking frequency, excretion status, mental state, vomiting behavior, and limping abnormalities through camera/feeder monitoring videos, promptly detects abnormal pet health conditions, and outputs health monitoring reports. | 宠物日常健康监测分析技能，基于计算机视觉通过摄像头/喂食器监控视频分析宠物的进食频次、饮水频次、排泄状态、精神状态、呕吐行为、跛行异常等健康指标，及时发现宠物异常健康状况，输出健康监测报告"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Daily Health Monitoring & Analysis Tool | 宠物日常健康监测分析工具
@@ -34,7 +34,7 @@ scientific and intuitive health management data to facilitate early disease dete
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史监测报告、宠物健康报告清单、监测报告列表、查询历史报告、显示所有监测报告、宠物健康监测历史记录，查询宠物健康监测分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频/图片文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者视频/图片文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有监测报告"、"
        显示所有宠物健康报告"、"查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.pet_health_monitoring_analysis --list --open-id` 参数调用 API
@@ -89,7 +89,7 @@ scientific and intuitive health management data to facilitate early disease dete
     3. **执行宠物健康监测分析**
         - 调用 `-m scripts.pet_health_monitoring_analysis` 处理视频文件（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--pet-type`: 宠物类型，可选值：cat/dog，默认 cat
             - `--monitor-days`: 监测天数/视频覆盖时长，单位：天，默认 1
@@ -106,14 +106,14 @@ scientific and intuitive health management data to facilitate early disease dete
 ## 资源索引
 
 - 必要脚本：见 [scripts/pet_health_monitoring_analysis.py](scripts/pet_health_monitoring_analysis.py)(用途：调用 API
-  进行宠物健康监测分析，本地文件使用 multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+  进行宠物健康监测分析，本地文件上传，网络 URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 视频要求：支持 mp4/avi/mov 格式，最大 100MB，建议视频时长不少于 1 小时以反映日常行为规律
+- 视频要求：支持 mp4/avi/mov 格式，最大 10MB，建议视频时长不少于 1 小时以反映日常行为规律
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 分析结果仅供宠物健康参考，不能替代专业兽医诊断，发现异常请及时就医
 - 禁止临时生成脚本，只能用技能本身的脚本
