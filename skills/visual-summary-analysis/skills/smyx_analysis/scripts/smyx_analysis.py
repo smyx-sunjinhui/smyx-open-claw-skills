@@ -20,25 +20,43 @@ from .config import *
 
 from .skill import skill
 
+# import_path_common()
 from skills.smyx_common.scripts.util import RequestUtil
 
+# 从config导入常量
+SUPPORTED_FORMATS = ConstantEnum.SUPPORTED_FORMATS
+MAX_FILE_SIZE_MB = ConstantEnum.MAX_FILE_SIZE_MB
 
-def generate_summary(input_path=None, url=None, api_url=None, api_key=None, output_level=None):
-    input_path = input_path or url
-    return skill.get_output_analysis(input_path)
+
+def analyze_video(input_path=None, url=None, api_url=None, api_key=None, output_level=None):
+    """调用API分析视频"""
+    if not input_path and not url:
+        raise ValueError("必须提供本地视频路径(--input)或网络视频URL(--url)")
+    try:
+        input_path = input_path or url
+        return skill.get_output_analysis(input_path)
+
+    except requests.exceptions.RequestException as e:
+        traceback.print_stack()
+        raise Exception(f"API请求失败: {str(e)}")
 
 
 def show_analyze_list(open_id, start_time=None, end_time=None):
-    output_content = skill.get_output_analysis_list(open_id=open_id)
-    return output_content
+    try:
+        output_content = skill.get_output_analysis_list(open_id=open_id)
+        return output_content
+
+    except requests.exceptions.RequestException as e:
+        traceback.print_stack()
+        raise Exception(f"API请求失败: {str(e)}")
 
 
 def main():
-    parser = argparse.ArgumentParser(description="视觉摘要智述分析工具")
-    parser.add_argument("--input", help="本地视频/图片文件路径")
-    parser.add_argument("--url", help="网络视频/图片URL地址")
+    parser = argparse.ArgumentParser(description="视频分析工具")
+    parser.add_argument("--input", help="本地MP4视频文件路径")
+    parser.add_argument("--url", help="网络视频MP4的URL地址")
     parser.add_argument("--open-id", required=True, help="当前用户的OpenID/UserId/用户名/手机号")
-    parser.add_argument("--list", action='store_true', help="显示视觉摘要智述分析列表清单")
+    parser.add_argument("--list", action='store_true', help="显示视频历史列表清单")
     parser.add_argument("--api-url", help="服务端API地址")
     parser.add_argument("--api-key", help="API访问密钥（必需）")
     parser.add_argument("--output", help="结果输出文件路径")
@@ -52,7 +70,6 @@ def main():
 
     try:
         if args.open_id:
-            # 设置 Python 进程内的环境变量
             ConstantEnumBase.CURRENT__OPEN_ID = args.open_id
 
         # 检查必需参数
@@ -67,8 +84,8 @@ def main():
             print("❌ 错误: 必须提供 --input 或 --url 参数")
             exit(1)
 
-        print("🔍 正在生成视觉摘要，请稍候...")
-        output_content = generate_summary(
+        print("🔍 正在分析视频，请稍候...")
+        output_content = analyze_video(
             input_path=args.input,
             url=args.url,
             api_url=args.api_url,
@@ -89,7 +106,7 @@ def main():
 
     except Exception as e:
         traceback.print_stack()
-        print(f"❌ 视觉摘要智述分析失败: {str(e)}")
+        print(f"❌ 分析失败: {str(e)}")
         exit(1)
 
 
