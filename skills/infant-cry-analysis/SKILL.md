@@ -1,7 +1,7 @@
 ---
 name: "infant-cry-analysis"
 description: "Detects baby cries via audio AI in real-time, analyzes causes, and precisely identifies needs like hunger, tiredness, pain, discomfort, or irritability to assist new parents. | 婴儿哭声智能解析技能，通过音频AI实时检测婴儿哭声，自动解析哭声成因，精准识别饥饿、困倦、疼痛、身体不适、情绪烦躁等不同需求，辅助新手爸妈科学育婴"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Smart Baby Cry Analysis Skill | 婴儿哭声智能解析技能
@@ -43,7 +43,7 @@ response."
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史解析报告、哭声解析报告清单、解析报告列表、查询历史解析、显示所有解析报告、哭声分析报告，查询婴儿哭声智能解析分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者音频/视频文件，则自动保存到技能目录下 attachments
+    1. 如果用户上传了附件或者音频/视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有解析报告"、"显示历史解析"、"
        查看历史报告"等），**必须**：
         - 直接使用 `python -m scripts.infant_cry_analysis --list --open-id` 参数调用 API
@@ -106,7 +106,7 @@ response."
     3. **执行婴儿哭声智能解析分析**
         - 调用 `-m scripts.infant_cry_analysis` 处理输入（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地音频/视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地音频/视频文件路径
             - `--url`: 网络音频/视频 URL 地址（API 服务自动下载）
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示历史婴儿哭声智能解析分析报告列表清单（可以输入起始日期参数过滤数据范围）
@@ -120,20 +120,21 @@ response."
 
 ## 资源索引
 
-- 必要脚本：见 [scripts/infant_cry_analysis.py](scripts/infant_cry_analysis.py)(用途：调用 API 进行婴儿哭声智能解析分析，本地文件使用
-  multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+- 必要脚本：见 [scripts/infant_cry_analysis.py](scripts/infant_cry_analysis.py)(用途：调用 API 进行婴儿哭声智能解析分析，本地文件上传，网络
+  URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 支持格式：mp3/wav/mp4/avi/mov，最大 100MB
+- 支持格式：mp3/wav/mp4/avi/mov，最大 10MB
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - **⚠️ 重要提示**：本分析结果仅供育婴参考辅助，宝宝持续哭闹不适请及时就医检查
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含"
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
   报告名称"、"识别结果"、"置信度"、"解析时间"、"点击查看"五列，其中"报告名称"列使用`婴儿哭声解析报告-{记录id}`形式拼接, "
   点击查看"列使用
   `[🔗 查看报告](reportImageUrl)`
