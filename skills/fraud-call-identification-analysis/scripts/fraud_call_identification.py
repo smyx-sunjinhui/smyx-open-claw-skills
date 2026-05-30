@@ -29,7 +29,7 @@ def analyze_call(input_path=None, url=None, text=None, api_url=None, api_key=Non
 
 
 def show_analyze_list(open_id, start_time=None, end_time=None):
-    output_content = skill.get_output_analysis_list()
+    output_content = skill.get_output_analysis_list(open_id=open_id)
     return output_content
 
 
