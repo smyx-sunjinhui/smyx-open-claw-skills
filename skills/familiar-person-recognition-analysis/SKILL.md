@@ -1,7 +1,7 @@
 ---
 name: "familiar-person-recognition-analysis"
 description: "Identifies acquaintances in videos or images through face photo comparison. Supports database enrollment, and the recognition results tell you who is at which location. Suitable for identity verification in homes and office areas. | 熟人识别分析技能，通过人脸图片比对识别视频/图片中的熟人，支持底库录入，识别结果告诉你哪个位置是谁，适用于家庭、办公区域身份核验"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Acquaintance Recognition & Analysis Skill | 熟人识别分析技能
@@ -96,7 +96,7 @@ this technology provides an efficient and precise intelligent solution for ident
     3. **执行熟人识别分析**
         - 调用 `-m scripts.familiar_person_recognition_analysis` 处理输入（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地图片/视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地图片/视频文件路径
             - `--url`: 网络图片/视频 URL 地址（API 服务自动下载）
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示历史熟人识别分析报告列表清单（可以输入起始日期参数过滤数据范围）
@@ -111,14 +111,14 @@ this technology provides an efficient and precise intelligent solution for ident
 ## 资源索引
 
 - 必要脚本：见 [scripts/familiar_person_recognition_analysis.py](scripts/familiar_person_recognition_analysis.py)(用途：调用
-  API 进行熟人识别分析，本地文件使用 multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+  API 进行熟人识别分析，本地文件上传，网络 URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 支持格式：jpg/jpeg/png/mp4/avi/mov，最大 100MB
+- 支持格式：jpg/jpeg/png/mp4/avi/mov，最大 10MB
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 识别结果仅供参考，不能用于法定身份核验
 - 禁止临时生成脚本，只能用技能本身的脚本
