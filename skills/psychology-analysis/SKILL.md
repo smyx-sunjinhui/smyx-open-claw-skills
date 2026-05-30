@@ -1,7 +1,7 @@
 ---
 name: "psychology-analysis"
 description: "Analyzes human mental health and psychological behavior, supports identifying common psychological problem tendencies through video analysis, and provides structured mental health analysis reports and improvement suggestions. | 心理健康分析工具，针对人的心理健康和心理行为进行分析，支持通过视频分析识别常见心理问题倾向，提供结构化心理健康分析报告和改善建议"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Mental Health Analysis Tool | 心理健康分析工具
@@ -93,7 +93,7 @@ intervention of psychological issues.
     3. **执行心理健康分析**
         - 调用 `-m scripts.psychology_analysis` 处理视频文件（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--analysis-type`: 分析类型，可选值：general/emotion/anxiety/depression/stress/other，默认 general（综合分析）
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
@@ -108,15 +108,15 @@ intervention of psychological issues.
 
 ## 资源索引
 
-- 必要脚本：见 [scripts/psychology_analysis.py](scripts/psychology_analysis.py)(用途：调用 API 进行心理健康分析，本地文件使用
-  multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+- 必要脚本：见 [scripts/psychology_analysis.py](scripts/psychology_analysis.py)(用途：调用 API 进行心理健康分析，本地文件上传，网络
+  URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 视频要求：支持 mp4/avi/mov 格式，最大 100MB
+- 视频要求：支持 mp4/avi/mov 格式，最大 10MB
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - **重要声明**：本分析仅供心理健康参考，不能替代专业心理医生诊断或治疗。如有明确心理困扰，请及时寻求专业帮助
 - 禁止临时生成脚本，只能用技能本身的脚本
