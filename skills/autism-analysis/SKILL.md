@@ -1,7 +1,7 @@
 ---
 name: "autism-analysis"
 description: "Performs special video analysis on behavioral characteristics of children with autism, identifies core symptom features, provides structured analysis reports and intervention recommendations. | 孤独症谱系障碍行为分析工具，针对儿童孤独症行为特征进行专项视频分析，识别核心症状特征，提供结构化分析报告和干预建议"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Autism Spectrum Disorder Behavior Analysis Tool | 孤独症谱系障碍行为分析工具
@@ -120,7 +120,7 @@ and objective insights, offering robust support for early detection and evidence
     3. **执行孤独症行为分析**
         - 调用 `-m scripts.autism_analysis` 处理视频文件（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--analysis-type`: 分析类型，可选值：screening/social/behavior/comprehensive，默认 comprehensive（全面筛查）
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
@@ -135,8 +135,8 @@ and objective insights, offering robust support for early detection and evidence
 
 ## 资源索引
 
-- 必要脚本：见 [scripts/autism_analysis.py](scripts/autism_analysis.py)(用途：调用 API 进行孤独症行为分析，本地文件使用
-  multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+- 必要脚本：见 [scripts/autism_analysis.py](scripts/autism_analysis.py)(用途：调用 API 进行孤独症行为分析，本地文件上传，网络
+  URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
@@ -144,7 +144,7 @@ and objective insights, offering robust support for early detection and evidence
 
 - **重要声明**：本分析仅供早期筛查参考，不能替代专业医生诊断或临床评估。明确疑似孤独症请尽早转诊专业医疗机构
 - 仅在需要时读取参考文档，保持上下文简洁
-- 视频要求：支持 mp4/avi/mov 格式，最大 100MB
+- 视频要求：支持 mp4/avi/mov 格式，最大 10MB
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
