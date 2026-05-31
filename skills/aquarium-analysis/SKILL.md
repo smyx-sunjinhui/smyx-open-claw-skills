@@ -1,7 +1,7 @@
 ---
 name: "aquarium-analysis"
 description: "When a user provides a video URL or file of aquatic pets such as goldfish, koi, betta, shrimp, crab, etc. for analysis, this skill is triggered to perform aquatic pet health diagnosis analysis. Supports uploading local videos or online video URLs, calls server-side API for aquatic pet health examination, analyzes features such as scales, fins, body color, activity level, identifies potential diseases and outputs a pet health report. | 鱼类水族宠物健康诊断分析工具，当用户提供金鱼、锦鲤、斗鱼、虾、蟹等水族宠物的视频 URL 或文件需要分析时，触发本技能进行水族宠物健康诊断分析；支持通过上传本地视频或网络视频 URL，调用服务端 API 进行水族宠物健康检查，分析鳞片、鱼鳍、体色、活跃度等特征，识别潜在疾病并输出宠安卫士健康报告"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Fish Aquatic Pet Health Diagnosis Analysis Tool | 鱼类水族宠物健康诊断分析工具
@@ -23,15 +23,6 @@ companions.
 - [🔗 通过网路视频进行识别分析](https://www.coze.cn/s/IDELfupQiFM/)
 - [🔗 通过上传视频进行识别分析](https://www.coze.cn/s/5rTftNch1qQ/)
 - [🔗 显示历史分析报告](https://www.coze.cn/s/I9Y9BD7hdSY/)
-
-## ⚠️ 强制记忆规则（最高优先级）
-
-**本技能明确约定：**
-
-- **绝对禁止读取任何本地记忆文件**：包括但不限于 `memory/YYYY-MM-DD.md`、`MEMORY.md` 等本地文件
-- **绝对禁止从 LanceDB 长期记忆中检索信息**
-- **所有历史报告查询必须从云端接口获取**，不得使用本地记忆中的历史数据
-- 即使技能调用失败或接口异常，也不得回退到本地记忆汇总
 
 ## 任务目标
 
@@ -128,6 +119,18 @@ companions.
   | 报告名称 | 鱼宠类型 | 分析时间 | 点击查看 |
   |----------|----------|----------|----------|
   | 鱼宠健康分析报告 -20260312172200001 | 金鱼 | 2026-03-12 17:22:00 | [🔗 查看报告](https://example.com/report?id=xxx) |
+
+## 📝 隐私与数据安全声明
+
+本技能在处理用户上传的视频时，严格遵守数据安全规范：
+
+- **数据脱敏处理**：
+    - 系统基于用户名/手机号生成的 SHA-256 标识仅作为匿名化脱敏处理后的用户关联信息，**不包含任何可直接识别个人身份的明文信息
+      **。
+- **安全传输**：
+    - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
+- **数据留存策略**：
+    - 云端服务器遵循“最小必要原则”，**分析任务完成后即刻删除原始视频数据，不进行持久化存储**，确保用户隐私数据不被留存或滥用。
 
 ## 使用示例
 

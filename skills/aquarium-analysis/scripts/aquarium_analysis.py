@@ -46,7 +46,7 @@ def validate_file(file_path):
     return True
 
 
-def analyze_video(input_path=None, url=None, fish_type=None, api_url=None, api_key=None, output_level=None):
+def analyze_video(input_path=None, url=None, fish_type=None, api_url=None, api_key=None, output_level=None, **kwargs):
     """调用API分析鱼类宠物视频"""
     if not input_path and not url:
         raise ValueError("必须提供本地视频路径(--input)或网络视频URL(--url)")
@@ -57,7 +57,7 @@ def analyze_video(input_path=None, url=None, fish_type=None, api_url=None, api_k
 
     try:
         input_path = input_path or url
-        return skill.get_output_analysis(input_path)
+        return skill.get_output_analysis(input_path, **kwargs)
 
     except requests.exceptions.RequestException as e:
         traceback.print_stack()
@@ -69,7 +69,7 @@ def show_analyze_list(open_id, start_time=None, end_time=None):
     #     raise ValueError("必须提供本用户的OpenId/UserId")
 
     try:
-        output_content = skill.get_output_analysis_list()
+        output_content = skill.get_output_analysis_list(open_id=open_id)
         return output_content
 
     except requests.exceptions.RequestException as e:
@@ -214,6 +214,7 @@ def main():
 
         print("🔍 正在分析鱼类宠物健康，请稍候...")
         output_content = analyze_video(
+            open_id=args.open_id,
             input_path=args.input,
             url=args.url,
             fish_type=args.fish_type,
