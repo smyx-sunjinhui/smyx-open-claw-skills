@@ -1,7 +1,7 @@
 ---
 name: "human-detection-analysis"
 description: "Automatically detects personnel in target areas based on computer vision. Supports real-time video stream detection and is suitable for monitoring personnel access in parks, offices, and restricted areas. | 区域人形检测技能，基于计算机视觉自动检测目标区域内出现的人员，支持视频流实时检测，适用于园区、办公室、禁入区域等人员出入监测场景"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Regional Humanoid Detection Skill | 区域人形检测技能
@@ -88,7 +88,7 @@ trajectories, helping to enhance regional security control capabilities and pers
     3. **执行人形检测分析**
         - 调用 `-m scripts.human_detection_analysis` 处理视频文件（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--detection-region`: 检测区域坐标，格式：x1,y1,x2,y2（可选，限定特定检测区域）
@@ -104,14 +104,14 @@ trajectories, helping to enhance regional security control capabilities and pers
 ## 资源索引
 
 - 必要脚本：见 [scripts/human_detection_analysis.py](scripts/human_detection_analysis.py)(用途：调用 API 进行人形检测分析，本地文件使用
-  multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+  支持文件上传 方式上传，网络 URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 视频要求：支持 mp4/avi/mov 格式，最大 100MB
+- 视频要求：支持 mp4/avi/mov 格式，最大 10MB
 - 适用于固定摄像头监控场景，检测准确率更高
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 分析结果仅供安全管理参考，具体处置请按单位相关规定执行
