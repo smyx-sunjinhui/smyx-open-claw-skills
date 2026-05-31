@@ -1,7 +1,7 @@
 ---
 name: "elderly-bed-exit-wandering-monitoring-analysis"
 description: "Identifies abnormal behaviors such as getting out of bed at night, prolonged wandering, and remaining motionless for extended periods. It is suitable for night-time safety monitoring in nursing homes and for elderly people living alone. | 老人离床徘徊监测技能，识别夜间起床离床、长时间徘徊、长时间静止不动异常行为，适用于养老院、独居老人夜间安全监测"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Elderly Bed-Exit & Wandering Monitor | 老人离床徘徊监测技能
@@ -104,7 +104,7 @@ the risks of falls and sudden medical emergencies.
     3. **执行老人离床徘徊监测分析**
         - 调用 `-m scripts.elderly_bed_exit_wandering_monitoring_analysis` 处理视频（**必须在技能根目录下运行脚本**）
         - 参数说明:
-            - `--input`: 本地视频文件路径（使用 multipart/form-data 方式上传）
+            - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示历史老人离床徘徊监测分析报告列表清单（可以输入起始日期参数过滤数据范围）
@@ -121,7 +121,7 @@ the risks of falls and sudden medical emergencies.
 -
 
 必要脚本：见 [scripts/elderly_bed_exit_wandering_monitoring_analysis.py](scripts/elderly_bed_exit_wandering_monitoring_analysis.py)(
-用途：调用 API 进行老人离床徘徊监测分析，本地文件使用 multipart/form-data 方式上传，网络 URL 由 API 服务自动下载)
+用途：调用 API 进行老人离床徘徊监测分析，本地文件上传，网络 URL 由 API 服务自动下载)
 
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
@@ -129,7 +129,7 @@ the risks of falls and sudden medical emergencies.
 ## 注意事项
 
 - 仅在需要时读取参考文档，保持上下文简洁
-- 支持格式：mp4/avi/mov，最大 100MB
+- 支持格式：mp4/avi/mov，最大 10MB
 - API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - **⚠️ 重要提示**：本识别结果仅供安全护理参考，不能替代人工检查和人工确认，发现异常报警请及时通知护理人员现场查看
 - 禁止临时生成脚本，只能用技能本身的脚本
