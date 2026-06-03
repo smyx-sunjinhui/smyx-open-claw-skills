@@ -28,13 +28,13 @@ SUPPORTED_FORMATS = ConstantEnum.SUPPORTED_FORMATS
 MAX_FILE_SIZE_MB = ConstantEnum.MAX_FILE_SIZE_MB
 
 
-def analyze_video(input_path=None, url=None, api_url=None, api_key=None, output_level=None):
+def analyze_video(input_path=None, url=None, api_url=None, api_key=None, output_level=None, **kwargs):
     """调用API分析视频"""
     if not input_path and not url:
         raise ValueError("必须提供本地视频路径(--input)或网络视频URL(--url)")
     try:
         input_path = input_path or url
-        return skill.get_output_analysis(input_path)
+        return skill.get_output_analysis(input_path, **kwargs)
 
     except requests.exceptions.RequestException as e:
         traceback.print_stack()
@@ -43,7 +43,7 @@ def analyze_video(input_path=None, url=None, api_url=None, api_key=None, output_
 
 def show_analyze_list(open_id, start_time=None, end_time=None):
     try:
-        output_content = skill.get_output_analysis_list()
+        output_content = skill.get_output_analysis_list(open_id=open_id)
         return output_content
 
     except requests.exceptions.RequestException as e:
@@ -86,6 +86,7 @@ def main():
 
         print("🔍 正在分析面诊视频，请稍候...")
         output_content = analyze_video(
+            open_id=args.open_id,
             input_path=args.input,
             url=args.url,
             api_url=args.api_url,

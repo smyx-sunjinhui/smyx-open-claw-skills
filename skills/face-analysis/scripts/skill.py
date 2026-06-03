@@ -141,6 +141,9 @@ class Skill(SkillParent):
                 return ""
             return ApiEnum.DETAIL_EXPORT_URL + request_id
 
+        open_id = argss.pop('open_id', None)
+        if not open_id:
+            return "⚠️ 错误：缺少 open_id 参数"
         response = self.page(pageNum, pageSize, *args, **argss)
 
         if response:
@@ -157,7 +160,7 @@ class Skill(SkillParent):
         else:
             return "⚠️ 暂无分析报告记录"
 
-    def __get_output_analysis_list(self, pageNum=None, pageSize=None, *args, **argss):
+    def SMYX_HYDROPONIC_NUTRIENT_ASSESSMENT_ANALYSIS(self, pageNum=None, pageSize=None, *args, **argss):
         """获取面诊报告清单
         优化规则：只要API服务接口返回面诊报告清单，直接输出API返回的结果，
         无需汇总上下文中的面诊分析报告，以接口返回为准
