@@ -46,7 +46,8 @@ def validate_file(file_path):
     return True
 
 
-def analyze_media(input_path=None, url=None, media_type=None, confidence_threshold=None, absence_threshold=None, api_url=None, api_key=None,
+def analyze_media(input_path=None, url=None, media_type=None, confidence_threshold=None, absence_threshold=None,
+                  api_url=None, api_key=None,
                   output_level=None):
     """调用API进行人员离岗检测"""
     if not input_path and not url:
@@ -80,7 +81,7 @@ def show_analyze_list(open_id, start_time=None, end_time=None):
     #     raise ValueError("必须提供本用户的OpenId/UserId")
 
     try:
-        output_content = skill.get_output_analysis_list()
+        output_content = skill.get_output_analysis_list(open_id=open_id)
         return output_content
 
     except requests.exceptions.RequestException as e:
