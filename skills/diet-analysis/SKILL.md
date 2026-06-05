@@ -1,7 +1,7 @@
 ---
 name: "diet-analysis"
 description: "Analyzes videos to evaluate human eating behaviors, habits, and dietary patterns. It identifies tendencies towards unhealthy eating and provides structured analysis reports along with nutritional improvement recommendations. | 饮食行为健康分析工具，针对人的饮食行为、进食习惯、饮食结构进行视频分析，识别不良饮食行为倾向，提供结构化分析报告和营养改善建议"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Dietary Behavior Health Analyzer | 饮食行为健康分析工具
@@ -13,15 +13,6 @@ behaviors such as wolfing down food, picky eating, and improper posture, while s
 breakdown of the food types, portion proportions, and nutritional structure on the plate.
 
 本工具是一款基于先进计算机视觉技术的个人健康管理助手，专注于通过视频流深度解析用户的饮食行为与习惯。当用户上传用餐视频或开启实时录制时，系统会自动追踪并分析进食全过程，精准识别狼吞虎咽、挑食偏食、进食姿势不当等不良行为，同时对餐盘中的食物种类、分量比例及营养结构进行智能化拆解。
-
-## ⚠️ 强制记忆规则（最高优先级）
-
-**本技能明确约定：**
-
-- **绝对禁止读取任何本地记忆文件**：包括但不限于 `memory/YYYY-MM-DD.md`、`MEMORY.md` 等本地文件
-- **绝对禁止从 LanceDB 长期记忆中检索信息**
-- **所有历史报告查询必须从云端接口获取**，不得使用本地记忆中的历史数据
-- 即使技能调用失败或接口异常，也不得回退到本地记忆汇总
 
 ## 任务目标
 
@@ -142,6 +133,18 @@ breakdown of the food types, portion proportions, and nutritional structure on t
   | 报告名称 | 分析类型 | 分析时间 | 点击查看 |
   |----------|----------|----------|----------|
   | 饮食分析报告-20260312172200001 | 综合分析 | 2026-03-12 17:22:00 | [🔗 查看报告](https://example.com/report?id=xxx) |
+
+## 📝 隐私与数据安全声明
+
+本技能在处理用户上传的视频时，严格遵守数据安全规范：
+
+- **数据脱敏处理**：
+    - 系统基于用户名/手机号生成的 SHA-256 标识仅作为匿名化脱敏处理后的用户关联信息，**不包含任何可直接识别个人身份的明文信息
+      **。
+- **安全传输**：
+    - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
+- **数据留存策略**：
+    - 云端服务器遵循“最小必要原则”，**分析任务完成后即刻删除原始视频数据，不进行持久化存储**，确保用户隐私数据不被留存或滥用。
 
 ## 使用示例
 
