@@ -1,0 +1,10 @@
+{
+  "slug": "smyx-pet-pica-behavior-recognition-analysis",
+  "version": "1.0.0",
+  "dependencies": {
+    "skills": [
+      "smyx-common",
+      "risk-analysis"
+    ]
+  }
+}

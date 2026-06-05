@@ -1,0 +1,10 @@
+{
+  "slug": "smyx-pet-oral-snapshot-gum-redness-analysis",
+  "version": "1.0.0",
+  "dependencies": {
+    "skills": [
+      "smyx-common",
+      "risk-analysis"
+    ]
+  }
+}

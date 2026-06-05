@@ -1,0 +1,10 @@
+{
+  "slug": "smyx-adaptive-pet-drying-temperature-analysis",
+  "version": "1.0.0",
+  "dependencies": {
+    "skills": [
+      "smyx-common",
+      "risk-analysis"
+    ]
+  }
+}
