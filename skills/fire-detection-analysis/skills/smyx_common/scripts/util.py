@@ -365,7 +365,7 @@ class RequestUtil(BaseUtil):
             if current__user_name:
                 data.setdefault('pnaUserName', current__user_name)
 
-            if bool(options.get("dataAsParams")):
+            if bool(options.get("dataAsParams")) or bool(options.get("data_as_params")):
                 params.update(data)
 
             # 安全打印：不打印完整 headers（避免巨大的 token 导致输出缓冲区溢出）
@@ -380,6 +380,12 @@ class RequestUtil(BaseUtil):
                     safe_headers[k] = v[:20] + "..."
                 else:
                     safe_headers[k] = v
+            ConstantEnum.is_debug() and print(f"🔄 请求拦截, URL:{url}", "method", method, "params", params, "data",
+                                              data,
+                                              # "headers", safe_headers,
+                                              "options", options,
+                                              "timeout",
+                                              timeout)  ## ARK_CLAW ##
             response = requests.request(method, url, *args, json=data, params=params, headers=headers,
                                         timeout=int(timeout), **argss)
             response_text0 = response.text
@@ -395,6 +401,14 @@ class RequestUtil(BaseUtil):
                 cls.authorization_retry_count += 1
                 return cls.http_request(method, url, data, params, headers, options, *args, timeout=timeout, **argss)
             elif status_code == 402:
+                ConstantEnum.is_debug() and print(f"❌ 请求拦截, 使用失败:{response_text}, url:{url}", "method", method,
+                                                  "params", params,
+                                                  "data",
+                                                  data,
+                                                  # "headers",
+                                                  # headers,
+                                                  "timeout",
+                                                  timeout)  ## ARK_CLAW ##
                 return f'''⚠️ 因账户余额不足, 技能使用失败, 请按照如下步骤进行充值: 
 👉 1. 先输入命令 "安装支付技能 smyx-payment", 等待安装完成. (如果已经安装支付技能过则忽略此步骤)
 👉 2. 再输入命令 "技能账户充值", 然后跟随系统提示操作后即可继续使用技能.
@@ -410,8 +424,27 @@ class RequestUtil(BaseUtil):
             response_json_data = response_json.get("data", response_json.get("result"))
             response_json_data = response_json_data.get("records") if response_json_data and type(
                 response_json_data) == dict and "records" in response_json_data else response_json_data
+            ConstantEnum.is_debug() and print(f"✅ 请求拦截, 成功:{response_text}, url:{url}", "method", method,
+                                              "params", params,
+                                              "data",
+                                              data,
+                                              # "headers",
+                                              # headers,
+                                              "timeout",
+                                              timeout)  ## ARK_CLAW ##
             return response_json_data
         except Exception as e:
             CommonUtil.trace_exception_stack(e)
             response_text = _.get(e.args, '0.text')
+            ConstantEnum.is_debug() and print(
+                f"❌ 请求拦截, 失败: {e}, e.response.text: {response_text}, url:{url}",
+                "method",
+                method,
+                "params",
+                params,
+                "data", data, "headers",
+                "response", hasattr(e, 'response') and e.response,
+                # "headers", headers,
+                "timeout",
+                timeout)  ## ARK_CLAW ##
             raise
