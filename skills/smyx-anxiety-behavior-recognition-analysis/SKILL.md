@@ -1,7 +1,7 @@
 ---
 name: "smyx-anxiety-behavior-recognition-analysis"
 description: "Using a fixed camera at home or in the office, the system analyzes daily videos of an individual (e.g., adult, adolescent) and detects anxiety-related behaviors: hand rubbing (repeated rubbing of both hands), nail biting (hand approaching mouth with biting motion), and pacing (repeated back-and-forth walking in a small area). It counts each behavior's frequency (events/hour) and total duration, and outputs an anxiety-behavior index (0-100). The skill helps users self-monitor anxiety states or assists counselors in evaluating intervention effectiveness. Application scenarios: home, office, counseling room, school. Real-time monitoring; when the anxiety-behavior index exceeds a threshold, a reminder is pushed (e.g., 'You showed more anxiety-related behaviors today — try a relaxation exercise'). Skill features: anxiety patients often display unconscious repetitive behaviors (hand-rubbing, nail-biting, pacing), which can serve as objective emotional indicators. AI auto-recording of frequency and trends helps users self-manage anxiety or provides data support for counselors. Can be integrated into smart-home cameras or mental-health APPs as a practical emotion-management tool. | 通过家庭或办公室的固定摄像头，分析个体（如成人、青少年）的日常行为视频，检测手部搓揉（双手反复摩擦）、指甲啃咬（手部靠近嘴部并有啃咬动作）、来回踱步（在狭小区域内反复折返行走）等焦虑相关行为。统计每种行为的频次（次/小时）和总持续时间，并输出焦虑行为指数（0-100）。该技能有助于用户自我觉察焦虑状态，或辅助心理咨询师评估干预效果。应用场景：家庭、办公室、心理咨询室、学校。系统实时监测，当焦虑行为指数超过阈值时推送提醒（如'您今日焦虑行为较多，建议进行放松练习'）。技能特点：焦虑症患者常有无意识的重复行为（搓手、咬指甲、踱步），这些行为可作为情绪状态的客观指标。通过AI自动记录频次和趋势，可帮助用户自我管理焦虑，或为心理咨询师提供数据支持。该技能可集成到智能家居摄像头或心理健康APP中，成为情绪健康管理的实用功能。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Anxiety-Related Behavior Recognition (Hand-rubbing / Nail-biting / Pacing) | 焦虑症相关行为（搓手、咬指甲、来回踱步）识别
