@@ -1,7 +1,7 @@
 ---
 name: "smyx-leaf-curling-scorch-diagnosis-analysis"
 description: "Using agricultural cameras to capture high-resolution images of plant leaves, AI vision techniques detect leaf curling direction (up-curling or down-curling) and the distribution of leaf-margin scorch (old vs new leaves, tip vs margin). Combined with optional soil-moisture sensor data, the system jointly judges the most likely cause of curling/scorching (drought stress, diseases such as powdery mildew or virus, pesticide damage, fertilizer burn, etc.). This helps farmers quickly locate the problem and take targeted action. Application scenarios: open-field crops, greenhouse vegetables, orchards. The system periodically inspects fields; when curling or scorching is detected it automatically analyzes the cause and issues a diagnosis (e.g., 'leaves curled upward with margin scorch, soil moisture low — likely drought, suggest irrigation'). Skill features: leaf curling and margin scorch are common but easy to misjudge because drought, diseases and chemical damage share similar symptoms. AI-assisted visual diagnosis helps farmers respond correctly in time and reduce losses. Can be integrated into agricultural IoT systems, UAV inspection platforms, or mobile apps. | 通过农业摄像头拍摄植物叶片的高清图像，利用AI视觉分析技术检测叶片卷曲方向（上卷或下卷）、焦边（叶缘干枯）的分布特征（老叶/新叶、叶尖/叶缘），并可结合土壤湿度传感器数据（可选），综合判断卷叶/焦边的主要原因（干旱胁迫、病害如白粉病/病毒病、药害、肥害等）。该技能有助于农民快速定位问题，采取针对性措施。应用场景：大田作物、温室蔬菜、果园。系统定期巡检，发现卷叶或焦边时自动分析原因，输出诊断及建议（如'叶片上卷、叶缘焦枯，土壤湿度偏低，可能干旱，建议灌溉'）。技能特点：卷叶和焦边是农民常遇到的问题，但干旱、病害、药害症状相似，易误判。通过AI视觉辅助诊断，可帮助农民早期采取正确措施，减少损失。该技能可集成到农业物联网系统、无人机巡检平台或手机APP中。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Leaf Curling & Margin Scorch Diagnosis | 植物卷叶/焦边识别（干旱/病害）
