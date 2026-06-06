@@ -1,7 +1,7 @@
 ---
 name: "smyx-teen-screen-addiction-detection-analysis"
 description: "Using fixed cameras at home, study rooms or schools, the system analyzes adolescents' posture while using phones or gaming devices: head pitch angle (downward > 45°) and hand-holding-device posture (hand grasp + bent arm). It counts daily cumulative screen-looking time. When continuous screen-looking exceeds a configured threshold (e.g., single session > 30 minutes, or daily total > 2 hours), a 'phone/game addiction' reminder is generated, suggesting parental guidance and healthy eye-use habits. This helps prevent adolescent myopia, cervical-spine issues and gaming addiction. Application scenarios: family study, adolescent bedroom, study rooms, school classrooms. The system monitors in real time and pushes reminders via mobile APP or links to smart devices to issue voice prompts when over-time use is detected. Skill features: long head-down phone use among adolescents easily causes myopia, cervical-spine disease and social barriers. AI auto-monitoring and reminders help parents objectively understand their child's eye-use habits, enabling timely intervention and protecting vision. Can be integrated into smart-home cameras or family-education APPs as a practical family-health management tool. | 通过家庭、自习室或学校固定摄像头，分析青少年使用手机或游戏设备的姿势，检测头部低垂角度（俯仰角大于45°）以及手持设备的姿态（手部抓握且手臂弯曲），统计每日累计低头看屏幕的时长。当连续低头时长超过设定阈值（如单次超过30分钟，或日累计超过2小时）时，输出'沉迷手机/游戏'提醒，建议家长干预并引导健康用眼习惯。该技能有助于预防青少年近视、颈椎问题及游戏成瘾。应用场景：家庭书房、青少年卧室、自习室、学校教室。系统实时监测，当沉迷行为超时时通过手机APP推送提醒或联动智能设备发出语音提示。技能特点：青少年长时间低头看手机，易导致近视、颈椎病、社交障碍等。通过AI自动监测并提醒，可帮助家长客观了解孩子用眼习惯，及时干预，保护视力健康。该技能可集成到智能家居摄像头或家庭教育APP中，成为家庭健康管理的实用工具。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Teen Phone / Game Screen Addiction Detection | 青少年沉迷手机/游戏行为识别
