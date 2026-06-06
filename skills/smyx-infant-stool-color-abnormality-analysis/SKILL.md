@@ -1,7 +1,7 @@
 ---
 name: "smyx-infant-stool-color-abnormality-analysis"
 description: "Using a fixed camera above the baby-changing table or a smartphone, the system captures high-resolution images of the diaper area (or the stool itself), and uses AI visual analysis to identify stool color: normal yellow / yellow-green, abnormal clay-pale (white/clay-like, suggesting biliary obstruction), bright red (lower-GI bleeding), dark red / tarry black (upper-GI bleeding), etc. When abnormal colors are detected, it outputs risk reminders and recommends parents to seek medical care. The skill helps with early detection of infant hepato-biliary disease or GI bleeding. Application scenarios: newborn families, pediatric clinics, postpartum care centers. When changing diapers, parents take a photo with the camera and the system automatically analyzes and pushes results. Skill features: abnormal infant stool color (especially clay-pale) is an early signal of severe diseases such as biliary atresia; early detection and surgery can save lives. AI auto-recognition helps parents stay alert in time and avoid delayed treatment. Can be integrated into parenting apps or smart infant-care devices, becoming a safety net for newborn families. | 通过婴儿护理台上方固定摄像头或手机拍摄尿不湿区域（或直接拍摄排泄物）的高清图像，利用AI视觉分析技术识别大便颜色，包括正常黄色/黄绿色、异常陶土色（白陶土样，提示胆道梗阻）、鲜红色（下消化道出血）、暗红色/黑色（上消化道出血）等。当检测到异常颜色时，输出风险提醒，建议家长及时就医。该技能有助于早期发现婴儿肝胆疾病或消化道出血。应用场景：新生儿家庭、儿科门诊、月子中心。家长在更换尿不湿时用摄像头拍照，系统自动分析并推送结果。技能特点：婴儿大便颜色异常（尤其是陶土色）是胆道闭锁等严重疾病的早期信号，若能早期发现并手术，可挽救生命。通过AI自动识别，可帮助家长及时警觉，避免延误病情。该技能可集成到育儿APP或智能婴儿护理设备中，成为新生儿家庭的安全保障。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Infant Stool Color Abnormality (Clay-Pale / Bloody) | 婴儿大便颜色识别（陶土色/血便）
