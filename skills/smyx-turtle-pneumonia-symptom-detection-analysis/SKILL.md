@@ -1,7 +1,7 @@
 ---
 name: "smyx-turtle-pneumonia-symptom-detection-analysis"
 description: "Through fixed enclosure cameras, the system analyzes mouth and nasal videos of turtles to detect abnormally frequent open-mouth breathing in non-feeding states (mouth opening frequency unusually elevated), as well as the presence of mucus (reflective spots or strands) or nasal discharge around the mouth and nose. When any of these symptoms appear alone or together, the system outputs a 'pneumonia risk warning', prompting the keeper to check environmental temperature and water quality and isolate/treat promptly. This skill helps early detection of respiratory infections in turtles and reduces mortality. Application scenarios: home turtle tanks, breeding ponds, animal hospitals. The system monitors in real time and pushes alerts when abnormal breathing behavior is detected. Skill features: turtle pneumonia has high mortality, and early symptoms (open-mouth breathing, mucus) are often overlooked. AI-based automatic monitoring helps keepers detect and intervene early, improving cure rate. This skill can be integrated into smart turtle-tank cameras or reptile health management apps. | 通过龟缸固定摄像头，分析龟类的口鼻部视频，检测龟在非进食状态下（未摄食时）口部频繁开合（张嘴呼吸，频率异常增高），以及口鼻区域是否有黏液（反光点或丝状物）或鼻腔分泌物。当同时或单独出现上述症状时，输出'肺炎风险提示'，提醒饲养者检查环境温度、水质，并及时隔离治疗。该技能有助于早期发现龟类的呼吸道感染，降低死亡率。应用场景：家庭龟缸、养殖池、宠物医院。系统实时监测，当检测到异常呼吸行为时推送提醒。技能特点：龟类肺炎死亡率高，早期症状（张嘴呼吸、黏液）常被忽视。通过 AI 自动监测，可帮助饲养者及早发现并干预，提高治愈率。该技能可集成到智能龟缸摄像头或爬宠健康管理 APP 中。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Turtle Pneumonia Symptom (Open-Mouth Breathing) Detection | 龟类张嘴呼吸（肺炎征兆）识别
