@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-toy-interaction-activity-analysis"
 description: "Triggers when a user provides a pet toy area video URL or file for analysis; supports local video uploads or network URLs to call server-side APIs for toy interaction behavior recognition, tracking interaction frequency, duration, and toy preference per pet, generating daily activity curves and trend comparisons to detect declining activity that may indicate illness or depression. Application scenarios: smart pet toys, pet wellness monitoring. | 当用户提供玩具区域视频URL或文件时，触发本技能进行互动行为分析；支持通过上传本地视频或网络视频URL，调用服务端API进行玩具互动识别，记录宠物与各类玩具互动频次、时长、偏好，生成活跃度曲线，活跃度下降提示疾病或抑郁风险。应用场景：智能宠物玩具、宠物健康管理。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Pet Toy Interaction Activity Analysis | 宠物玩具互动活跃度分析
