@@ -10,7 +10,26 @@ from .base import BaseUtil
 import time
 import logging
 from typing import Any, Callable, Optional, TypeVar, Dict
-import pydash as _
+try:
+    import pydash as _
+except ImportError:
+    class _PydashFallback:
+        @staticmethod
+        def get(obj, path, default=None):
+            try:
+                cur = obj
+                for part in str(path).split('.'):
+                    if isinstance(cur, (list, tuple)) and part.isdigit():
+                        cur = cur[int(part)]
+                    elif isinstance(cur, dict):
+                        cur = cur.get(part, default)
+                    else:
+                        cur = getattr(cur, part)
+                return cur
+            except Exception:
+                return default
+
+    _ = _PydashFallback()
 
 if ConstantEnum.is_debug():
     import http.client
