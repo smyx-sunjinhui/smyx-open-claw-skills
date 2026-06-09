@@ -1,7 +1,11 @@
 ---
 name: "smyx-elderly-long-term-immobility-analysis"
+<<<<<<< HEAD
+description: "Using fixed cameras in multiple zones of a solo-living elder's home (living room, bedroom, kitchen, bathroom, etc.), the system continuously analyzes the video streams to detect human activity (movement, limb actions, gestures, etc.). If no activity is detected within a configured time window (default 12 hours), the system outputs a 'long-term no activity' alert and can notify emergency contacts via app or phone. The skill helps detect immobilization caused by sudden illness (stroke, heart attack), falls, or syncope in time. Application scenarios: solo-living elder households, community elderly-care service centers. The system runs around the clock; when no human activity is detected beyond the preset duration (e.g., 12 hours), it automatically pushes an emergency alert to remind children, community grid workers, or care service institutions to visit. Skill features: when a solo-living elder has a sudden illness or fall and cannot call for help, long unnoticed time can cause severe consequences. AI-based long-term no-activity monitoring can trigger alerts within the golden rescue window and save lives. Can be integrated into smart-home security systems or elderly-care service platforms as the last line of defense for solo-living elders. | 通过独居老人家中的多个区域（客厅、卧室、厨房、卫生间等）固定摄像头，连续分析视频流，检测人体活动（包括移动、肢体动作、手势等）。若在设定的时间窗口内（默认12小时）未检测到任何活动，则输出'长期无活动'预警，并可通过APP或电话通知紧急联系人。该技能用于及时发现老人因突发疾病（如中风、心梗）、跌倒或晕厥导致的无法行动状况。应用场景：独居老人家庭、社区养老服务中心。系统全天候运行，当超过预设时间（如12小时）未检测到任何人体活动时，自动推送紧急预警，提醒子女、社区网格员或养老服务机构上门查看。技能特点：独居老人突发疾病或意外摔倒后无法起身求助，长时间未被发现可能造成严重后果。通过AI自动监测长期无活动，可在黄金救援时间内触发预警，挽救生命。该技能可集成到智能家居安防系统或养老服务平台中，成为独居老人安全防护的最后一道防线。"
+=======
 description: "Using fixed cameras in multiple zones of a solo-living elder's home (living room, bedroom, kitchen, bathroom, etc.), the system continuously analyzes the video streams to detect human activity (movement, limb actions, gestures, etc.). If no activity is detected within a configured time window (default 12 hours), the system outputs a 'long-term no activity' alert and can notify emergency contacts via app or phone. | 通过独居老人家中的多个区域（客厅、卧室、厨房、卫生间等）固定摄像头，连续分析视频流，检测人体活动（包括移动、肢体动作、手势等）。若在设定的时间窗口内（默认12小时）未检测到任何活动，则输出'长期无活动'预警，并可通过APP或电话通知紧急联系人。"
-version: "1.0.1"
+>>>>>>> 2ac8d1216af5489e2c4ef1b07b80962e56bc7194
+version: "1.0.2"
 ---
 
 # Elderly Long-Term Immobility Monitoring (>12h) | 老年人长期静止（超12小时）监测
