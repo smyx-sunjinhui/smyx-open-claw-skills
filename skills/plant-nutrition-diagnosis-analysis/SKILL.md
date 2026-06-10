@@ -1,7 +1,7 @@
 ---
 name: "plant-nutrition-diagnosis-analysis"
 description: "Diagnoses plant nutrient deficiency or excess based on computer vision and plant physiology, outputs targeted fertilization suggestions for precision nutrient management. | 植物营养诊断技能，基于计算机视觉与植物生理学，通过叶片特征诊断氮磷钾及微量元素缺乏或过剩，输出精准施肥建议"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Plant Nutrition Diagnosis Skill | 植物营养诊断技能
@@ -97,7 +97,7 @@ quickly correct nutrient disorders and maintain healthy plant growth.
         - 参数说明:
             - `--input`: 本地视频/图片文件路径
             - `--url`: 网络视频/图片 URL 地址（API 服务自动下载）
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取, 再通过 SHA-256 算法生成唯一标识传入）
+            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示历史植物营养诊断分析报告列表清单（可以输入起始日期参数过滤数据范围）
             - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
@@ -138,9 +138,8 @@ quickly correct nutrient disorders and maintain healthy plant growth.
 
 本技能在处理用户上传的视频时，严格遵守数据安全规范：
 
-- **数据脱敏处理**：
-    - 系统基于用户名/手机号生成的 SHA-256 标识仅作为匿名化脱敏处理后的用户关联信息，**不包含任何可直接识别个人身份的明文信息
-      **。
+- **数据保密处理**：
+    - 系统基于 用户名/手机号 生成的标识仅作为用户关联信息，**不保存任何可直接识别个人身份的明文信息**。
 - **安全传输**：
     - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
 - **数据留存策略**：
@@ -150,17 +149,17 @@ quickly correct nutrient disorders and maintain healthy plant growth.
 
 ```bash
 # 诊断本地视频/图片中植物的营养状况（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.plant_nutrition_diagnosis_analysis --input /path/to/leaf.mp4 --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.plant_nutrition_diagnosis_analysis --input /path/to/leaf.mp4 --open-id your-open-id
 
 # 诊断网络视频/图片（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.plant_nutrition_diagnosis_analysis --url https://example.com/yellow-leaf.mp4 --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.plant_nutrition_diagnosis_analysis --url https://example.com/yellow-leaf.mp4 --open-id your-open-id
 
 # 显示历史诊断报告/显示诊断报告清单列表/显示历史植物营养诊断（自动触发关键词：查看历史诊断报告、历史报告、诊断报告清单等）
-python -m scripts.plant_nutrition_diagnosis_analysis --list --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.plant_nutrition_diagnosis_analysis --list --open-id your-open-id
 
 # 输出精简报告
-python -m scripts.plant_nutrition_diagnosis_analysis --input leaf.jpg --open-id {SHA-256 算法生成新 open-id} --detail basic
+python -m scripts.plant_nutrition_diagnosis_analysis --input leaf.jpg --open-id your-open-id --detail basic
 
 # 保存结果到文件
-python -m scripts.plant_nutrition_diagnosis_analysis --input leaf.jpg --open-id {SHA-256 算法生成新 open-id} --output result.json
+python -m scripts.plant_nutrition_diagnosis_analysis --input leaf.jpg --open-id your-open-id --output result.json
 ```
