@@ -1,7 +1,7 @@
 ---
 name: "pet-detection-analysis"
 description: "Detects cats, dogs, and birds appearing in the target area; supports video stream and image detection, suitable for home pet monitoring scenarios. | 宠物检测技能，检测出目标区域内出现的猫、狗、鸟，支持视频流和图片检测，适用于家庭宠物监控场景"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Pet Detection Skill | 宠物检测技能
@@ -76,7 +76,7 @@ households, ensuring that every movement of your pets within the home environmen
             - `--url`: 网络视频/图片 URL 地址（API 服务自动下载）
             - `--media-type`: 媒体类型，可选值：video/image，默认 video
             - `--confidence-threshold`: 置信度阈值，低于该分值不输出，默认 0.5
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取, 再通过 SHA-256 算法生成唯一标识传入）
+            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示宠物检测历史分析报告列表清单（可以输入起始日期参数过滤数据范围）
             - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
@@ -114,9 +114,8 @@ households, ensuring that every movement of your pets within the home environmen
 
 本技能在处理用户上传的视频时，严格遵守数据安全规范：
 
-- **数据脱敏处理**：
-    - 系统基于用户名/手机号生成的 SHA-256 标识仅作为匿名化脱敏处理后的用户关联信息，**不包含任何可直接识别个人身份的明文信息
-      **。
+- **数据保密处理**：
+    - 系统基于 用户名/手机号 生成的标识仅作为用户关联信息，**不保存任何可直接识别个人身份的明文信息**。
 - **安全传输**：
     - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
 - **数据留存策略**：
@@ -126,20 +125,20 @@ households, ensuring that every movement of your pets within the home environmen
 
 ```bash
 # 检测本地监控视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.pet_detection_analysis --input /path/to/monitor.mp4 --media-type video --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.pet_detection_analysis --input /path/to/monitor.mp4 --media-type video --open-id your-open-id
 
 # 检测现场图片，调整置信度阈值（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.pet_detection_analysis --input /path/to/room.jpg --media-type image --confidence-threshold 0.6 --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.pet_detection_analysis --input /path/to/room.jpg --media-type image --confidence-threshold 0.6 --open-id your-open-id
 
 # 检测网络监控视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.pet_detection_analysis --url https://example.com/monitor.mp4 --media-type video --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.pet_detection_analysis --url https://example.com/monitor.mp4 --media-type video --open-id your-open-id
 
 # 显示历史检测报告/显示检测报告清单列表/显示历史宠物检测报告（自动触发关键词：查看历史检测报告、历史报告、检测报告清单等）
-python -m scripts.pet_detection_analysis --list --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.pet_detection_analysis --list --open-id your-open-id
 
 # 输出精简报告
-python -m scripts.pet_detection_analysis --input video.mp4 --media-type video --open-id {SHA-256 算法生成新 open-id} --detail basic
+python -m scripts.pet_detection_analysis --input video.mp4 --media-type video --open-id your-open-id --detail basic
 
 # 保存结果到文件
-python -m scripts.pet_detection_analysis --input video.mp4 --media-type video --open-id {SHA-256 算法生成新 open-id} --output result.json
+python -m scripts.pet_detection_analysis --input video.mp4 --media-type video --open-id your-open-id --output result.json
 ```
