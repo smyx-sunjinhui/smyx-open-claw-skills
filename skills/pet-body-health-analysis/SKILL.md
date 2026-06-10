@@ -1,7 +1,7 @@
 ---
 name: "pet-body-health-analysis"
 description: "Identifies obesity, emaciation, external injuries, skin abnormalities, and abnormal mental states, helping pet owners detect health issues promptly. | 宠物体态健康分析技能，识别肥胖、消瘦、外伤、皮肤异常、精神状态异常，帮助宠物主人及时发现宠物健康问题"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Pet Body Condition & Health Analysis Skill | 宠物体态健康分析技能
@@ -14,15 +14,6 @@ pet owners break through the barriers of professional knowledge, promptly identi
 reliable data support for scientific pet ownership and early intervention.
 
 本功能基于先进的计算机视觉与行为分析技术，对宠物的体态特征、皮肤状况及精神面貌进行多维度智能监测。系统能够精准识别肥胖与消瘦等体态变化，自动检测外伤、红肿、脱毛等皮肤异常，并通过对活动量与行为模式的分析判断精神状态是否异常。这一功能帮助宠物主人突破专业知识的壁垒，及时发现潜在的健康风险，为科学养宠与早期干预提供可靠的数据支持
-
-## ⚠️ 强制记忆规则（最高优先级）
-
-**本技能明确约定：**
-
-- **绝对禁止读取任何本地记忆文件**：包括但不限于 `memory/YYYY-MM-DD.md`、`MEMORY.md` 等本地文件
-- **绝对禁止从 LanceDB 长期记忆中检索信息**
-- **所有历史分析报告查询必须从云端接口获取**，不得使用本地记忆中的历史数据
-- 即使技能调用失败或接口异常，也不得回退到本地记忆汇总
 
 ## 任务目标
 
@@ -59,18 +50,9 @@ reliable data support for scientific pet ownership and early intervention.
 **在执行宠物体态健康分析前，必须按以下优先级顺序获取 open-id：**
 
 ```
-第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置/api-key 为空)
-第 2 步：检查 workspace 公共目录的配置文件
-        路径：${OPENCLAW_WORKSPACE}/skills/smyx_common/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置)
-第 3 步：检查用户是否在消息中明确提供了 open-id
+第 1 步：检查用户是否在消息中明确提供了 open-id
         ↓ (未提供)
-第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
+第 2 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
 ```
 
 **⚠️ 关键约束：**
@@ -78,7 +60,6 @@ reliable data support for scientific pet ownership and early intervention.
 - **禁止**自行假设,自行推导,自行生成 open-id 值（如 openclaw-control-ui、default、petbody123 等）
 - **禁止**跳过 open-id 验证直接调用 API
 - **必须**在获取到有效 open-id 后才能继续执行分析
-- 如果用户拒绝提供 open-id，说明用途（用于保存和查询宠物体态健康分析报告记录），并询问是否继续
 
 ---
 
@@ -131,17 +112,28 @@ reliable data support for scientific pet ownership and early intervention.
   | 宠物体态健康分析报告-20260312172200001 | 2026-03-12 17:22:00 |
   咪咪 | [🔗 查看报告](https://example.com/report?id=xxx) |
 
+## 📝 隐私与数据安全声明
+
+本技能在处理用户上传的视频时，严格遵守数据安全规范：
+
+- **数据保密处理**：
+    - 系统基于 用户名/手机号 生成的标识仅作为用户关联信息，**不保存任何可直接识别个人身份的明文信息**。
+- **安全传输**：
+    - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
+- **数据留存策略**：
+    - 云端服务器遵循“最小必要原则”，**分析任务完成后即刻删除原始视频数据，不进行持久化存储**，确保用户隐私数据不被留存或滥用。
+
 ## 使用示例
 
 ```bash
 # 分析本地宠物视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.pet_body_health_analysis --input /path/to/pet_video.mp4 --media-type video --open-id openclaw-control-ui
+python -m scripts.pet_body_health_analysis --input /path/to/pet_video.mp4 --media-type video --open-id your-open-id
 
 # 分析宠物照片（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.pet_body_health_analysis --input /path/to/pet.jpg --media-type image --open-id openclaw-control-ui
+python -m scripts.pet_body_health_analysis --input /path/to/pet.jpg --media-type image --open-id your-open-id
 
 # 显示历史分析报告/显示分析报告清单列表/显示历史宠物体态报告（自动触发关键词：查看历史分析报告、历史报告、分析报告清单等）
-python -m scripts.pet_body_health_analysis --list --open-id openclaw-control-ui
+python -m scripts.pet_body_health_analysis --list --open-id your-open-id
 
 # 输出精简报告
 python -m scripts.pet_body_health_analysis --input pet_video.mp4 --media-type video --open-id your-open-id --detail basic
