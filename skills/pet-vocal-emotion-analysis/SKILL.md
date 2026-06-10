@@ -1,7 +1,7 @@
 ---
 name: "pet-vocal-emotion-analysis"
 description: "Recognizes cat and dog barks through pet voiceprint AI, translates and outputs emotions and behavioral intentions such as happiness, excitement, anger, anxiety, pain, vigilance, and attention-seeking, enabling human-pet smart interaction. | 宠物叫声情绪解析技能，通过宠物声纹AI识别猫狗叫声，翻译输出开心、兴奋、愤怒、焦虑、痛苦、警惕、求关注等情绪与行为意图，实现人宠智能交互"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Pet Vocal Emotion Analysis Skill | 宠物叫声情绪解析技能
@@ -90,7 +90,7 @@ understand their pets' needs more scientifically.
         - 参数说明:
             - `--input`: 本地音频/视频文件路径
             - `--url`: 网络音频/视频 URL 地址（API 服务自动下载）
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取, 再通过 SHA-256 算法生成唯一标识传入）
+            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示历史宠物叫声情绪解析分析报告列表清单（可以输入起始日期参数过滤数据范围）
             - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
@@ -131,9 +131,8 @@ understand their pets' needs more scientifically.
 
 本技能在处理用户上传的视频时，严格遵守数据安全规范：
 
-- **数据脱敏处理**：
-    - 系统基于用户名/手机号生成的 SHA-256 标识仅作为匿名化脱敏处理后的用户关联信息，**不包含任何可直接识别个人身份的明文信息
-      **。
+- **数据保密处理**：
+    - 系统基于 用户名/手机号 生成的标识仅作为用户关联信息，**不保存任何可直接识别个人身份的明文信息**。
 - **安全传输**：
     - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
 - **数据留存策略**：
@@ -143,20 +142,20 @@ understand their pets' needs more scientifically.
 
 ```bash
 # 解析本地猫咪叫声音频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.pet_vocal_emotion_analysis --input /path/to/meow.mp3 --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.pet_vocal_emotion_analysis --input /path/to/meow.mp3 --open-id your-open-id
 
 # 解析本地视频中的狗叫声（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.pet_vocal_emotion_analysis --input /path/to/dog_bark.mp4 --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.pet_vocal_emotion_analysis --input /path/to/dog_bark.mp4 --open-id your-open-id
 
 # 解析网络音频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.pet_vocal_emotion_analysis --url https://example.com/bark.mp3 --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.pet_vocal_emotion_analysis --url https://example.com/bark.mp3 --open-id your-open-id
 
 # 显示历史解析报告/显示解析报告清单列表/显示历史情绪解析（自动触发关键词：查看历史解析报告、历史报告、解析报告清单等）
-python -m scripts.pet_vocal_emotion_analysis --list --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.pet_vocal_emotion_analysis --list --open-id your-open-id
 
 # 输出精简报告
-python -m scripts.pet_vocal_emotion_analysis --input meow.mp3 --open-id {SHA-256 算法生成新 open-id} --detail basic
+python -m scripts.pet_vocal_emotion_analysis --input meow.mp3 --open-id your-open-id --detail basic
 
 # 保存结果到文件
-python -m scripts.pet_vocal_emotion_analysis --input meow.mp3 --open-id {SHA-256 算法生成新 open-id} --output result.json
+python -m scripts.pet_vocal_emotion_analysis --input meow.mp3 --open-id your-open-id --output result.json
 ```
