@@ -1,7 +1,7 @@
 ---
 name: "plant-species-recognition-analysis"
 description: "Accurately identifies plant species from images based on deep learning and computer vision, outputs structured information including species name, family, growth habits and maintenance tips. | 植物物种识别技能，基于深度学习与计算机视觉技术，通过图像快速识别植物物种，输出物种名称、科属分类、生长习性及养护要点等结构化信息，为园艺、生态调研、自然教育提供专业识别服务"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Plant Species Recognition Skill | 植物物种识别技能
@@ -93,7 +93,7 @@ recognition and knowledge services.
         - 参数说明:
             - `--input`: 本地视频/图片文件路径
             - `--url`: 网络视频/图片 URL 地址（API 服务自动下载）
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取, 再通过 SHA-256 算法生成唯一标识传入）
+            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
             - `--detail`: 输出详细程度（basic/standard/json，默认 json）
@@ -133,9 +133,8 @@ recognition and knowledge services.
 
 本技能在处理用户上传的视频时，严格遵守数据安全规范：
 
-- **数据脱敏处理**：
-    - 系统基于用户名/手机号生成的 SHA-256 标识仅作为匿名化脱敏处理后的用户关联信息，**不包含任何可直接识别个人身份的明文信息
-      **。
+- **数据保密处理**：
+    - 系统基于 用户名/手机号 生成的标识仅作为用户关联信息，**不保存任何可直接识别个人身份的明文信息**。
 - **安全传输**：
     - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
 - **数据留存策略**：
@@ -145,17 +144,17 @@ recognition and knowledge services.
 
 ```bash
 # 识别本地视频/图片中的植物（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.plant_species_recognition_analysis --input /path/to/plant.mp4 --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.plant_species_recognition_analysis --input /path/to/plant.mp4 --open-id your-open-id
 
 # 识别网络视频/图片（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.plant_species_recognition_analysis --url https://example.com/flower.mp4 --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.plant_species_recognition_analysis --url https://example.com/flower.mp4 --open-id your-open-id
 
 # 显示历史识别报告/显示识别报告清单列表/显示历史植物识别（自动触发关键词：查看历史识别报告、历史报告、识别报告清单等）
-python -m scripts.plant_species_recognition_analysis --list --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.plant_species_recognition_analysis --list --open-id your-open-id
 
 # 输出精简报告
-python -m scripts.plant_species_recognition_analysis --input plant.jpg --open-id {SHA-256 算法生成新 open-id} --detail basic
+python -m scripts.plant_species_recognition_analysis --input plant.jpg --open-id your-open-id --detail basic
 
 # 保存结果到文件
-python -m scripts.plant_species_recognition_analysis --input plant.jpg --open-id {SHA-256 算法生成新 open-id} --output result.json
+python -m scripts.plant_species_recognition_analysis --input plant.jpg --open-id your-open-id --output result.json
 ```
