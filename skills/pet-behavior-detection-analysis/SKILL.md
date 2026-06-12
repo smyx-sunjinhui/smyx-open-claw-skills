@@ -1,7 +1,7 @@
 ---
 name: "pet-behavior-detection-analysis"
 description: "Identifies common abnormal pet behaviors such as scratching, biting, destructive chewing, jumping, digging, chasing, and separation anxiety, helping owners understand their pet's habits. | 宠物行为识别技能，识别抓挠、啃咬、拆家、跳跃、刨地、追逐、独处焦虑等常见宠物异常行为，帮助主人了解宠物行为习惯"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Pet Behavior Recognition Skill | 宠物行为识别技能
@@ -75,7 +75,7 @@ health references and medical advice.
             - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--duration-min`: 统计时长（分钟），默认自动识别
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取, 再通过 SHA-256 算法生成唯一标识传入）
+            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示宠物行为识别历史分析报告列表清单
             - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
@@ -114,9 +114,8 @@ health references and medical advice.
 
 本技能在处理用户上传的视频时，严格遵守数据安全规范：
 
-- **数据脱敏处理**：
-    - 系统基于用户名/手机号生成的 SHA-256 标识仅作为匿名化脱敏处理后的用户关联信息，**不包含任何可直接识别个人身份的明文信息
-      **。
+- **数据保密处理**：
+    - 系统基于 用户名/手机号 生成的标识仅作为用户关联信息，**不保存任何可直接识别个人身份的明文信息**。
 - **安全传输**：
     - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
 - **数据留存策略**：
@@ -126,17 +125,17 @@ health references and medical advice.
 
 ```bash
 # 分析本地监控视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.pet_behavior_detection_analysis --input /path/to/monitor.mp4 --duration-min 10 --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.pet_behavior_detection_analysis --input /path/to/monitor.mp4 --duration-min 10 --open-id your-open-id
 
-# 分析网络监控视频（以下只是示例，禁止直接使用{SHA-256 算法生成新 open-id} 作为 open-id）
-python -m scripts.pet_behavior_detection_analysis --url https://example.com/pet_monitor.mp4 --open-id {SHA-256 算法生成新 open-id}
+# 分析网络监控视频（以下只是示例，禁止直接使用your-open-id 作为 open-id）
+python -m scripts.pet_behavior_detection_analysis --url https://example.com/pet_monitor.mp4 --open-id your-open-id
 
 # 显示历史行为分析报告（自动触发关键词：查看历史行为报告、历史报告、行为报告清单等）
-python -m scripts.pet_behavior_detection_analysis --list --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.pet_behavior_detection_analysis --list --open-id your-open-id
 
 # 输出精简报告
-python -m scripts.pet_behavior_detection_analysis --input video.mp4 --open-id {SHA-256 算法生成新 open-id} --detail basic
+python -m scripts.pet_behavior_detection_analysis --input video.mp4 --open-id your-open-id --detail basic
 
 # 保存结果到文件
-python -m scripts.pet_behavior_detection_analysis --input video.mp4 --open-id {SHA-256 算法生成新 open-id} --output result.json
+python -m scripts.pet_behavior_detection_analysis --input video.mp4 --open-id your-open-id --output result.json
 ```
