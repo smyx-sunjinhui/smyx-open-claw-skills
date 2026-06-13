@@ -1,7 +1,7 @@
 ---
 name: "aquarium-analysis"
 description: "When a user provides a video URL or file of aquatic pets such as goldfish, koi, betta, shrimp, crab, etc. for analysis, this skill is triggered to perform aquatic pet health diagnosis analysis. Supports uploading local videos or online video URLs, calls server-side API for aquatic pet health examination, analyzes features such as scales, fins, body color, activity level, identifies potential diseases and outputs a pet health report. | 鱼类水族宠物健康诊断分析工具，当用户提供金鱼、锦鲤、斗鱼、虾、蟹等水族宠物的视频 URL 或文件需要分析时，触发本技能进行水族宠物健康诊断分析；支持通过上传本地视频或网络视频 URL，调用服务端 API 进行水族宠物健康检查，分析鳞片、鱼鳍、体色、活跃度等特征，识别潜在疾病并输出宠安卫士健康报告"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Fish Aquatic Pet Health Diagnosis Analysis Tool | 鱼类水族宠物健康诊断分析工具
@@ -83,7 +83,7 @@ companions.
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--fish-type`: 鱼类宠物类型，可选值：goldfish/koi/betta/shrimp/crab/turtle/clownfish/guppy/arowana/angel/other，默认
               other
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取, 再通过 SHA-256 算法生成唯一标识传入）
+            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示鱼类宠物视频历史分析报告列表清单（可以输入起始日期参数过滤数据范围）
             - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
@@ -124,9 +124,8 @@ companions.
 
 本技能在处理用户上传的视频时，严格遵守数据安全规范：
 
-- **数据脱敏处理**：
-    - 系统基于用户名/手机号生成的 SHA-256 标识仅作为匿名化脱敏处理后的用户关联信息，**不包含任何可直接识别个人身份的明文信息
-      **。
+- **数据保密处理**：
+    - 系统基于 用户名/手机号 标识仅作为用户关联信息，**不保存任何可直接识别个人身份的明文信息**。
 - **安全传输**：
     - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
 - **数据留存策略**：
@@ -136,29 +135,29 @@ companions.
 
 ```bash
 # 分析本地金鱼视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.aquarium_analysis --input /path/to/goldfish_video.mp4 --fish-type goldfish --open-id {SHA-256 算法生成 open-id}
+python -m scripts.aquarium_analysis --input /path/to/goldfish_video.mp4 --fish-type goldfish --open-id your-open-id
 
 # 分析网络锦鲤视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.aquarium_analysis --url https://example.com/koi_video.mp4 --fish-type koi --open-id {SHA-256 算法生成 open-id}
+python -m scripts.aquarium_analysis --url https://example.com/koi_video.mp4 --fish-type koi --open-id your-open-id
 
 # 分析本地斗鱼视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.aquarium_analysis --input /path/to/betta_video.mp4 --fish-type betta --open-id {SHA-256 算法生成 open-id}
+python -m scripts.aquarium_analysis --input /path/to/betta_video.mp4 --fish-type betta --open-id your-open-id
 
 # 分析本地观赏虾视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.aquarium_analysis --input /path/to/shrimp_video.mp4 --fish-type shrimp --open-id {SHA-256 算法生成 open-id}
+python -m scripts.aquarium_analysis --input /path/to/shrimp_video.mp4 --fish-type shrimp --open-id your-open-id
 
 # 分析本地螃蟹视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.aquarium_analysis --input /path/to/crab_video.mp4 --fish-type crab --open-id {SHA-256 算法生成 open-id}
+python -m scripts.aquarium_analysis --input /path/to/crab_video.mp4 --fish-type crab --open-id your-open-id
 
 # 分析本地乌龟视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.aquarium_analysis --input /path/to/turtle_video.mp4 --fish-type turtle --open-id {SHA-256 算法生成 open-id}
+python -m scripts.aquarium_analysis --input /path/to/turtle_video.mp4 --fish-type turtle --open-id your-open-id
 
 # 显示历史分析报告/显示分析报告清单列表/显示历史宠安报告（自动触发关键词：查看历史鱼宠报告、历史报告、鱼宠报告清单等）
-python -m scripts.aquarium_analysis --list --open-id {SHA-256 算法生成 open-id}
+python -m scripts.aquarium_analysis --list --open-id your-open-id
 
 # 输出精简报告
-python -m scripts.aquarium_analysis --input video.mp4 --fish-type goldfish --open-id {SHA-256 算法生成 open-id} --detail basic
+python -m scripts.aquarium_analysis --input video.mp4 --fish-type goldfish --open-id your-open-id --detail basic
 
 # 保存结果到文件
-python -m scripts.aquarium_analysis --input video.mp4 --fish-type koi --open-id {SHA-256 算法生成 open-id} --output result.json
+python -m scripts.aquarium_analysis --input video.mp4 --fish-type koi --open-id your-open-id --output result.json
 ```
