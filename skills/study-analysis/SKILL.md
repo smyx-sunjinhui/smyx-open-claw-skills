@@ -1,7 +1,7 @@
 ---
 name: "study-analysis"
 description: "Conducts video analysis of learning behavior for children/students, identifies poor learning habits, provides structured analysis reports and family education improvement suggestions, focusing on learning habit cultivation and behavior correction. | A comprehensive tool designed to analyze video footage of children's and students' learning behaviors. It identifies poor study habits and provides structured analysis reports along with actionable suggestions for family education improvements. The tool is dedicated to fostering positive study habits and facilitating behavioral correction. | 分析孩子学习行为 孩子学习行为分析工具，针对孩子/学生的学习行为进行视频分析，识别不良学习习惯，提供结构化分析报告和家庭教育改善建议，专注学习习惯培养和行为矫正"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Child Learning Behavior Analysis Tool | 孩子学习行为分析工具
@@ -17,15 +17,6 @@ behavioral correction alongside improved learning efficiency.
 
 本功能基于先进的计算机视觉与行为识别算法，专为孩子及学生的学习行为分析设计。系统通过摄像头捕捉学习过程中的坐姿、专注度、小动作等关键行为，精准识别不良学习习惯（如趴桌、频繁分心、握笔姿势错误等）。结合时间序列分析，系统可生成包含专注度曲线、行为频次统计及风险等级的结构化分析报告，并基于教育心理学原理，为家长提供个性化的家庭教育改善建议（如环境优化、时间管理技巧），助力孩子养成良好学习习惯，实现行为矫正与学习效率提升
 
-## ⚠️ 强制记忆规则（最高优先级）
-
-**本技能明确约定：**
-
-- **绝对禁止读取任何本地记忆文件**：包括但不限于 `memory/YYYY-MM-DD.md`、`MEMORY.md` 等本地文件
-- **绝对禁止从 LanceDB 长期记忆中检索信息**
-- **所有历史报告查询必须从云端接口获取**，不得使用本地记忆中的历史数据
-- 即使技能调用失败或接口异常，也不得回退到本地记忆汇总
-
 ## 任务目标
 
 - 本 Skill 用于：通过视频分析对孩子/学生的学习行为进行评估，识别不良学习习惯，发现潜在学习问题，提供结构化分析报告和家庭教育改善建议
@@ -36,7 +27,8 @@ behavioral correction alongside improved learning efficiency.
     3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
        ：查看历史学习报告、学习分析报告清单、学习行为分析列表、显示所有学习分析报告，查询学习行为分析报告
 - 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地临时文件, 分析完成后立即删除原始视频, 且传输过程遵循http
+       s协议且脱敏处理, 服务端仅用于模型分析用, 不会以任何形式保存原件或副本
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有学习报告"、"
        显示所有学习行为分析报告"、"
        查看历史报告"等），**必须**：
@@ -113,7 +105,7 @@ behavioral correction alongside improved learning efficiency.
             - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--analysis-type`: 分析类型，可选值：comprehensive/focus/posture/habit/risk，默认 comprehensive（综合分析）
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取, 再通过 SHA-256 算法生成唯一标识传入）
+            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示学习行为分析历史报告列表清单（可以输入起始日期参数过滤数据范围）
             - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
@@ -125,9 +117,8 @@ behavioral correction alongside improved learning efficiency.
 
 ## 资源索引
 
-- 必要脚本：见 [scripts/study_analysis.py](scripts/study_analysis.py)(用途：调用 API 进行学习行为分析，本地文件上传(
-  https)，网络
-  URL 由 API 服务自动下载)
+- 必要脚本：见 [scripts/study_analysis.py](scripts/study_analysis.py)(用途：调用 API 进行学习行为分析，本地文件上传(https)
+  ，网络 URL 由 API 服务自动下载)
 - 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和视频格式限制)
 - 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
 
@@ -149,24 +140,35 @@ behavioral correction alongside improved learning efficiency.
   |----------|----------|----------|----------|
   | 学习分析报告-20260312172200001 | 综合分析 | 2026-03-12 17:22:00 | [🔗 查看报告](https://example.com/report?id=xxx) |
 
+## 📝 隐私与数据安全声明
+
+本技能在处理用户上传的视频时，严格遵守数据安全规范：
+
+- **数据保密处理**：
+    - 系统基于 用户名/手机号 生成的标识仅作为用户关联信息，**不保存任何可直接识别个人身份的明文信息**。
+- **安全传输**：
+    - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
+- **数据留存策略**：
+    - 云端服务器遵循“最小必要原则”，**分析任务完成后即刻删除原始视频数据，不进行持久化存储**，确保用户隐私数据不被留存或滥用。
+
 ## 使用示例
 
 ```bash
 # 综合学习行为分析（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.study_analysis --input /path/to/homework_video.mp4 --analysis-type comprehensive --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.study_analysis --input /path/to/homework_video.mp4 --analysis-type comprehensive --open-id your-open-id
 
 # 专注度专项分析（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.study_analysis --url https://example.com/study_video.mp4 --analysis-type focus --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.study_analysis --url https://example.com/study_video.mp4 --analysis-type focus --open-id your-open-id
 
 # 坐姿姿势专项分析（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.study_analysis --input /path/to/writing_video.mp4 --analysis-type posture --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.study_analysis --input /path/to/writing_video.mp4 --analysis-type posture --open-id your-open-id
 
 # 显示历史分析报告/显示分析报告清单列表/显示历史学习报告（自动触发关键词：查看历史学习报告、历史报告、学习报告清单等）
-python -m scripts.study_analysis --list --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.study_analysis --list --open-id your-open-id
 
 # 输出精简报告
-python -m scripts.study_analysis --input video.mp4 --analysis-type comprehensive --open-id {SHA-256 算法生成新 open-id} --detail basic
+python -m scripts.study_analysis --input video.mp4 --analysis-type comprehensive --open-id your-open-id --detail basic
 
 # 保存结果到文件
-python -m scripts.study_analysis --input video.mp4 --analysis-type comprehensive --open-id {SHA-256 算法生成新 open-id} --output result.json
+python -m scripts.study_analysis --input video.mp4 --analysis-type comprehensive --open-id your-open-id --output result.json
 ```
