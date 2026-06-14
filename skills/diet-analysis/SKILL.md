@@ -1,7 +1,7 @@
 ---
 name: "diet-analysis"
 description: "Analyzes videos to evaluate human eating behaviors, habits, and dietary patterns. It identifies tendencies towards unhealthy eating and provides structured analysis reports along with nutritional improvement recommendations. | 饮食行为健康分析工具，针对人的饮食行为、进食习惯、饮食结构进行视频分析，识别不良饮食行为倾向，提供结构化分析报告和营养改善建议"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Dietary Behavior Health Analyzer | 饮食行为健康分析工具
@@ -98,7 +98,7 @@ breakdown of the food types, portion proportions, and nutritional structure on t
             - `--input`: 本地视频文件路径
             - `--url`: 网络视频 URL 地址（API 服务自动下载）
             - `--analysis-type`: 分析类型，可选值：comprehensive/speed/habit/structure/risk，默认 comprehensive（综合分析）
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取, 再通过 SHA-256 算法生成唯一标识传入）
+            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示饮食行为分析历史报告列表清单（可以输入起始日期参数过滤数据范围）
             - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
@@ -136,11 +136,8 @@ breakdown of the food types, portion proportions, and nutritional structure on t
 
 ## 📝 隐私与数据安全声明
 
-本技能在处理用户上传的视频时，严格遵守数据安全规范：
-
-- **数据脱敏处理**：
-    - 系统基于用户名/手机号生成的 SHA-256 标识仅作为匿名化脱敏处理后的用户关联信息，**不包含任何可直接识别个人身份的明文信息
-      **。
+- **数据保密处理**：
+    - 系统基于 用户名/手机号 标识仅作为用户关联信息，**不保存任何可直接识别个人身份的明文信息**。
 - **安全传输**：
     - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
 - **数据留存策略**：
@@ -150,20 +147,20 @@ breakdown of the food types, portion proportions, and nutritional structure on t
 
 ```bash
 # 综合饮食行为分析（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.diet_analysis --input /path/to/meal_video.mp4 --analysis-type comprehensive --open-id {SHA-256 算法生成 open-id}
+python -m scripts.diet_analysis --input /path/to/meal_video.mp4 --analysis-type comprehensive --open-id your-open-id
 
 # 进食速度专项分析（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.diet_analysis --url https://example.com/meal_video.mp4 --analysis-type speed --open-id {SHA-256 算法生成 open-id}
+python -m scripts.diet_analysis --url https://example.com/meal_video.mp4 --analysis-type speed --open-id your-open-id
 
 # 进餐习惯专项分析（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.diet_analysis --input /path/to/habit_video.mp4 --analysis-type habit --open-id {SHA-256 算法生成 open-id}
+python -m scripts.diet_analysis --input /path/to/habit_video.mp4 --analysis-type habit --open-id your-open-id
 
 # 显示历史分析报告/显示分析报告清单列表/显示历史饮食报告（自动触发关键词：查看历史饮食报告、历史报告、饮食报告清单等）
-python -m scripts.diet_analysis --list --open-id {SHA-256 算法生成 open-id}
+python -m scripts.diet_analysis --list --open-id your-open-id
 
 # 输出精简报告
-python -m scripts.diet_analysis --input video.mp4 --analysis-type comprehensive --open-id {SHA-256 算法生成 open-id} --detail basic
+python -m scripts.diet_analysis --input video.mp4 --analysis-type comprehensive --open-id your-open-id --detail basic
 
 # 保存结果到文件
-python -m scripts.diet_analysis --input video.mp4 --analysis-type comprehensive --open-id {SHA-256 算法生成 open-id} --output result.json
+python -m scripts.diet_analysis --input video.mp4 --analysis-type comprehensive --open-id your-open-id --output result.json
 ```
