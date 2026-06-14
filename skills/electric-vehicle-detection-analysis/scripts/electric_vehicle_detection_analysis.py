@@ -58,7 +58,13 @@ def analyze_video(input_path=None, url=None, detection_type=None, area_type=None
 
     try:
         input_path = input_path or url
-        return skill.get_output_analysis(input_path)
+        # 计费/用量查询按年度 bizTag 归档；必须显式传当前年份，避免默认 '*' 导致误判余额不足
+        billing_params = {
+            # 充值套餐入账到 ALL-SKILL 权益池；分析时显式使用该权益池，避免按具体技能场景查不到余额
+            "sceneCode": "ALL-SKILL",
+            "bizTag": str(datetime.now().year)
+        }
+        return skill.get_output_analysis(input_path, params=billing_params)
 
     except requests.exceptions.RequestException as e:
         traceback.print_stack()
