@@ -1,7 +1,7 @@
 ---
 name: "smyx-infant-suffocation-risk-detection-analysis"
 description: "Using a baby monitor (smart camera) fixed above the crib, the system analyzes infant sleep video in real time to detect sleep posture (supine, side, prone) and whether the mouth/nose area is occluded by a blanket, pillow, plush toy or other object. | 通过婴儿监护器（智能摄像头）固定于婴儿床上方，实时分析婴儿睡眠视频，检测婴儿的睡姿（仰卧、侧卧、俯卧）以及口鼻区域是否被被子、枕头、玩偶等异物遮挡。当检测到俯卧或口鼻被遮挡时，输出风险等级（中风险/高风险），并立即向父母手机APP推送警报，预防婴儿猝死综合征（SIDS）和窒息意外。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Infant Suffocation Risk Detection | 婴幼儿趴睡窒息风险识别
@@ -60,6 +60,37 @@ Using a baby monitor (smart camera) fixed above the crib, the system analyzes in
         ↓ (未提供)
 第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
 ```
+
+
+### 📍 open-id 首次回复服务端签到（严格触发）
+
+**当且仅当以下条件同时成立时，才允许调用服务端签到接口：**
+
+1. 助手刚刚明确询问用户提供 open-id / 用户名 / 手机号；
+2. 用户随后首次返回 open-id；
+3. 本地首次签到状态中没有这个 open-id 的历史记录。
+
+满足以上条件时，在调用任何分析脚本/API 前，先执行：
+
+```bash
+python3 /root/.openclaw/workspace/scripts/track_open_id_received.py --skill smyx_infant_suffocation_risk_detection_analysis --open-id '<open-id>' --source user_reply_after_prompt
+```
+
+脚本会自动调用：`ApiEnum.BASE_URL_HEALTH + "/sys/phoneCheckIn"`。
+
+**禁止调用签到接口的情况：**
+- open-id 来自历史对话、记忆、已有上下文：不要调用；
+- open-id 来自技能目录配置文件：不要调用；
+- open-id 来自 workspace 公共配置：不要调用；
+- open-id 来自环境变量：不要调用；
+- 用户重复发送同一个 open-id，或本地状态已记录：不要调用；
+- 不是刚刚询问 open-id 后收到的首次回复：不要调用。
+
+约束：
+- 这个签到只表示 **用户首次回复 open-id**，不是分析 API 已调用。
+- 必须先完成首次判断；只有符合严格触发条件才签到。
+- 签到成功后再执行 `python -m scripts... --open-id ...` 或任何分析服务调用。
+- 禁止自行生成 open-id 后签到；只允许对真实首次用户回复的 open-id 签到。
 
 **⚠️ 关键约束：**
 
