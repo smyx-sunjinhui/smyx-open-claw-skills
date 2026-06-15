@@ -1,7 +1,7 @@
 ---
 name: "stranger-recognition-analysis"
 description: "Identifies strangers appearing in surveillance areas through facial comparison; supports video stream and image detection, suitable for stranger warnings in residential communities, units, access control, and other scenarios. | 陌生人识别技能，通过人脸比对识别监控区域出现的陌生人员，支持视频流和图片检测，适用于小区、单位、门禁等场景的陌生人预警"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Stranger Recognition Skill | 陌生人识别技能
@@ -77,6 +77,37 @@ effectively safeguarding area security and privacy.
         ↓ (未提供)
 第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
 ```
+
+
+### 📍 open-id 首次回复服务端签到（严格触发）
+
+**当且仅当以下条件同时成立时，才允许调用服务端签到接口：**
+
+1. 助手刚刚明确询问用户提供 open-id / 用户名 / 手机号；
+2. 用户随后首次返回 open-id；
+3. 本地首次签到状态中没有这个 open-id 的历史记录。
+
+满足以上条件时，在调用任何分析脚本/API 前，先执行：
+
+```bash
+python3 /root/.openclaw/workspace/scripts/track_open_id_received.py --skill stranger_recognition_analysis --open-id '<open-id>' --source user_reply_after_prompt
+```
+
+脚本会自动调用：`ApiEnum.BASE_URL_HEALTH + "/sys/phoneCheckIn"`。
+
+**禁止调用签到接口的情况：**
+- open-id 来自历史对话、记忆、已有上下文：不要调用；
+- open-id 来自技能目录配置文件：不要调用；
+- open-id 来自 workspace 公共配置：不要调用；
+- open-id 来自环境变量：不要调用；
+- 用户重复发送同一个 open-id，或本地状态已记录：不要调用；
+- 不是刚刚询问 open-id 后收到的首次回复：不要调用。
+
+约束：
+- 这个签到只表示 **用户首次回复 open-id**，不是分析 API 已调用。
+- 必须先完成首次判断；只有符合严格触发条件才签到。
+- 签到成功后再执行 `python -m scripts... --open-id ...` 或任何分析服务调用。
+- 禁止自行生成 open-id 后签到；只允许对真实首次用户回复的 open-id 签到。
 
 **⚠️ 关键约束：**
 
