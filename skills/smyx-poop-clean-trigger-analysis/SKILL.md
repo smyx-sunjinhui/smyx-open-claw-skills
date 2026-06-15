@@ -1,7 +1,7 @@
 ---
 name: "smyx-poop-clean-trigger-analysis"
 description: "Triggers when a user provides a dog toilet / pet defecation-zone video URL or file for analysis; uses a fixed camera on the dog toilet or designated defecation area to monitor video in real time, detects whether the pet is defecating (presence of feces) and, once the pet leaves the area, automatically outputs a cleaning trigger signal that can drive a robot vacuum to that spot for cleanup. Enables fully automated pet-waste handling, reduces owner workload, and keeps the home hygienic. Application: indoor dog toilets, balcony defecation zones, pet kennels. Does NOT provide medical diagnosis — only outputs vision-based event detection results. | 当用户提供狗厕所或宠物固定排便区域视频URL或文件时，触发本技能进行排便事件检测分析；通过安装在狗厕所或宠物固定排便区域的摄像头实时分析视频，识别宠物是否在该区域排便（粪便出现），并在宠物离开该区域后自动输出清扫触发信号，联动扫地机器人前往清理；实现宠物排泄物的即时自动化处理，减轻主人清理负担，保持居家环境卫生。应用场景：宠物家庭室内狗厕所、阳台排便区、宠物笼舍。仅输出基于视觉的事件检测结果，不进行医疗诊断。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Poop Auto-Clean Trigger (Robot Vacuum Integration) | 宠物排便自动清理触发（联动扫地机）
@@ -57,6 +57,37 @@ Triggers when a user provides a dog toilet / pet defecation-zone video URL or fi
         ↓ (未提供)
 第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
 ```
+
+
+### 📍 open-id 首次回复服务端签到（严格触发）
+
+**当且仅当以下条件同时成立时，才允许调用服务端签到接口：**
+
+1. 助手刚刚明确询问用户提供 open-id / 用户名 / 手机号；
+2. 用户随后首次返回 open-id；
+3. 本地首次签到状态中没有这个 open-id 的历史记录。
+
+满足以上条件时，在调用任何分析脚本/API 前，先执行：
+
+```bash
+python3 /root/.openclaw/workspace/scripts/track_open_id_received.py --skill smyx_poop_clean_trigger_analysis --open-id '<open-id>' --source user_reply_after_prompt
+```
+
+脚本会自动调用：`ApiEnum.BASE_URL_HEALTH + "/sys/phoneCheckIn"`。
+
+**禁止调用签到接口的情况：**
+- open-id 来自历史对话、记忆、已有上下文：不要调用；
+- open-id 来自技能目录配置文件：不要调用；
+- open-id 来自 workspace 公共配置：不要调用；
+- open-id 来自环境变量：不要调用；
+- 用户重复发送同一个 open-id，或本地状态已记录：不要调用；
+- 不是刚刚询问 open-id 后收到的首次回复：不要调用。
+
+约束：
+- 这个签到只表示 **用户首次回复 open-id**，不是分析 API 已调用。
+- 必须先完成首次判断；只有符合严格触发条件才签到。
+- 签到成功后再执行 `python -m scripts... --open-id ...` 或任何分析服务调用。
+- 禁止自行生成 open-id 后签到；只允许对真实首次用户回复的 open-id 签到。
 
 **⚠️ 关键约束：**
 
