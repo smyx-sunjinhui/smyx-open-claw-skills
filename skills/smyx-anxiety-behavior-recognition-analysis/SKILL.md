@@ -1,7 +1,7 @@
 ---
 name: "smyx-anxiety-behavior-recognition-analysis"
 description: "Using a fixed camera at home or in the office, the system analyzes daily videos of an individual (e.g., adult, adolescent) and detects anxiety-related behaviors: hand rubbing (repeated rubbing of both hands), nail biting (hand approaching mouth with biting motion), and pacing (repeated back-and-forth walking in a small area). | 通过家庭或办公室的固定摄像头，分析个体（如成人、青少年）的日常行为视频，检测手部搓揉（双手反复摩擦）、指甲啃咬（手部靠近嘴部并有啃咬动作）、来回踱步（在狭小区域内反复折返行走）等焦虑相关行为。系统实时监测，当焦虑行为指数超过阈值时推送提醒（如'您今日焦虑行为较多，建议进行放松练习'）。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Anxiety-Related Behavior Recognition (Hand-rubbing / Nail-biting / Pacing) | 焦虑症相关行为（搓手、咬指甲、来回踱步）识别
@@ -48,8 +48,8 @@ Using a fixed camera at home or in the office, the system analyzes daily videos 
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
