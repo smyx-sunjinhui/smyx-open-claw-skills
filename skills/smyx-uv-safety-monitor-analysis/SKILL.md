@@ -1,7 +1,7 @@
 ---
 name: "smyx-uv-safety-monitor-analysis"
 description: "AI-powered UV disinfection safety monitor for pets. Real-time camera analysis detects whether a pet enters an active UV-C disinfection zone and whether the UV lamp is on (via blue-purple glow recognition or smart-home API linkage). When both conditions are met, it auto-triggers a high-risk alert, recommends shutting off the UV lamp, and logs the event to prevent corneal burns or skin damage. Scenarios: smart homes, pet households, pet boarding facilities. | 通过智能家居摄像头实时识别宠物是否进入正在进行紫外线消毒的区域，自动关闭UV灯并推送提醒，防止宠物因误入消毒区而受到紫外线伤害。结合目标检测（宠物识别）与UV灯状态感知（可通过画面蓝紫色光晕/光谱特征或智能家居API联动），实现主动式安全防护。应用场景：智能家居、宠物家庭、宠物寄养场所。"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Pet UV Safety Monitor | 宠物紫外线消毒安全监测
@@ -46,8 +46,8 @@ AI-powered UV disinfection safety monitor for pets. Real-time camera analysis de
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
