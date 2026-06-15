@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-pica-behavior-recognition-analysis"
 description: "Triggers when a user provides an indoor camera video for analysis; supports local uploads or network URLs to call server-side APIs for pet pica-behavior recognition, detecting contact between the pet's mouth and non-food hazardous items (electric wires, plastic bags, socks, tissues, toy fragments, etc.); when the contact lasts ≥ 2 seconds, outputs a warning signal to help prevent intestinal obstruction, electric shock and other dangers (without diagnosing diseases). Application scenarios: indoor cameras, pet safety monitoring, smart-home security. | 当用户提供室内监控视频时，触发本技能进行异食行为识别；支持通过上传本地视频或网络视频URL，调用服务端API检测宠物嘴部与电线、塑料袋、袜子、纸巾、玩具碎片等非食物物品的接触动作；持续接触 ≥ 2 秒时输出预警信号，预防肠梗阻、触电等危险（不诊断疾病）。应用场景：室内摄像头、宠物安全监控、智能家居安防。"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Pet Pica Behavior Recognition | 宠物异食行为识别（啃咬电线/塑料）
@@ -55,8 +55,8 @@ Application scenarios: indoor cameras, pet safety monitoring, smart-home securit
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
