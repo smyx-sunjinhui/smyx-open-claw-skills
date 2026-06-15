@@ -175,12 +175,17 @@ class Dao(BaseDao):
                 self.__model__.del_flag == 0,
                 self.__model__.del_flag.is_(None)  # 关键：使用 .is_(None) 来判断 SQL 的 NULL
             )
-            return session.query(self.__model__).filter(self.__model__.username == username,
-                                                        or_(
-                                                            self.__model__.del_flag == 0,
-                                                            self.__model__.del_flag.is_(None)
-                                                            # 关键：使用 .is_(None) 来判断 SQL 的 NULL
-                                                        )).first()
+            return session.query(self.__model__).filter(
+                or_(
+                    self.__model__.username == username,
+                    self.__model__.realname == username
+                    # 关键：使用 .is_(None) 来判断 SQL 的 NULL
+                ),
+                or_(
+                    self.__model__.del_flag == 0,
+                    self.__model__.del_flag.is_(None)
+                    # 关键：使用 .is_(None) 来判断 SQL 的 NULL
+                )).first()
         finally:
             session.close()
 
@@ -267,7 +272,12 @@ class Dao(BaseDao):
         """
         session = self.get_session()
         try:
-            instance = session.query(self.__model__).filter(self.__model__.username == username).first()
+            instance = session.query(self.__model__).filter(
+                or_(
+                    self.__model__.username == username,
+                    self.__model__.realname == username
+                    # 关键：使用 .is_(None) 来判断 SQL 的 NULL
+                )).first()
             if not instance:
                 return None
 
@@ -324,6 +334,7 @@ class User(Base, BaseModelMixin):
     id = Column(String(32), primary_key=True, index=True)
     source_id = Column(String(32), comment="源头id")
     username = Column(String(100), unique=True, index=True, nullable=False, comment="用户名")
+    realname = Column(String(200), unique=True, index=True, comment="用户真名")
     email = Column(String(45), unique=True, index=True, comment="邮箱")
     birthday = Column(DateTime, unique=True, index=True, comment="邮箱")
     sex = Column(Integer, comment="性别")
