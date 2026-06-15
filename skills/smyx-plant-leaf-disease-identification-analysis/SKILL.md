@@ -1,7 +1,7 @@
 ---
 name: "smyx-plant-leaf-disease-identification-analysis"
 description: "AI-powered plant leaf disease identification from high-resolution leaf images. Detects disease lesion features (color, shape, distribution, surface deposits) such as white powdery patches (powdery mildew), rust-colored spore pustules (rust), brown necrotic spots (leaf spot), and outputs the most likely disease type with confidence score. Helps users quickly diagnose plant diseases and take timely measures. Scenarios: plant factories, greenhouses, home gardening, farm inspection. | 通过拍摄植物叶片的高清图像，利用AI视觉分析技术识别叶片上的病斑特征（颜色、形状、分布），检测是否有白色粉状物（白粉病）、锈色孢子堆（锈病）、褐色坏死斑（叶斑病）等典型症状，输出最可能的病害类型及置信度。帮助用户快速诊断植物病害，采取防治措施。应用场景：植物工厂、温室大棚、家庭盆栽、园艺养护。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Plant Leaf Disease Identification | 植物叶片病害特征识别
@@ -58,6 +58,37 @@ AI-powered plant leaf disease identification from high-resolution leaf images. D
         ↓ (未提供)
 第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
 ```
+
+
+### 📍 open-id 首次回复服务端签到（严格触发）
+
+**当且仅当以下条件同时成立时，才允许调用服务端签到接口：**
+
+1. 助手刚刚明确询问用户提供 open-id / 用户名 / 手机号；
+2. 用户随后首次返回 open-id；
+3. 本地首次签到状态中没有这个 open-id 的历史记录。
+
+满足以上条件时，在调用任何分析脚本/API 前，先执行：
+
+```bash
+python3 /root/.openclaw/workspace/scripts/track_open_id_received.py --skill smyx_plant_leaf_disease_identification_analysis --open-id '<open-id>' --source user_reply_after_prompt
+```
+
+脚本会自动调用：`ApiEnum.BASE_URL_HEALTH + "/sys/phoneCheckIn"`。
+
+**禁止调用签到接口的情况：**
+- open-id 来自历史对话、记忆、已有上下文：不要调用；
+- open-id 来自技能目录配置文件：不要调用；
+- open-id 来自 workspace 公共配置：不要调用；
+- open-id 来自环境变量：不要调用；
+- 用户重复发送同一个 open-id，或本地状态已记录：不要调用；
+- 不是刚刚询问 open-id 后收到的首次回复：不要调用。
+
+约束：
+- 这个签到只表示 **用户首次回复 open-id**，不是分析 API 已调用。
+- 必须先完成首次判断；只有符合严格触发条件才签到。
+- 签到成功后再执行 `python -m scripts... --open-id ...` 或任何分析服务调用。
+- 禁止自行生成 open-id 后签到；只允许对真实首次用户回复的 open-id 签到。
 
 **⚠️ 关键约束：**
 
