@@ -1,7 +1,11 @@
 ---
 name: "smyx-frog-skin-moisture-assessment-analysis"
+<<<<<<< HEAD
+description: "Through fixed cameras in rainforest tanks or vivariums, the system captures high-definition images of the dorsal or lateral skin of frogs (such as tree frogs, horned frogs, dart frogs), and uses AI visual analysis to detect skin glossiness (specular reflection intensity) and assess skin moisture levels. Healthy frogs should have moist, glossy skin; when the skin is dry, glossiness drops significantly and wrinkles or whitish film may appear. When skin glossiness falls below the preset threshold, the system outputs a 'dehydration risk alert', prompting the keeper to check environmental humidity, water sources, and increase misting frequency. This skill helps prevent kidney failure or death in frogs caused by dehydration. Application scenarios: rainforest tanks, frog vivariums, amphibian farms, animal hospitals. The system takes scheduled photos daily, generates skin-moisture reports, and pushes alerts on abnormalities. Skill features: frog skin respiration relies on a moist environment, and dehydration is a common cause of death in captive frogs. AI-based automatic assessment of skin glossiness helps keepers detect insufficient humidity in time, adjust misting frequency, and avoid dehydration-related death. This skill can be integrated into smart rainforest-tank cameras or amphibian-keeping apps. | 通过雨林缸或饲养箱固定摄像头，拍摄蛙类（如树蛙、角蛙、箭毒蛙）的背部或侧身皮肤高清图像，利用 AI 视觉分析技术检测皮肤的光泽度（反光强度），评估皮肤的湿润程度。健康的蛙类皮肤应湿润、有光泽；当皮肤干燥时，光泽度显著下降，甚至出现皱褶或白膜。当皮肤光泽度低于预设阈值时，输出'脱水风险提示'，提醒饲养者检查环境湿度、水源并增加喷雾频率。该技能有助于预防蛙类因脱水导致的肾衰竭或死亡。应用场景：雨林缸、蛙类饲养箱、两栖动物养殖场、宠物医院。系统每日定时拍照分析，生成皮肤湿润度报告，异常时推送提醒。技能特点：蛙类皮肤呼吸依赖湿润环境，脱水是圈养蛙类常见死因。通过 AI 自动评估皮肤光泽度，可帮助饲养者及时发现湿度不足，调整喷雾频率，避免脱水死亡。该技能可集成到智能雨林缸摄像头或两栖类饲养 APP 中。"
+=======
 description: "Through fixed cameras in rainforest tanks or vivariums, the system captures high-definition images of the dorsal or lateral skin of frogs (such as tree frogs, horned frogs, dart frogs), and uses AI visual analysis to detect skin glossiness (specular reflection intensity) and assess skin moisture levels. | 通过雨林缸或饲养箱固定摄像头，拍摄蛙类（如树蛙、角蛙、箭毒蛙）的背部或侧身皮肤高清图像，利用 AI 视觉分析技术检测皮肤的光泽度（反光强度），评估皮肤的湿润程度。健康的蛙类皮肤应湿润、有光泽；当皮肤干燥时，光泽度显著下降，甚至出现皱褶或白膜。"
-version: "1.0.1"
+>>>>>>> 2ac8d1216af5489e2c4ef1b07b80962e56bc7194
+version: "1.0.2"
 ---
 
 # Frog Skin Moisture Assessment | 蛙类皮肤湿润度评估
@@ -47,8 +51,8 @@ Through fixed cameras in rainforest tanks or vivariums, the system captures high
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
