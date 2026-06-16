@@ -1,7 +1,7 @@
 ---
 name: "smyx-race-foul-detection-analysis"
 description: "Triggers when a user provides a pet racing track start/finish video URL or file for analysis; uses HD cameras at the starting line and finish line to analyze race video in real time, detecting each pet's (greyhounds, racehorses, etc.) start time, finish order, and lane assignment, automatically determining false starts (start before the signal) or lane crossing (deviating from own lane into an adjacent lane) fouls and outputting judgment results. Assists referee decisions and improves race fairness. Application: pet racing (greyhound, horse, obstacle course), pet sports events, professional track training. Does NOT provide race advice — only returns objective video-based judgment results. | 当用户提供宠物赛道起点/终点视频URL或文件时，触发本技能进行竞赛犯规检测分析；通过架设在赛道起点和终点线的高清摄像头，实时分析比赛视频，检测每只宠物（赛犬、赛马等）的起跑时间、通过终点线的顺序以及所在道次，自动判定是否存在抢跑（起跑时间早于发令信号）或窜道（偏离自身赛道进入邻道）等犯规行为，并输出判定结果。辅助裁判决策，提高赛事公平性。应用场景：宠物竞速比赛（灵缇赛跑、赛马、宠物障碍赛）、宠物运动会、专业赛道训练。仅输出基于视频的客观判定结果，不提供赛事建议。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Race Foul Detection (False Start / Lane Crossing) | 宠物赛跑/竞赛作弊识别（起跑/窜道）
@@ -45,8 +45,8 @@ Triggers when a user provides a pet racing track start/finish video URL or file 
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
