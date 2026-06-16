@@ -1,7 +1,7 @@
 ---
 name: "psychological-stress-assessment-analysis"
 description: "Combines facial blood flow and emotional characteristics to analyze stress index, anxiety tendency, and depression tendency, suitable for mental health monitoring scenarios. | 心理压力评估技能，结合面部血流与情绪特征，分析压力指数、焦虑倾向、抑郁倾向，适用于心理健康监测场景"
-version: "1.0.5"
+version: "1.0.6"
 ---
 
 # Psychological Stress Assessment Skill | 心理压力评估技能
@@ -59,8 +59,8 @@ intervention of psychological issues.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
