@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-eating-speed-slow-feed-analysis"
 description: "Triggers when a user provides a video of the pet food-bowl area for analysis; supports local uploads or network URLs to call server-side APIs for eating-speed detection, recording start/end timestamps of feeding, estimating eating speed (g/s and seconds-per-bowl), and when the speed falls below the safety threshold (e.g. < 30 sec/bowl) emitting an intervention signal (slow-feed baffle pop-up or voice prompt) to prevent choking and vomiting (without diagnosing diseases). Application scenarios: smart slow-feeder bowls, pet health management, canine care. | 当用户提供食盆区域视频时，触发本技能进行进食速度检测分析；支持通过上传本地视频或网络视频URL，调用服务端API记录进食开始/结束时间，计算进食速度（克/秒），当低于安全阈值（例如 < 30 秒/碗）时触发外部干预信号（智能慢食碗隔板弹出、语音提醒），预防噎食与呕吐（不诊断疾病）。应用场景：智能慢食碗、宠物健康管理、犬类护理。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Eating Speed Slow Feed Analysis | 宠物进食速度检测与慢食干预
@@ -54,8 +54,8 @@ diseases). Application scenarios: smart slow-feeder bowls, pet health management
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
