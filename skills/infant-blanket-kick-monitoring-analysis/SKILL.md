@@ -1,7 +1,7 @@
 ---
 name: "infant-blanket-kick-monitoring-analysis"
 description: "Identifies babies kicking off blankets or exposing their bodies during sleep and alerts parents to cover them up to prevent catching a cold. | 婴儿蹬被监测技能，识别婴儿夜间睡觉踢开被子、身体裸露，及时提醒家长给宝宝盖被保暖，预防着凉感冒"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Baby Blanket Kick Monitoring Skill | 婴儿蹬被监测技能
@@ -65,8 +65,8 @@ chilling, providing the infant with round-the-clock thermal protection.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
