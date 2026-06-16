@@ -1,7 +1,7 @@
 ---
 name: "smyx-elderly-loneliness-comfort-analysis"
 description: "Using a fixed camera in the home of a solitary-living elderly person or in a private nursing-home room, the system analyzes daily activity video and detects loneliness-related behaviors: prolonged solitude (no social interaction), static gazing (long-time fixation with no purposeful activity), sighing (rapid chest/abdomen rise-fall with exhale), and talking-to-self (mouth activity with no conversation partner). | 通过独居老人家中或养老院单人房的固定摄像头，分析老人日常行为视频，检测孤独相关行为：长时间独处（无社交互动）、静止发呆（长时间凝视一处无目的活动）、叹气（胸腹快速起伏伴呼气）、自言自语（口部活动但无对话对象）等。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Elderly Loneliness Detection & Warm Companionship | 独居老人孤独情绪识别与温暖陪伴
@@ -48,8 +48,8 @@ Using a fixed camera in the home of a solitary-living elderly person or in a pri
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
