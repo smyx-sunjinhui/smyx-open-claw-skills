@@ -1,7 +1,7 @@
 ---
 name: "smyx-fish-flashing-scraping-detection-analysis"
 description: "Through fixed aquarium cameras, the system analyzes fish behavior videos and detects abnormal frictional actions between fish bodies and tank walls, substrate, or rockwork — 'flashing' (fish flipping sideways and brushing tank walls rapidly) and 'scraping' (fish belly/flank rubbing on substrate). The system counts abnormal contact frequency per minute. | 通过鱼缸固定摄像头，分析鱼类的行为视频，检测鱼体与缸壁、底砂、造景石等物体的异常摩擦动作（擦缸：鱼体侧身快速蹭过缸壁；蹭底：鱼体腹部或侧面贴底砂摩擦）。统计每分钟的异常接触频次，当频次超过阈值（默认 5 次/分钟）且持续时间超过 10 秒时，输出'外寄风险提示'，提醒用户检查是否有寄生虫（如小瓜虫、车轮虫、三代虫）感染或皮肤不适。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Fish Flashing & Scraping Detection (Ectoparasite Warning) | 鱼类擦缸/蹭底行为识别（外寄）
@@ -47,8 +47,8 @@ Through fixed aquarium cameras, the system analyzes fish behavior videos and det
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
