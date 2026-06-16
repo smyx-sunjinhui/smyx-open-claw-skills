@@ -1,7 +1,7 @@
 ---
 name: "fire-smoke-detection-analysis"
 description: "Detects fire and smoke in video scenes. Supports both video stream and image analysis. Suitable for fire early warning scenarios such as security surveillance, forest fire prevention, and industrial parks. | 烟火检测技能，对视频场景中火情和烟雾进行检测，支持视频流和图片检测，适用于安防监控、森林防火、工业园区等火灾预警场景"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Flame & Smoke Detection Skill | 烟火检测技能
@@ -57,8 +57,8 @@ respond immediately, thereby reducing fire damage and the risk of spreading.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
