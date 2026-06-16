@@ -1,7 +1,7 @@
 ---
 name: "smyx-elderly-gait-instability-detection-analysis"
 description: "Using a fixed camera in a hallway or living room to record video of an elderly person walking in a straight line, AI pose estimation and gait analysis extract parameters such as step length (cm), gait speed (m/s), trunk sway angle (left-right tilt), and cadence to evaluate gait stability. | 通过走廊或客厅的固定摄像头拍摄老年人直线行走的视频，利用AI姿态估计和步态分析技术检测步幅长度（cm）、步速（m/s）、躯干摇摆角度（左右倾斜度）以及步频等参数，评估步态稳定性。当步幅过小（小碎步）、步速过慢、躯干摇摆幅度过大时，输出跌倒风险等级（低/中/高）。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Elderly Gait Instability / Shuffling Step Detection | 老年人步态不稳/小碎步识别
@@ -48,8 +48,8 @@ Using a fixed camera in a hallway or living room to record video of an elderly p
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
