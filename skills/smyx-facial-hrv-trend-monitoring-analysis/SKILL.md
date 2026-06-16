@@ -1,7 +1,7 @@
 ---
 name: "smyx-facial-hrv-trend-monitoring-analysis"
 description: "Using everyday cameras (laptop camera, smartphone front camera, smart mirror), the system records 30-60 seconds of facial video and uses remote photoplethysmography (rPPG) to extract subtle color variations from facial skin micro-circulation, from which it computes heart-rate-variability (HRV) metrics including SDNN (standard deviation of all normal sinus RR intervals) and RMSSD (root mean square of successive RR-interval. | 通过日常摄像头（如电脑摄像头、手机前置摄像头）拍摄面部视频（30-60秒），利用光电容积描记技术（远程光电容积描记术，rPPG）提取面部皮肤微循环的微弱色度变化，从中计算心率变异性（HRV）指标，包括SDNN（全部正常窦性心搏间期的标准差）、RMSSD（相邻心搏间期差值的均方根）等。该技能可用于压力评估、心血管健康监测及疲劳管理。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Adult Facial HRV Trend Monitoring (rPPG) | 成人心率变异性（HRV）趋势监测（面部）
@@ -48,8 +48,8 @@ Using everyday cameras (laptop camera, smartphone front camera, smart mirror), t
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
