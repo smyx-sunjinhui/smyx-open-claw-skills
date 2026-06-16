@@ -1,7 +1,7 @@
 ---
 name: "smyx-child-window-climbing-detection-analysis"
 description: "Using fixed cameras in living rooms or child-activity areas (aimed at windows or balconies), AI pose estimation and object detection analyze the video in real time to recognize whether a child is climbing windows, leaning out, or gripping window-sill edges. | 通过家庭客厅或儿童活动区域的固定摄像头（需对准窗户或阳台），利用AI姿态估计和目标检测技术实时分析视频，识别儿童是否发生攀爬窗户、身体探出窗外、抓握窗台边缘等危险行为，当检测到危险动作时立即输出预警，联动手机APP推送警报或触发声光报警器。该技能可有效预防儿童坠楼事故。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Child Window/Balcony Climbing Detection | 儿童攀爬窗户/阳台识别
@@ -48,8 +48,8 @@ Using fixed cameras in living rooms or child-activity areas (aimed at windows or
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
