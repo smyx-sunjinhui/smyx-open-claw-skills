@@ -1,7 +1,7 @@
 ---
 name: "smyx-family-conflict-intensity-detect-analysis"
 description: "Using a fixed camera with microphone in the living room, the system analyzes audio and video in real time, detecting sound intensity (dB) and the intensity of body movements (e.g., rapid hand waving, finger pointing, pushing, throwing objects). It comprehensively evaluates the family conflict intensity level (low / medium / high). | 通过客厅固定摄像头（含麦克风），实时分析音频和视频，检测声音强度（分贝）和肢体动作激烈程度（如快速挥手、戳指、推搡、摔物等）。综合评估家庭争吵的冲突强度等级（低/中/高），当强度达到中或高时，通过手机APP推送提醒（如'检测到高强度冲突，建议冷静沟通或暂时分开'）。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Family / Couple Conflict Intensity Detection | 夫妻/家庭争吵强度识别
@@ -48,8 +48,8 @@ Using a fixed camera with microphone in the living room, the system analyzes aud
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
