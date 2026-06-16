@@ -1,7 +1,7 @@
 ---
 name: "human-detection-analysis"
 description: "Automatically detects personnel in target areas based on computer vision. Supports real-time video stream detection and is suitable for monitoring personnel access in parks, offices, and restricted areas. | 区域人形检测技能，基于计算机视觉自动检测目标区域内出现的人员，支持视频流实时检测，适用于园区、办公室、禁入区域等人员出入监测场景"
-version: "1.0.5"
+version: "1.0.6"
 ---
 
 # Regional Humanoid Detection Skill | 区域人形检测技能
@@ -56,8 +56,8 @@ trajectories, helping to enhance regional security control capabilities and pers
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
