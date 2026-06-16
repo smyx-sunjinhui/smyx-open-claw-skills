@@ -1,7 +1,7 @@
 ---
 name: "smyx-child-social-interaction-analysis-analysis"
 description: "Using fixed cameras in kindergartens or early-education centers, the system analyzes multi-person video to detect social-interaction behaviors among children, including approach (distance < 1 m), conversation (face-to-face with mouth movement), and cooperative play (collaborative play, chasing, etc.). | 通过幼儿园或早教中心的固定摄像头，分析多人视频，检测儿童之间的社交互动行为，包括接近（距离<1米）、对话（面对面且嘴部运动）、共同游戏（合作玩耍、追逐等）。系统定期生成社交互动热力图，为教师提供参考。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Child Social Interaction Frequency & Duration Analysis | 儿童社交互动频次与时长分析
@@ -48,8 +48,8 @@ Using fixed cameras in kindergartens or early-education centers, the system anal
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
