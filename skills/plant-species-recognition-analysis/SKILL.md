@@ -1,7 +1,7 @@
 ---
 name: "plant-species-recognition-analysis"
 description: "Accurately identifies plant species from images based on deep learning and computer vision, outputs structured information including species name, family, growth habits and maintenance tips. | 植物物种识别技能，基于深度学习与计算机视觉技术，通过图像快速识别植物物种，输出物种名称、科属分类、生长习性及养护要点等结构化信息，为园艺、生态调研、自然教育提供专业识别服务"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Plant Species Recognition Skill | 植物物种识别技能
