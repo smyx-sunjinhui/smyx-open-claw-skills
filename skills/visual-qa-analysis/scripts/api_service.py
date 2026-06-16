@@ -24,9 +24,7 @@ class ApiService(ApiServiceBase):
             "data_as_params": True
         }
         # params.setdefault("scene", scene_code)
-        # 添加宠物类型参数
-        if ConstantEnum.DEFAULT_PET_TYPE:
-            params.setdefault("petType", ConstantEnum.DEFAULT_PET_TYPE)
+        
         return self.http_post(self.analysis_url, options=options, *args, **argss)
 
     def page(self, pageNum=None, pageSize=None, *args, **argss):
