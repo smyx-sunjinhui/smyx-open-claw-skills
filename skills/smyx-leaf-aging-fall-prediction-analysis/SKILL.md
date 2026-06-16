@@ -1,7 +1,7 @@
 ---
 name: "smyx-leaf-aging-fall-prediction-analysis"
 description: "Using a fixed indoor camera to continuously capture leaf images of houseplants from the same angle every day, AI vision techniques detect leaf color changes (green → yellow → brown), loss of glossiness (reduced surface reflectance), and formation of the abscission zone at the petiole base (angle change). | 通过室内绿植固定摄像头连续采集叶片图像（每天同一角度），利用AI视觉分析技术检测叶片颜色变化（从绿到黄再到褐）、光泽度下降（叶面反光减弱）、叶柄基部离层形成（角度变化）等老化进程，并基于历史图像序列的时间序列模型预测未来3-7天内叶片脱落的风险时段。系统每日生成老化报告，当预测即将落叶时推送提醒（如'富贵竹下位叶预计3天后脱落，可提前剪除以保持美观'）。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Leaf Aging Fall Prediction | 室内绿植叶片老化/脱落预测
@@ -48,8 +48,8 @@ Using a fixed indoor camera to continuously capture leaf images of houseplants f
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
