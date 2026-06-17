@@ -1,7 +1,7 @@
 ---
 name: "smyx-child-poor-posture-detection-analysis"
 description: "Using the camera built into a smart desk lamp or mounted above the desk, the system analyzes the child's sitting-posture video in real time, detecting spinal curvature angle (estimated Cobb angle) and head tilt angle. | 通过智能台灯内置摄像头或书桌上方摄像头，实时分析儿童学习时的坐姿视频，检测脊柱弯曲角度（Cobb角估算）以及头部倾斜度（侧倾角）。当驼背（Cobb角>10°）或歪头（头部侧倾角>15°）持续时间超过预设阈值（如5秒）时，触发语音提醒（如'请坐直'、'头抬正'），帮助儿童养成良好坐姿习惯，预防近视和脊柱侧弯。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Child Poor Posture (Hunchback / Head Tilt) Real-Time Reminder | 儿童坐姿不良（驼背/歪头）实时提醒
@@ -48,8 +48,8 @@ Using the camera built into a smart desk lamp or mounted above the desk, the sys
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
