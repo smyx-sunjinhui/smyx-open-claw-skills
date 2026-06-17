@@ -1,7 +1,7 @@
 ---
 name: "sport-analysis"
 description: "Conducts video safety risk analysis for participants in outdoor sports competitions, long-distance running, marathons, etc.; identifies sports injuries and sudden health risks, outputs professional analysis reports, and provides timely warnings to ensure sports safety. | 户外体育赛事风险分析工具，针对户外体育比赛、长跑马拉松等运动项目的参赛人员进行视频安全风险分析，识别运动损伤和突发健康风险，输出专业分析报告，及时预警保障运动安全"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Outdoor Sports Event Risk Analysis Tool | 户外体育赛事风险分析工具
@@ -111,8 +111,8 @@ provide a basis for rapid response by event medical teams, comprehensively safeg
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
