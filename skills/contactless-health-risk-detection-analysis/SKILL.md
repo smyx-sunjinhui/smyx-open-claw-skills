@@ -1,7 +1,7 @@
 ---
 name: "contactless-health-risk-detection-analysis"
 description: "Combines frontal facial image capture with multimodal physiological feature analysis to provide early risk screening and alerts for chronic and acute conditions such as heart attack, stroke, hypertension, and hyperlipidemia. | 非接触式健康风险识别技能，通过正面人像采集结合多模态生理特征分析，提供心梗、脑梗、高血压、高血脂等慢病急症早期风险筛查预警"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Contactless Health Risk Screening Tool | 非接触式健康风险检测分析工具
@@ -80,8 +80,8 @@ prevention.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
