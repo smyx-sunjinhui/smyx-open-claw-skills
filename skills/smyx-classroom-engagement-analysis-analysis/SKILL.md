@@ -1,7 +1,7 @@
 ---
 name: "smyx-classroom-engagement-analysis-analysis"
 description: "Using a fixed classroom camera, the system analyzes students' facial expressions (focused, confused, happy, frustrated, bored, etc.), computes a class-level overall engagement score (0-100), and can identify low-engagement student positions (no identity stored — for real-time teacher reminders only). Real-time analysis provides engagement heatmaps and abnormal alerts. | 通过教室固定摄像头，分析学生面部表情（专注、困惑、开心、沮丧、无聊等），计算班级整体参与度评分（0-100分），并可识别出参与度较低的学生个体（不存储身份，仅用于实时提醒）。该技能可辅助教师调整教学节奏，关注学习困难学生。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Student Classroom Engagement Analysis | 学生课堂情绪参与度分析
@@ -48,8 +48,8 @@ Using a fixed classroom camera, the system analyzes students' facial expressions
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
