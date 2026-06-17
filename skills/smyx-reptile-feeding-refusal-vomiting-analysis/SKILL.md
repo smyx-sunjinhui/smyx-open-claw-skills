@@ -1,7 +1,7 @@
 ---
 name: "smyx-reptile-feeding-refusal-vomiting-analysis"
 description: "Through fixed enclosure cameras, the system analyzes feeding-time and post-feeding videos of reptiles (snakes, lizards, turtles) to detect prey-attack behavior, successful swallowing, and regurgitation (vomiting). | 通过爬宠箱固定摄像头，分析喂食时及喂食后一段时间的视频，检测爬行动物（如蛇、蜥蜴、龟）的进食行为：是否主动攻击猎物（如鼠、昆虫）、是否成功吞食、以及是否在进食后短时间内将食物吐出（反吐）。当宠物对猎物无视、逃避（拒食）或将已吞入的食物吐出时，记录异常事件并输出提示。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Reptile Feeding Refusal / Vomiting Detection | 爬宠进食拒绝/呕吐识别
@@ -47,8 +47,8 @@ Through fixed enclosure cameras, the system analyzes feeding-time and post-feedi
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
