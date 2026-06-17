@@ -1,7 +1,7 @@
 ---
 name: "smyx-turtle-pneumonia-symptom-detection-analysis"
 description: "Through fixed enclosure cameras, the system analyzes mouth and nasal videos of turtles to detect abnormally frequent open-mouth breathing in non-feeding states (mouth opening frequency unusually elevated), as well as the presence of mucus (reflective spots or strands) or nasal discharge around the mouth and nose. | 通过龟缸固定摄像头，分析龟类的口鼻部视频，检测龟在非进食状态下（未摄食时）口部频繁开合（张嘴呼吸，频率异常增高），以及口鼻区域是否有黏液（反光点或丝状物）或鼻腔分泌物。当同时或单独出现上述症状时，输出'肺炎风险提示'，提醒饲养者检查环境温度、水质，并及时隔离治疗。"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Turtle Pneumonia Symptom (Open-Mouth Breathing) Detection | 龟类张嘴呼吸（肺炎征兆）识别
@@ -47,8 +47,8 @@ Through fixed enclosure cameras, the system analyzes mouth and nasal videos of t
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
