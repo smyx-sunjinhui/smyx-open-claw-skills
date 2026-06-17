@@ -1,7 +1,7 @@
 ---
 name: "human-emotion-recognition-analysis"
 description: "Uses visual AI on frontal faces to recognize multi-dimensional emotions like happiness, sadness, depression, calmness, anger, surprise, and fear in real-time. Supports emotion intensity quantification and abnormal emotion marking, suitable for human-computer interaction and mental health monitoring. | 人体视觉情绪识别技能，基于正面人脸视觉AI实时识别快乐、悲伤、抑郁、平静、愤怒、惊讶、恐惧等多维度情绪状态，支持情绪强度量化与异常情绪标记，适配人机交互、心理健康监测场景"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Visual Emotion Recognition Skill | 人体视觉情绪识别技能
@@ -58,8 +58,8 @@ states and providing data support for intelligent intervention and emotional cou
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
