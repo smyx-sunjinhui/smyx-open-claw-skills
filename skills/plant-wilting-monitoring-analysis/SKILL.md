@@ -1,7 +1,7 @@
 ---
 name: "plant-wilting-monitoring-analysis"
 description: "Early monitoring of plant wilting based on hyperspectral imaging and computer vision, captures early wilting signs before visible symptoms, provides early warning for precision irrigation and disease control. | 植物枯萎监测技能，基于高光谱成像与计算机视觉，在肉眼可见症状前捕捉早期枯萎迹象，为精准灌溉和病害防控提供早期预警"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Plant Wilting Monitoring Skill | 植物枯萎监测技能
@@ -94,7 +94,7 @@ providing critical early warning and decision support for precision irrigation a
         - 参数说明:
             - `--input`: 本地视频/图片文件路径
             - `--url`: 网络视频/图片 URL 地址（API 服务自动下载）
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取, 再通过 SHA-256 算法生成唯一标识传入）
+            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示历史植物枯萎监测分析报告列表清单（可以输入起始日期参数过滤数据范围）
             - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
@@ -135,9 +135,8 @@ providing critical early warning and decision support for precision irrigation a
 
 本技能在处理用户上传的视频时，严格遵守数据安全规范：
 
-- **数据脱敏处理**：
-    - 系统基于用户名/手机号生成的 SHA-256 标识仅作为匿名化脱敏处理后的用户关联信息，**不包含任何可直接识别个人身份的明文信息
-      **。
+- **数据保密处理**：
+    - 系统基于 用户名/手机号 生成的标识仅作为用户关联信息，**不保存任何可直接识别个人身份的明文信息**。
 - **安全传输**：
     - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
 - **数据留存策略**：
@@ -147,17 +146,17 @@ providing critical early warning and decision support for precision irrigation a
 
 ```bash
 # 监测本地视频/图片中植物的枯萎状况（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.plant_wilting_monitoring_analysis --input /path/to/plant.mp4 --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.plant_wilting_monitoring_analysis --input /path/to/plant.mp4 --open-id your-open-id
 
 # 监测网络视频/图片（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.plant_wilting_monitoring_analysis --url https://example.com/wilting.mp4 --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.plant_wilting_monitoring_analysis --url https://example.com/wilting.mp4 --open-id your-open-id
 
 # 显示历史监测报告/显示监测报告清单列表/显示历史植物枯萎监测（自动触发关键词：查看历史监测报告、历史报告、监测报告清单等）
-python -m scripts.plant_wilting_monitoring_analysis --list --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.plant_wilting_monitoring_analysis --list --open-id your-open-id
 
 # 输出精简报告
-python -m scripts.plant_wilting_monitoring_analysis --input plant.jpg --open-id {SHA-256 算法生成新 open-id} --detail basic
+python -m scripts.plant_wilting_monitoring_analysis --input plant.jpg --open-id your-open-id --detail basic
 
 # 保存结果到文件
-python -m scripts.plant_wilting_monitoring_analysis --input plant.jpg --open-id {SHA-256 算法生成新 open-id} --output result.json
+python -m scripts.plant_wilting_monitoring_analysis --input plant.jpg --open-id your-open-id --output result.json
 ```
