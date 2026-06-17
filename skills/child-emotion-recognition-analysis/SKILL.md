@@ -1,7 +1,7 @@
 ---
 name: "child-emotion-recognition-analysis"
 description: "Identifies negative emotions such as crying, anger, fear, and distress through surveillance footage. It actively issues soothing reminders and notifies parents, making it suitable for homes, kindergartens, and daycare centers. | 儿童情绪识别分析技能，通过监控画面识别儿童哭闹、愤怒、恐惧、委屈等负面情绪，主动发出安抚提醒并通知家长，适用于家庭、幼儿园、托管场所等场景"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Child Emotion Recognition Analyzer | 儿童情绪识别分析工具
@@ -63,8 +63,8 @@ children's psychological states, enhancing both emotional care and safety assura
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
