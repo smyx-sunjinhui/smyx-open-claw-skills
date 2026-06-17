@@ -1,7 +1,7 @@
 ---
 name: "smyx-neonatal-jaundice-screening-analysis"
 description: "Using a neonatal monitor or baby camera, the system captures high-resolution facial images of the newborn and uses AI visual analysis to detect sclera color (white in normal babies, yellow when jaundiced) and facial skin yellowness index (based on skin-color chromatic spaces, e.g., mapping the skin region to estimated clinical bilirubin levels). It outputs a jaundice-risk hint (low / medium / high risk). | 通过新生儿监护器或婴儿摄像头拍摄新生儿面部高清图像，利用AI视觉分析技术检测巩膜（眼白）的颜色（正常白色，黄疸时呈黄色）以及面部皮肤的黄染指数（基于肤色色度空间，如将皮肤区域映射到临床胆红素水平估算），输出黄疸风险提示（低风险/中风险/高风险）。该技能可辅助家长及医护人员早期发现新生儿高胆红素血症，及时就医干预。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Neonatal Jaundice Screening (Facial Skin Color) | 新生儿黄疸筛查（面部皮肤颜色）
@@ -48,8 +48,8 @@ Using a neonatal monitor or baby camera, the system captures high-resolution fac
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
