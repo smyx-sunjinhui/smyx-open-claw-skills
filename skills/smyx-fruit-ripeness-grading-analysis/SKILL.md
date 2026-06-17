@@ -1,7 +1,7 @@
 ---
 name: "smyx-fruit-ripeness-grading-analysis"
 description: "AI-powered fruit ripeness grading for tomatoes / strawberries. From smart grow-boxes or mobile phone images, uses AI vision to detect fruit color (green / light green / orange / red / dark red), colored-area ratio, gloss, and relative fruit size (against a reference object), and outputs a ripeness grade (Mature-Green / Turning / Ripe / Over-Ripe) based on preset standards. Helps growers identify the optimal harvest window and ensures flavor and shelf quality. Scenarios: smart grow-boxes, greenhouses, home vegetable gardens, fruit & vegetable cooperatives. | 通过智能种植箱或手机拍摄的果实图像，利用AI视觉分析技术检测果实的颜色（绿/浅绿/橙/红/暗红）、着色面积比例、光泽度以及果实大小（相对于参照物），根据预设的成熟度分级标准输出等级（青熟期/转色期/成熟期/过熟期）。该技能帮助种植者确定最佳采收时机，保证果实口感和商品性。应用场景：智能种植箱、温室大棚、家庭菜园、果蔬合作社。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Fruit Ripeness Grading | 番茄/草莓果实成熟度分级
@@ -44,8 +44,8 @@ AI-powered fruit ripeness grading for tomatoes / strawberries. From smart grow-b
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
