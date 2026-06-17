@@ -1,7 +1,7 @@
 ---
 name: "smyx-adult-facial-fatigue-stress-index-analysis"
 description: "Using a smart mirror or fixed camera, the system analyzes high-resolution adult facial images or short videos to detect physiological features such as under-eye bag area (puffiness/shadow under the lower eyelid), dark-circle grayscale (darkness around the eyes), mouth-corner drop angle (angle between corner of mouth and horizontal), and glabellar frown lines (vertical lines between the brows), and computes a comprehensive. | 通过智能镜子或固定摄像头，分析成人面部的高清图像或视频，检测眼袋面积（下眼睑区域的浮肿或阴影面积）、黑眼圈灰度（眼眶区域的暗沉程度）、嘴角下垂角度（口角与水平线的夹角）以及皱眉纹（眉间川字纹）等生理特征，综合计算疲劳/压力指数（0-100分）。该技能可用于职场健康管理、个人状态监测，辅助了解自身精力水平。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Adult Facial Fatigue / Stress Index | 成人面部疲劳/压力指数分析
@@ -48,8 +48,8 @@ Using a smart mirror or fixed camera, the system analyzes high-resolution adult 
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
