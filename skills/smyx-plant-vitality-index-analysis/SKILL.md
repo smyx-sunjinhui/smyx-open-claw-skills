@@ -1,7 +1,7 @@
 ---
 name: "smyx-plant-vitality-index-analysis"
 description: "Using a plant-monitoring platform that periodically (e.g., daily) collects plant images, environmental data, and growth metrics (new bud count, leaf-area change, leaf color), an AI evaluation model fuses leaf color (chlorophyll index), morphology (spread, leaf size), and growth dynamics (new buds, leaf-area growth rate) to output an overall vitality score from 0-100 along with a trend (rising / stable / declining). | 通过植物监测平台定期（如每天）采集的植物图像、环境数据以及生长指标（如新芽数、叶片面积变化、叶色），利用AI综合评估模型融合叶片颜色（叶绿素指数）、形态（舒展度、叶片大小）、生长动态（新芽萌发数、叶面积增长率），输出0-100的整体活力评分，并给出活力趋势（上升/稳定/下降）。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Plant Vitality Index | 植物整体活力指数（综合评分）
@@ -48,8 +48,8 @@ Using a plant-monitoring platform that periodically (e.g., daily) collects plant
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
