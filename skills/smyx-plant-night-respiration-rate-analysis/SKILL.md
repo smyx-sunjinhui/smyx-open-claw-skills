@@ -1,7 +1,7 @@
 ---
 name: "smyx-plant-night-respiration-rate-analysis"
 description: "In a plant factory, a fixed thermal imaging camera continuously captures thermal images of the plant canopy leaves at night (no-light period), analyzes leaf temperature trends (respiration releases heat, causing leaf temperature to be slightly higher than air temperature), and combined with optional ambient CO₂ sensor data (respiration releases CO₂ raising concentration), an AI model estimates the relative respiration. | 通过植物工厂内的固定热成像摄像头，在夜间（无光照时段）连续采集植物冠层叶片的热图像，分析叶片温度变化趋势（呼吸作用释放热量导致叶片温度略高于气温），结合可选的环境CO₂传感器数据（呼吸作用释放CO₂浓度升高），利用AI模型估算整株或群体的呼吸强度相对值（0-100%）。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Plant Night Respiration Rate Analysis | 植物夜间呼吸作用强度估算
@@ -48,8 +48,8 @@ In a plant factory, a fixed thermal imaging camera continuously captures thermal
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
