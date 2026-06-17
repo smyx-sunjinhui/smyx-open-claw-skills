@@ -1,7 +1,7 @@
 ---
 name: "smyx-kitchen-stove-left-on-detection-analysis"
 description: "Using a fixed kitchen camera (must be able to capture the stove area), the system analyzes video in real time to detect whether there is human activity in the kitchen area, and at the same time identifies stove flames or heat sources (e.g., thermal/infrared features) to determine whether the gas stove is on. | 通过厨房固定摄像头（需能拍摄到灶台区域）实时分析视频，检测厨房区域内是否有人体活动，同时识别灶台火焰或热源（如红外特征）以判断燃气灶是否处于开启状态。当检测到厨房无人连续超过预设时间（默认10分钟）且灶火仍处于开启状态时，输出'忘关火'预警，可联动智能燃气阀自动关闭阀门，并推送提醒至家属或护理人员手机，预防火灾和燃气泄漏事故。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Kitchen Stove Left-On Detection | 老年人厨房忘关火识别
@@ -48,8 +48,8 @@ Using a fixed kitchen camera (must be able to capture the stove area), the syste
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
