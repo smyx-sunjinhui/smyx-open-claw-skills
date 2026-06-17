@@ -1,7 +1,7 @@
 ---
 name: "smyx-child-separation-anxiety-detection-analysis"
 description: "Using a fixed camera at the home entrance or kindergarten gate, the system analyzes pre-school videos and detects crying facial expressions (frowning, open-mouth crying, tearing), physical clinging actions (grabbing parent's clothes, hugging parent's leg, pulling door frame), and resistance behaviors (stepping back, lying on the ground), then comprehensively evaluates the separation-anxiety level (mild / moderate / severe). | 通过家庭或幼儿园门口固定摄像头，分析儿童上学前的视频，检测哭闹面部表情（皱眉、张嘴哭泣、流泪）、肢体抓拽动作（抓住家长衣服、抱住家长腿、拉扯门框）以及抗拒行为（后退、躺地）等，综合评估分离焦虑等级（轻度/中度/重度）。该技能可辅助家长和教师了解儿童情绪状态，及时进行安抚或心理疏导。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Child Separation Anxiety Detection (Pre-School Crying) | 儿童分离焦虑识别（上学前哭闹）
@@ -48,8 +48,8 @@ Using a fixed camera at the home entrance or kindergarten gate, the system analy
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
