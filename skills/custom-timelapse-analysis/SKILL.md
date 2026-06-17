@@ -1,7 +1,7 @@
 ---
 name: "custom-timelapse-analysis"
 description: "Generates condensed album highlights based on specified keywords or targets. It extracts specific target segments from long videos and compiles them into an exciting summary. | 时光相册自定义浓缩分析技能，基于指定关键词/目标生成时光相册浓缩集锦，从长视频中提取特定目标片段，整理生成精彩汇总"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Time-Lapse Album Custom Summarization Skill | 时光相册自定义浓缩分析技能
@@ -64,8 +64,8 @@ videos.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
