@@ -1,7 +1,7 @@
 ---
 name: "focus-analysis"
 description: "Real-time detection of gaze direction and facial pose to quantify states of focus, distraction, or mind-wandering. Suitable for scenarios such as classroom learning, office meetings, and driving attention monitoring. | 专注度分析技能，实时检测视线方向、面部姿态，量化专注/分心/走神状态，适用于课堂学习、办公会议、驾驶专注度监测等场景"
-version: "1.0.5"
+version: "1.0.6"
 ---
 
 # Concentration Analysis Skill | 专注度分析技能
@@ -57,8 +57,8 @@ operational risks.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
