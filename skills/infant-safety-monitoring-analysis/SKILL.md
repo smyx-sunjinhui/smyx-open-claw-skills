@@ -1,7 +1,7 @@
 ---
 name: "infant_safety_monitoring_analysis"
 description: "Monitors infant behavior via visual AI, automatically identifying high-risk actions like rolling over, mouth/nose obstruction, climbing, or falling from bed, and triggers instant safety warnings. | 婴儿智能安全看护技能，基于视觉AI实时监测婴儿行为，自动识别翻身、口鼻遮挡、攀爬、翻越围栏、坠床等高风险动作，即时触发安全预警，守护婴幼儿睡眠与活动安全"
-version: "1.0.7"
+version: "1.0.8"
 ---
 
 # Smart Baby Safety Care Skill | 婴儿智能安全看护技能
@@ -56,8 +56,8 @@ passive supervision to active protection, and building a solid safety line of de
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
