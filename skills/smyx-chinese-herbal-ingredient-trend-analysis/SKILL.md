@@ -1,7 +1,7 @@
 ---
 name: "smyx-chinese-herbal-ingredient-trend-analysis"
 description: "AI-powered active-ingredient accumulation trend assessment for medicinal herbs (e.g. honeysuckle, wolfberry, astragalus, danshen). Uses high-resolution leaf images captured by fixed cameras or drones in TCM cultivation bases, analyzes leaf color saturation, hue angle, relative chlorophyll content (estimated via color indices) and leaf thickness (inferred from edge focus / silhouette), and compares against the cultivar's standard reference atlas (typical features at peak active-ingredient stage) to output an accumulation trend level (Low / Medium / High / Peak). Helps determine the optimal harvest window and improve herb quality. Scenarios: TCM planting bases, GAP bases, herb cooperatives, raw-material bases for pharmaceutical companies. | 通过中药种植基地的固定摄像头或无人机拍摄药用植物（如金银花、枸杞、黄芪、丹参等）叶片的高清图像，利用AI视觉分析技术评估叶片颜色饱和度、色相角、叶绿素相对含量（通过颜色指数估算）以及叶片厚度（通过边缘聚焦或侧影估算），与品种标准图谱（特定生长阶段/有效成分积累峰值期的典型特征）进行对比，输出有效成分积累趋势等级（低/中/高/峰值）。该技能有助于确定最佳采收期，提高药材品质。应用场景：中药种植基地、GAP种植基地、中药材合作社、药企原料基地。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Chinese Herbal Active Ingredient Trend Analysis | 中草药有效成分积累趋势评估
@@ -59,8 +59,8 @@ AI。你的任务是分析药用植物叶片的高清图像，评估叶片颜色
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
