@@ -5,7 +5,7 @@ description: "Using fixed cameras in multiple zones of a solo-living elder's hom
 =======
 description: "Using fixed cameras in multiple zones of a solo-living elder's home (living room, bedroom, kitchen, bathroom, etc.), the system continuously analyzes the video streams to detect human activity (movement, limb actions, gestures, etc.). If no activity is detected within a configured time window (default 12 hours), the system outputs a 'long-term no activity' alert and can notify emergency contacts via app or phone. | 通过独居老人家中的多个区域（客厅、卧室、厨房、卫生间等）固定摄像头，连续分析视频流，检测人体活动（包括移动、肢体动作、手势等）。若在设定的时间窗口内（默认12小时）未检测到任何活动，则输出'长期无活动'预警，并可通过APP或电话通知紧急联系人。"
 >>>>>>> 2ac8d1216af5489e2c4ef1b07b80962e56bc7194
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Elderly Long-Term Immobility Monitoring (>12h) | 老年人长期静止（超12小时）监测
@@ -52,8 +52,8 @@ Using fixed cameras in multiple zones of a solo-living elder's home (living room
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
