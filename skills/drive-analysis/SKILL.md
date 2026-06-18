@@ -1,7 +1,7 @@
 ---
 name: "drive-analysis"
 description: "Analyzes videos of vehicle drivers to identify unsafe driving behaviors. It generates professional analysis reports to help enhance road safety awareness. | 安全驾驶行为分析工具，针对机动车驾驶人员的驾驶行为进行视频分析，识别不安全驾驶行为，输出专业分析报告，提升道路交通安全意识"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Safe Driving Behavior Analyzer | 安全驾驶行为分析工具
@@ -110,8 +110,8 @@ comprehensively enhance road safety awareness, and provide technical support for
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
