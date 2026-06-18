@@ -1,7 +1,7 @@
 ---
 name: "smyx-social-interaction-analysis-analysis"
 description: "AI-powered pet social interaction analysis for multi-pet households. Uses pose recognition and behavior classification to detect cat-cat, dog-dog, and cat-dog interactions—sniffing, chasing, biting, fleeing, hiding, playing—then records duration, frequency, initiator and receiver to generate a social-behavior report. Helps owners understand pet relationships, spot aggression or stress sources, and promote harmonious cohabitation. Scenarios: multi-pet homes, pet boarding centers, pet daycare, animal behavior clinics. | 通过多宠家庭固定摄像头，分析宠物之间（猫-猫、狗-狗、猫-狗等）的互动视频，利用姿态识别和行为分类模型检测嗅闻、追逐、撕咬、逃跑、躲避、玩耍等行为类型，记录每种行为的持续时间、频次以及发起者，生成社交行为报告。帮助主人了解宠物间的社交关系，识别潜在的攻击行为或压力源，促进多宠和谐共处。应用场景：多宠家庭（多猫/多狗/猫狗混养）、宠物寄养中心、宠物日托班、宠物行为诊所。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Social Interaction Analysis | 宠物社交行为分析（与其他宠物互动）
@@ -46,8 +46,8 @@ AI-powered pet social interaction analysis for multi-pet households. Uses pose r
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
