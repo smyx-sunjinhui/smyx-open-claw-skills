@@ -1,7 +1,7 @@
 ---
 name: "smyx-elderly-facial-asymmetry-analysis"
 description: "Using a fixed home camera to capture frontal facial images or short videos of the elderly, the system uses AI facial-landmark detection to analyze features such as the height difference between left/right mouth corners, the symmetry of nasolabial folds (smile lines), and the asymmetry of eyebrow lifts, and computes a facial asymmetry index (0-100%). | 通过家庭固定摄像头拍摄老年人正面面部图像或视频，利用AI面部关键点检测技术分析左右嘴角的高度差、鼻唇沟（法令纹）的对称性、眉毛抬高的差异等特征，计算面部不对称指数（0-100%）。该技能可作为脑卒中（中风）前兆的辅助筛查工具，提示家属或护理人员关注老年人是否存在面瘫、口角歪斜等神经系统异常，及时就医。"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Elderly Facial Asymmetry / Mouth-Corner Deviation Detection | 老年人面部不对称/口角歪斜识别
@@ -48,8 +48,8 @@ Using a fixed home camera to capture frontal facial images or short videos of th
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
