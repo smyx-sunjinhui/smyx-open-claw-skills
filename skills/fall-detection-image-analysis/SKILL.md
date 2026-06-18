@@ -1,7 +1,7 @@
 ---
 name: "fall-detection-image-analysis"
 description: "Detects whether anyone has fallen within a specified target area. Supports both image and short video analysis. Suitable for scenarios such as home care for elderly people living alone and safety monitoring in nursing homes. | 检测目标区域内是否有人跌倒，支持图片和短视频检测，适用于独居老人居家看护、养老院安全监测等场景"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Fall Detection & Analysis Skill | 跌倒检测分析技能
@@ -62,8 +62,8 @@ improving daily inspection efficiency and emergency response capabilities.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
