@@ -1,7 +1,7 @@
 ---
 name: "smyx-child-bedtime-soothing-analysis"
 description: "Through a fixed camera (with infrared night vision) and microphone in the child's bedroom, the system analyzes pre-sleep and night-time video and audio to detect pre-sleep crying (continuous crying, calling 'Mama'), fear-of-the-dark expressions (curling up, looking around), and nightmare awakenings (sudden sitting up, trembling, screaming). | 通过儿童卧室的固定摄像头（红外夜视）及麦克风，分析儿童睡前及夜间视频，检测睡前哭闹（持续性哭声、呼喊'妈妈'）、怕黑表现（身体蜷缩、四处张望）、噩梦惊醒（突然坐起、颤抖、尖叫）等行为。当检测到上述情绪不安时，自动触发安抚动作：开启小夜灯（柔光）、播放预先录制的妈妈讲故事音频或轻柔摇篮曲。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Child Bedtime Soothing (Fear of Dark / Post-Nightmare) | 儿童睡前情绪安抚（怕黑/噩梦后）
@@ -48,8 +48,8 @@ Through a fixed camera (with infrared night vision) and microphone in the child'
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
