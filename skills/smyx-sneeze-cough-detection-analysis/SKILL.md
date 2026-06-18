@@ -1,7 +1,7 @@
 ---
 name: "smyx-sneeze-cough-detection-analysis"
 description: "AI-powered pet sneeze/cough detection from real-time camera (optional audio fusion). Analyzes head and thoracic-abdominal motion plus sound features to distinguish single occasional events (normal airway clearing) from continuous bursts (e.g. ≥3 sneezes/min, frequent dry/wet coughing) and records event time and frequency. Helps catch respiratory infection, allergy, or foreign-body irritation early. Scenarios: home health monitoring, animal hospital wards, pet boarding centers. | 通过宠物摄像头实时分析宠物头部和胸腹部的动作，结合可选的声音分析，识别宠物是否发生打喷嚏或咳嗽行为。区分单次偶发（可能是正常清理呼吸道）与连续发作（如频繁打喷嚏、干咳、湿咳等异常模式），并记录发生时间及频率。有助于早期发现宠物呼吸道感染、过敏或异物刺激。应用场景：宠物家庭日常健康监测、宠物医院住院观察、宠物寄养中心。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Sneeze / Cough Detection | 宠物打喷嚏/咳嗽检测
@@ -46,8 +46,8 @@ AI-powered pet sneeze/cough detection from real-time camera (optional audio fusi
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
