@@ -1,7 +1,7 @@
 ---
 name: "smyx-flowering-fruit-set-rate-analysis-analysis"
 description: "AI-powered flowering and fruit-set rate analysis for tomato / chili plants. From home grow-box or mobile phone images of flowering/fruit clusters, uses object-detection models to count open flowers (fully-opened corolla with visible stamens) and successfully-set young fruits (enlarged ovary, ~0.5-1cm green baby fruits), and computes fruit-set rate = young fruits / flowers × 100%. Helps growers evaluate pollination, nutrition and environmental adaptability, and guides hand-assisted pollination or water/fertilizer adjustment. Scenarios: home smart grow-boxes, greenhouses, balcony vegetable gardens. | 通过家庭种植箱或手机拍摄的植株花果图像（包含花穗、果实区域），利用AI视觉目标检测模型识别开放花朵（花冠完全展开、雄蕊可见）的数量以及已坐果的小果（子房膨大、直径约0.5-1cm的绿色幼果）数量，计算坐果率（小果数/花朵数 × 100%）。该技能帮助种植者评估授粉效果、营养状况及环境适应性，指导人工辅助授粉或调整水肥管理。应用场景：家庭智能种植箱、温室大棚、阳台菜园。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Flowering & Fruit Set Rate Analysis | 番茄/辣椒开花坐果率分析
@@ -44,8 +44,8 @@ AI-powered flowering and fruit-set rate analysis for tomato / chili plants. From
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
