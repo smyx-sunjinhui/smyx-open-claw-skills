@@ -1,7 +1,7 @@
 ---
 name: "fraud-call-identification-analysis"
 description: "Analyzes incoming call content for multi-dimensional risk, intelligently identifies scam scripts, determines if a call is fraudulent, assesses risk levels, and generates an Anti-Fraud Guardian analysis report. | 诈骗电话识别分析工具，针对来电通话内容进行多维度风险分析，智能识别诈骗话术，判断是否为诈骗电话并评估风险等级，输出反诈卫士分析报告"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Fraud Call Identification Analysis Tool | 诈骗电话识别分析工具
@@ -57,8 +57,8 @@ agencies quickly grasp risk details and enhance their proactive prevention and i
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
