@@ -1,7 +1,7 @@
 ---
 name: "infant-cry-analysis"
 description: "Detects baby cries via audio AI in real-time, analyzes causes, and precisely identifies needs like hunger, tiredness, pain, discomfort, or irritability to assist new parents. | 婴儿哭声智能解析技能，通过音频AI实时检测婴儿哭声，自动解析哭声成因，精准识别饥饿、困倦、疼痛、身体不适、情绪烦躁等不同需求，辅助新手爸妈科学育婴"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Smart Baby Cry Analysis Skill | 婴儿哭声智能解析技能
@@ -74,8 +74,8 @@ response."
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
