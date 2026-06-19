@@ -1,7 +1,7 @@
 ---
 name: "smyx-infant-blanket-kick-detection-analysis"
 description: "Using a night-time camera (infrared or low-light) above the crib, the system analyzes in real time the coverage of the blanket on the infant's body. It checks whether the blanket coverage is below a preset threshold (e.g., 50%) or recognizes the kicking motions that cause the blanket to slip off, then outputs an alert. | 通过婴儿床夜间摄像头（红外或微光），实时分析婴儿身体及被子的覆盖情况。可联动智能家居设备（如自动调高室温、推送提醒至父母手机），预防婴儿着凉。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Infant Blanket Kick Detection | 婴幼儿踢被/蹬被识别
@@ -48,8 +48,8 @@ Using a night-time camera (infrared or low-light) above the crib, the system ana
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
