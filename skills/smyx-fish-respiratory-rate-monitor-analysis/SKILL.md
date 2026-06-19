@@ -1,7 +1,7 @@
 ---
 name: "smyx-fish-respiratory-rate-monitor-analysis"
 description: "Through fixed cameras on aquariums, the system analyzes fish gill-cover opening / closing motion video, detects periodic gill opening and closing, and calculates respiratory rate (breaths per minute). | 通过鱼缸固定摄像头，分析鱼类的鳃盖开合运动视频，检测鳃盖的周期性开启和闭合，计算呼吸频率（次/分钟）。当呼吸频率超过正常阈值（例如 > 80 次/分钟，具体依品种和水温而定）时，输出'缺氧预警'，提示用户检查水质（溶氧量）、水温或鱼的健康状态。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Fish Respiratory Rate (Gill Opening / Closing) Monitor | 鱼类呼吸频率（鳃盖开合）监测
@@ -48,8 +48,8 @@ Through fixed cameras on aquariums, the system analyzes fish gill-cover opening 
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
