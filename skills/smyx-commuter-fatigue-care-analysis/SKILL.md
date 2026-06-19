@@ -1,7 +1,7 @@
 ---
 name: "smyx-commuter-fatigue-care-analysis"
 description: "Through a fixed camera in a smart-home living room, the system analyzes office worker behavior in the first 30 minutes after coming home, detecting slumped sitting / reclining (relaxed posture, back-to-sofa angle > 120°), facial fatigue features (visible eye bags, downturned mouth corners, frequent blinking), and sighing frequency (rapid chest/abdomen rise-fall with audible exhale). | 通过智能家居客厅的固定摄像头，分析上班族回家后30分钟内的行为，检测瘫坐/斜躺（姿态放松、背部与沙发夹角>120°）、面部疲惫特征（眼袋明显、嘴角下垂、频繁眨眼）、叹气频次（胸腹快速起伏伴呼气声）。当疲劳指数超过阈值时，通过智能音箱主动播报关怀语音（如'辛苦了，喝杯水休息一下'），并播放舒缓音乐。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Commuter After-Work Fatigue Care (Home-Arrival Moment) | 上班族下班疲劳关怀（回家时刻）
@@ -48,8 +48,8 @@ Through a fixed camera in a smart-home living room, the system analyzes office w
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
