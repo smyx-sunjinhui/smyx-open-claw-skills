@@ -1,7 +1,7 @@
 ---
 name: "smyx-vocal-emotion-classification-analysis"
 description: "Triggers when a user provides a pet vocalization audio/video URL or file for analysis; extracts acoustic features such as frequency, duration, interval, and harmonic structure via AI audio analysis, and classifies the vocalization into 6+ emotion categories (howling, growling, excitement, loneliness, fear, whining/coaxing) with confidence scores. Helps owners understand pet emotional states, improve human-pet interaction, and detect potential stress or health issues early. Application: daily companionship (smart camera / collar), boarding center mood monitoring, vet clinic calming assessment, behavior training assistance. Does NOT provide medical or behavior-modification advice — only outputs audio-based emotion classification results with confidence. | 当用户提供宠物（犬/猫）叫声音频或视频URL/文件时，触发本技能进行叫声情绪深度分类分析；利用AI音频分析技术提取频率、时长、间隔、谐波结构等声学特征，将叫声分类为哀嚎、低吼、兴奋、孤独、恐惧、撒娇等6种以上情绪类别，并输出置信度；帮助宠物主人理解宠物情绪状态，改善人宠互动，及时发现潜在压力或健康问题。应用场景：宠物家庭日常陪伴（智能摄像头/项圈）、寄养中心情绪监测、宠物医院安抚评估、行为训练辅助。仅输出基于音频的情绪分类结果及置信度，不提供医疗或行为矫正建议。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Vocal Emotion Deep Classification | 宠物叫声情绪深度分类
@@ -45,8 +45,8 @@ Triggers when a user provides a pet vocalization audio/video URL or file for ana
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
