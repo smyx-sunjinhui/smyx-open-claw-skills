@@ -1,7 +1,7 @@
 ---
 name: "smyx-succulent-special-state-detection-analysis"
 description: "AI-powered succulent special-state detection from HD images via plant cameras or smartphones. Identifies three critical conditions—black rot (stem base or leaves turning black and mushy), etiolation/melting (leaves becoming translucent and water-soaked), and stretching (elongated internodes, widened leaf spacing, loose rosette)—and outputs the anomaly type with severity grading, enabling early intervention such as beheading, water restriction, or increased light. Scenarios: home succulent care, succulent greenhouses, flower shops. | 通过多肉种植摄像头或手机拍摄的高清图像，利用AI视觉分析技术识别多肉植物的三种常见异常状态：黑腐病（茎基部或叶片变黑、腐烂）、化水（叶片透明化、水渍状）、徒长（茎节拉长、叶片间距增大、形态松散）。输出对应的异常状态类型及严重程度，帮助种植者及时采取处理措施（如砍头、控水、增加光照）。应用场景：多肉植物家庭养护、多肉大棚、花店。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Succulent Special State Detection | 多肉植物特殊状态识别
@@ -46,8 +46,8 @@ AI-powered succulent special-state detection from HD images via plant cameras or
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
