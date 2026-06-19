@@ -1,7 +1,7 @@
 ---
 name: "phone_usage_monitoring_analysis"
 description: "Based on computer vision, automatically detects employees playing with phones during work hours, supports real-time video stream and image detection, counts the duration and frequency of phone usage, helps enterprises standardize office order, and improves work efficiency. | 职场玩手机智能监测技能，基于计算机视觉自动检测工作时间员工玩手机行为，支持视频流和图片实时检测，统计玩手机时长与频次，帮助企业规范办公秩序，提升工作效率"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Workplace Phone Usage Smart Monitoring Skill | 职场玩手机智能监测技能
@@ -58,8 +58,8 @@ behavior and optimizing management strategies, thereby effectively improving ove
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
