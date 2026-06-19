@@ -1,7 +1,7 @@
 ---
 name: "smyx-flowering-date-prediction-analysis"
 description: "AI-powered flowering-date prediction for ornamental/cut-flower plants. From fixed greenhouse cameras or drones, captures images of flower-bud developmental stages, combines environmental sensor data — cumulative temperature (Growing Degree Days, GDD) and accumulated light (PAR or daylight hours) — and uses a pre-trained phenology model to predict the full-bloom date within the next 3-7 days. Helps growers precisely schedule pollination, harvesting and tourism activities. Scenarios: smart-agriculture greenhouses, cut-flower production bases, botanical gardens, flower tourism parks. | 通过智慧农业温室中的固定摄像头或无人机拍摄植物花蕾发育阶段的图像，并结合环境传感器提供的温度累积（生长度日，GDD）、光照累积（光合有效辐射或日照时长）等数据，利用预训练的物候模型预测未来3-7天内的开花日期（花朵完全开放）。该技能有助于温室种植者精准安排授粉、采收或观光活动。应用场景：智慧农业温室、切花生产基地、植物园、花卉观光园区。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Flowering Date Prediction | 开花植物花期预测
@@ -44,8 +44,8 @@ AI-powered flowering-date prediction for ornamental/cut-flower plants. From fixe
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
