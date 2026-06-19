@@ -1,7 +1,7 @@
 ---
 name: "plant-growth-stage-recognition-analysis"
 description: "Accurately identifies key growth stages of plants from germination to fruiting based on computer vision and deep learning, provides structured data for precision agriculture decision support. | 植物生长阶段识别技能，基于计算机视觉与深度学习算法，精准识别植物从发芽到结果的全生命周期关键生长阶段，为精准农业提供科学决策支持"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Plant Growth Stage Recognition Skill | 植物生长阶段识别技能
@@ -93,7 +93,7 @@ management and improve crop yield and quality.
         - 参数说明:
             - `--input`: 本地视频/图片文件路径
             - `--url`: 网络视频/图片 URL 地址（API 服务自动下载）
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取, 再通过 SHA-256 算法生成唯一标识传入）
+            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示历史植物生长阶段识别分析报告列表清单（可以输入起始日期参数过滤数据范围）
             - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
@@ -135,9 +135,8 @@ management and improve crop yield and quality.
 
 本技能在处理用户上传的视频时，严格遵守数据安全规范：
 
-- **数据脱敏处理**：
-    - 系统基于用户名/手机号生成的 SHA-256 标识仅作为匿名化脱敏处理后的用户关联信息，**不包含任何可直接识别个人身份的明文信息
-      **。
+- **数据保密处理**：
+    - 系统基于 用户名/手机号 生成的标识仅作为用户关联信息，**不保存任何可直接识别个人身份的明文信息**。
 - **安全传输**：
     - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
 - **数据留存策略**：
@@ -147,17 +146,17 @@ management and improve crop yield and quality.
 
 ```bash
 # 识别本地视频/图片中植物的生长阶段（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.plant_growth_stage_recognition_analysis --input /path/to/plant.mp4 --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.plant_growth_stage_recognition_analysis --input /path/to/plant.mp4 --open-id your-open-id
 
 # 识别网络视频/图片（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.plant_growth_stage_recognition_analysis --url https://example.com/crop.mp4 --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.plant_growth_stage_recognition_analysis --url https://example.com/crop.mp4 --open-id your-open-id
 
 # 显示历史识别报告/显示识别报告清单列表/显示历史植物生长阶段识别（自动触发关键词：查看历史识别报告、历史报告、识别报告清单等）
-python -m scripts.plant_growth_stage_recognition_analysis --list --open-id {SHA-256 算法生成新 open-id}
+python -m scripts.plant_growth_stage_recognition_analysis --list --open-id your-open-id
 
 # 输出精简报告
-python -m scripts.plant_growth_stage_recognition_analysis --input crop.jpg --open-id {SHA-256 算法生成新 open-id} --detail basic
+python -m scripts.plant_growth_stage_recognition_analysis --input crop.jpg --open-id your-open-id --detail basic
 
 # 保存结果到文件
-python -m scripts.plant_growth_stage_recognition_analysis --input crop.jpg --open-id {SHA-256 算法生成新 open-id} --output result.json
+python -m scripts.plant_growth_stage_recognition_analysis --input crop.jpg --open-id your-open-id --output result.json
 ```
