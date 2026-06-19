@@ -1,7 +1,7 @@
 ---
 name: "smyx-fish-gasping-ammonia-warning-analysis"
 description: "Through fixed aquarium cameras, the system analyzes fish behavior near the water surface, detecting repeated mouth-out-of-water (gasping), rapid mouth opening/closing (fast respiration) and exaggerated operculum (gill cover) movement — classic symptoms of hypoxia or poisoning. | 通过鱼缸固定摄像头，分析鱼类在水面附近的行为，检测鱼嘴反复探出水面（浮头）、张口快速开合（类似喘气）、鳃盖运动加剧等缺氧或中毒典型症状。当多条鱼同时出现上述行为且持续时间超过设定阈值（默认 60 秒）时，输出'氨氮中毒或缺氧风险预警'，提醒用户立即检测水质、换水或增氧。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Fish Gasping & Ammonia Poisoning Visual Warning | 水族箱内氨氮中毒视觉预兆（鱼浮头）
@@ -48,8 +48,8 @@ Through fixed aquarium cameras, the system analyzes fish behavior near the water
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
