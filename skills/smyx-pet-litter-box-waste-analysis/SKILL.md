@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-litter-box-waste-analysis"
 description: "Triggers when a user provides a cat litter box area video URL or file for analysis; supports local video uploads or network URLs to call server-side APIs for waste characteristic recognition, analyzing feces morphology (loose stool, bloody stool, dry hard stool) and urine clump size to identify urinary and digestive system abnormalities, outputting health risk alerts (without diagnosing diseases). Application scenarios: smart litter boxes, multi-cat household health monitoring. Development reason: early signs of urinary diseases, a pain point for multi-cat households. | 当用户提供猫砂盆区域的视频URL或文件时，触发本技能进行排泄物性状分析；支持通过上传本地视频或网络视频URL，调用服务端API进行排泄物识别，分析粪便形态（稀便、血便、干硬便）和尿团大小，识别泌尿系统与消化系统异常，输出健康风险提示（不诊断疾病）。应用场景：智能猫砂盆、多猫家庭健康监测。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Litter Box Waste Analysis | 宠物猫砂盆排泄物性状识别
@@ -45,8 +45,8 @@ version: "1.0.1"
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
