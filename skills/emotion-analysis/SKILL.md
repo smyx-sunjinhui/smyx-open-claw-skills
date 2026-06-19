@@ -1,7 +1,7 @@
 ---
 name: "emotion-analysis"
 description: "Professional discernment of subtle cues! It performs detailed analysis and recognition of facial micro-expressions, outputs precise emotional state reports, and unveils true inner emotional activities. | 微观情绪（微表情）识别分析工具，专业察言观色！针对人物面部微表情进行细致分析识别，输出精准的情绪状态分析报告，揭示真实内心情绪活动"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Micro-Expression Recognition & Analysis Tool | 微观情绪识别分析工具
@@ -122,8 +122,8 @@ behavioral analysis.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
