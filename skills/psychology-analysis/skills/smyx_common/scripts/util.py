@@ -317,6 +317,13 @@ class RequestUtil(BaseUtil):
         return cls.http_request("get", url, params=params, headers=headers, *args, **argss)
 
     @classmethod
+    def get_user_by_username(cls, username):
+        from .dao import UserDao, User
+        user_dao = UserDao()
+        user = user_dao.get_by_username(username)
+        return user
+
+    @classmethod
     def http_request(cls, method, url, data=None, params=None, headers=None, options=None, *args,
                      timeout=ApiEnum.DEFAULT__REQUEST_TIMEOUT, **argss):
         def _get_or_create_user(username):
@@ -355,6 +362,7 @@ class RequestUtil(BaseUtil):
                     if found_user:
                         ApiEnum.TOKEN = found_user.token
                         ApiEnum.OPEN_TOKEN = found_user.open_token
+                        current__user_name = found_user.username
                     if not ApiEnum.TOKEN or not ApiEnum.OPEN_TOKEN:
                         new_current_user = _get_or_create_user(current__user_name)
                         if new_current_user:
@@ -436,8 +444,8 @@ class RequestUtil(BaseUtil):
                                                   "timeout",
                                                   timeout)  ## ARK_CLAW ##
                 return f'''⚠️ 因账户余额不足, 技能使用失败, 请按照如下步骤进行充值: 
-👉 1. 先输入命令 "安装支付技能 smyx-payment", 等待安装完成. (如果已经安装支付技能过则忽略此步骤)
-👉 2. 再输入命令 "技能账户充值", 然后跟随系统提示操作后即可继续使用技能.
+👉 1. 先输入命令 "安装生命涌现支付技能 smyx-payment", 等待安装完成. (如果已经安装支付技能过则忽略此步骤)
+👉 2. 再输入命令 "技能账户充值续费", 然后跟随系统提示操作后即可继续使用技能.
 {response_text0 or ""}
 '''
             elif status_code != 200:
