@@ -1,7 +1,7 @@
 ---
 name: "smyx-fish-abnormal-swimming-detection-analysis"
 description: "Through fixed cameras on aquariums, the system analyzes fish swimming videos and computes the angle between the fish body axis and the horizontal plane (normal fish bodies stay nearly horizontal). | 通过鱼缸固定摄像头，分析鱼类的游动视频，检测鱼体轴线与水平面的夹角（正常鱼体基本保持水平），当鱼体倾斜角度超过阈值（默认 > 30°）或出现倒立（头部向下 > 45°）、旋转（绕自身纵轴连续翻转）等异常游姿时，标记为异常，并记录异常时长占观察总时长的比例。该技能有助于早期发现鱼鳔失调、神经系统疾病或水质中毒等健康问题，提醒养鱼爱好者及时干预。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Fish Abnormal Swimming Posture (Side-swim / Upside-down) Detection | 鱼类游动姿态异常（侧游/倒立）识别
@@ -48,8 +48,8 @@ Through fixed cameras on aquariums, the system analyzes fish swimming videos and
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
