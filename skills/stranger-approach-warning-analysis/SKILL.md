@@ -1,7 +1,7 @@
 ---
 name: "stranger-approach-warning-analysis"
 description: "Detects the appearance of strangers near minors and actively issues safety reminder alerts to protect minor safety, suitable for homes, schools, childcare centers, and other scenarios. | 陌生人靠近预警技能，检测未成年人身边出现陌生人员，主动发出安全提醒预警，守护未成年人安全，适用于家庭、学校、托管场所等场景"
-version: "1.0.5"
+version: "1.0.6"
 ---
 
 # Stranger Proximity Alert Skill | 陌生人靠近预警技能
@@ -59,8 +59,8 @@ scenarios including homes, schools, and care institutions, this feature builds a
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
