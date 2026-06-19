@@ -1,7 +1,7 @@
 ---
 name: "smyx-plant-growth-stage-detection-analysis"
 description: "AI-powered plant growth stage auto-detection from periodic full-plant images via smart pot / greenhouse fixed cameras. Recognizes key phenological features—cotyledon emergence, true-leaf count, flower bud differentiation, blooming, fruit setting, fruit ripening—and identifies the current developmental stage (germination, seedling, vegetative, flowering, fruiting, ripening), enabling precision irrigation/fertilization/lighting control and personalized growing guidance. Scenarios: smart pots, home grow boxes, greenhouses, plant factories. | 通过智能花盆或温室内固定摄像头，定期拍摄植物整体图像，利用AI视觉分析技术识别子叶展开、真叶数量、花芽分化、开花、结果、果实成熟等关键物候特征，自动判定植物当前所处的生长发育阶段（如发芽期、幼苗期、生长期、开花期、结果期、成熟期）。有助于精准农业管理，实现自动化灌溉、施肥、光照调节，并为用户提供种植指导。应用场景：智能花盆、家庭种植机、温室大棚、植物工厂。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Plant Growth Stage Detection | 植物生长阶段自动判定
@@ -46,8 +46,8 @@ AI-powered plant growth stage auto-detection from periodic full-plant images via
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
