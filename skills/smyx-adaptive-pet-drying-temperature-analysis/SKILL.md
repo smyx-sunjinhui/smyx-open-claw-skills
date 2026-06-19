@@ -1,7 +1,7 @@
 ---
 name: "smyx-adaptive-pet-drying-temperature-analysis"
 description: "Triggers when a user provides a full-body image/video of a pet (multi-angle preferred) for analysis; supports local uploads or network URLs to call server-side APIs for breed/body-type recognition and fur-density estimation (sparse / medium / dense), then outputs a recommended drying temperature curve (temperature in ℃ + time in minutes) for personalized care to reduce scald risk (not a medical recommendation). Application scenarios: pet drying boxes, pet grooming salons, smart pet care devices. | 当用户提供宠物全身图像/视频（多角度最佳）时，触发本技能进行品种识别与毛发密度估算（稀疏/中等/浓密），输出个性化烘干温度曲线（温度 ℃ + 时长 分钟）参数，实现个性化护理，减少烫伤风险（不提供医疗建议）。应用场景：宠物烘干箱、宠物美容店、智能宠物护理设备。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Adaptive Drying Temperature Recommendation | 宠物烘干温度自适应推荐
@@ -54,8 +54,8 @@ grooming salons, smart pet care devices.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
