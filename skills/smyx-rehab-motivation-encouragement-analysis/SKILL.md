@@ -1,7 +1,7 @@
 ---
 name: "smyx-rehab-motivation-encouragement-analysis"
 description: "Through fixed cameras in rehabilitation centers or home rehab areas, the system analyzes video of patients during rehabilitation training to detect frustration / giving-up tendency behaviors: sighing (rapid chest-abdomen rise-fall with exhalation), training interruption (actively stopping before reaching preset reps or duration), head-down silence (head lowered, avoiding eye contact, long-term silence), sluggish or. | 通过康复中心或家庭康复区的固定摄像头，分析患者在进行康复训练时的视频，检测沮丧/放弃倾向行为：叹气（胸腹快速起伏伴呼气声）、中断训练（在未达到预设次数或时间前主动停止动作）、低头不语（头部低垂，避免眼神接触，长时间无言语）、动作迟缓或敷衍（关节活动范围明显小于前期），以及长时间无进展（连续多日同一训练项目的表现停滞或下降）。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Rehab Patient Frustration / Giving-up Tendency Motivation | 康复患者沮丧/放弃倾向激励
@@ -48,8 +48,8 @@ Through fixed cameras in rehabilitation centers or home rehab areas, the system 
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
