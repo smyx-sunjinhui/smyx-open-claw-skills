@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-treadmill-intensity-analysis"
 description: "AI-powered pet treadmill exercise intensity analysis combined with optional heart-rate band data. Detects stride frequency, limb extension, and respiratory rate from treadmill video to assess current exercise load (Low/Medium/High) and provide real-time pacing suggestions. Scenarios: smart pet treadmills (dog/cat), pet weight-loss training centers, pet rehabilitation. | 通过宠物跑步机内置或外置摄像头实时分析宠物跑步视频，检测步频、四肢伸展幅度、呼吸频率等运动姿态指标，并结合可选的心率带数据（蓝牙心率监测），综合评估当前运动强度等级（低/中/高），辅助宠物主人科学控制运动量，防止过度疲劳或运动损伤。应用场景：宠物跑步机（犬用/猫用）、宠物减肥训练中心、宠物康复理疗。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Treadmill Intensity & Heart Rate Analysis | 宠物跑步机运动强度与心率关联
@@ -46,8 +46,8 @@ AI-powered pet treadmill exercise intensity analysis combined with optional hear
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
