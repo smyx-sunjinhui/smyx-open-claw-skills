@@ -1,7 +1,7 @@
 ---
 name: "pet-calming-trigger-analysis"
 description: "Automatically triggers soothing mechanisms (playing relaxing sounds, activating laser toys) when pet anxiety, howling, or prolonged loneliness is detected; a smart companion for pet care. | 宠物安抚触发技能，检测到宠物焦虑、嚎叫、长时间孤独时，自动触发安抚机制（播放舒缓音效、开启激光逗宠），智能宠物陪伴好帮手"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Pet Soothing Trigger Analysis Skill | 宠物安抚触发分析技能
@@ -69,8 +69,8 @@ left alone and serving as an ideal solution for modern pet households.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
