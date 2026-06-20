@@ -1,7 +1,7 @@
 ---
 name: "smyx-gait-analysis-lameness-analysis"
 description: "Triggers when a user provides a pet side-view walking video URL or file for analysis; uses AI pose estimation to track limb joint trajectories, analyzes stride length, stance phase / swing phase duration, and left-right symmetry indicators, and identifies abnormal gait such as lameness or restricted joint mobility. Helps early detection of orthopedic conditions (arthritis, hip dysplasia, ligament injury) in pets. Application: home daily health monitoring, senior pet arthritis screening, vet clinic initial assessment, post-op rehab tracking. Does NOT provide medical diagnosis — only outputs vision-based gait analysis results. | 当用户提供宠物侧面行走视频URL或文件时，触发本技能进行步态分析；利用AI姿态估计检测四肢关节点的运动轨迹，分析步幅长度、支撑相时长、摆动相时长以及左右对称性指标，识别是否存在跛行、关节活动受限等异常步态；有助于早期发现骨科疾病（关节炎、髋关节发育不良、韧带损伤）。应用场景：宠物家庭日常健康监测、老年宠物关节炎筛查、宠物医院初诊评估、术后康复效果跟踪。仅输出基于视觉的步态分析结果，不提供医疗诊断。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Gait Analysis (Lameness / Arthritis) | 宠物步态分析（跛行/关节炎）
@@ -45,8 +45,8 @@ Triggers when a user provides a pet side-view walking video URL or file for anal
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
