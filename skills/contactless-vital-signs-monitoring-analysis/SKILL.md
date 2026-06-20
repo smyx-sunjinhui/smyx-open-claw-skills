@@ -1,7 +1,7 @@
 ---
 name: "contactless-vital-signs-monitoring-analysis"
 description: "Non-contact detection of heart rate, respiration, blood oxygen, and heart rate variability. No wearable devices are required; monitoring is achieved solely through camera footage. | 无感生命体征监测分析技能，非接触检测心率、呼吸、血氧、心率变异性，无需穿戴设备，通过摄像头画面即可监测"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Passive Vital Signs Monitoring Tool | 无感生命体征监测分析工具
@@ -79,8 +79,8 @@ monitoring, making ubiquitous health screening and remote care a reality.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
