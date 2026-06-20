@@ -1,7 +1,11 @@
 ---
 name: "smyx-child-drowsiness-fatigue-detection-analysis"
+<<<<<<< HEAD
+description: "Using a fixed camera in the classroom or above the home desk, the system analyzes the child's (student's) facial video in real time, detecting eye closure ratio (PERCLOS — the proportion of time eyes are closed more than 80% within a unit time), head-nodding frequency (rapid downward nod followed by lift), and changes in eye-region glossiness, and computes a comprehensive fatigue index (0-100). The skill helps teachers or parents detect drowsiness in time and adjust learning schedules or remind the child to rest. Application scenarios: classrooms, home desks, online classes. The system monitors in real time and, when the fatigue index exceeds a threshold, pushes reminders or triggers voice prompts (e.g., 'kid, time to take a break'). Skill features: safeguarding sleep health. | 通过教室或家庭书桌的固定摄像头，实时分析儿童（学生）的面部视频，检测眼部闭合比例（PERCLOS，单位时间内眼睛闭合超过80%的时间占比）、点头动作频率（头部快速下点后抬起）以及眼部区域的光泽度变化，综合计算疲劳指数（0-100）。该技能可帮助教师或家长及时发现儿童困倦状态，调整学习安排或提醒休息。应用场景：教室、家庭书桌、在线课堂。系统实时监测，当疲劳指数超过阈值时，推送提醒或触发语音提示（如'小朋友，休息一下吧'）。技能特点：保障睡眠健康。"
+=======
 description: "Using a fixed camera in the classroom or above the home desk, the system analyzes the child's (student's) facial video in real time, detecting eye closure ratio (PERCLOS — the proportion of time eyes are closed more than 80% within a unit time), head-nodding frequency (rapid downward nod followed by lift), and changes in eye-region glossiness, and computes a comprehensive fatigue index (0-100). | 通过教室或家庭书桌的固定摄像头，实时分析儿童（学生）的面部视频，检测眼部闭合比例（PERCLOS，单位时间内眼睛闭合超过80%的时间占比）、点头动作频率（头部快速下点后抬起）以及眼部区域的光泽度变化，综合计算疲劳指数（0-100）。该技能可帮助教师或家长及时发现儿童困倦状态，调整学习安排或提醒休息。"
-version: "1.0.1"
+>>>>>>> 2ac8d1216af5489e2c4ef1b07b80962e56bc7194
+version: "1.0.2"
 ---
 
 # Child Drowsiness / Fatigue Detection | 儿童打瞌睡/疲劳检测
@@ -48,8 +52,8 @@ Using a fixed camera in the classroom or above the home desk, the system analyze
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
