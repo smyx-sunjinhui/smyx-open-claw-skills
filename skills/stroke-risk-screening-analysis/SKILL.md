@@ -1,7 +1,7 @@
 ---
 name: "stroke-risk-screening-analysis"
 description: "Combines TCM facial feature recognition with physiological indicator information to provide early warnings of high-risk stroke conditions such as cerebral infarction and cerebral hemorrhage, and provides lifestyle intervention suggestions and medical guidance. | 脑卒中风险筛查技能，结合中医面部特征辨识结合生理指标信息，提前预警脑梗塞、脑出血等脑卒中高危状态，给出生活干预建议和就医指引"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Stroke Risk Screening Analysis Skill | 脑卒中风险筛查分析技能
@@ -60,8 +60,8 @@ leap in health management from "treating existing diseases" to "treating potenti
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
