@@ -1,7 +1,7 @@
 ---
 name: "pet-health-monitoring-analysis"
 description: "Based on computer vision, analyzes pet health indicators such as feeding frequency, drinking frequency, excretion status, mental state, vomiting behavior, and limping abnormalities through camera/feeder monitoring videos, promptly detects abnormal pet health conditions, and outputs health monitoring reports. | 宠物日常健康监测分析技能，基于计算机视觉通过摄像头/喂食器监控视频分析宠物的进食频次、饮水频次、排泄状态、精神状态、呕吐行为、跛行异常等健康指标，及时发现宠物异常健康状况，输出健康监测报告"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Pet Daily Health Monitoring & Analysis Tool | 宠物日常健康监测分析工具
@@ -57,8 +57,8 @@ scientific and intuitive health management data to facilitate early disease dete
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
