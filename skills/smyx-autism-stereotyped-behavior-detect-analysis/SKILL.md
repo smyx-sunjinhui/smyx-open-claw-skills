@@ -1,7 +1,7 @@
 ---
 name: "smyx-autism-stereotyped-behavior-detect-analysis"
 description: "Using a fixed camera in rehabilitation centers or homes, the system analyzes children's behavior videos with pose estimation and temporal action detection to recognize repetitive stereotyped behaviors, including spinning (body rotation ≥ 360°), hand flapping (non-functional repetitive arm movement), body rocking (rhythmic forward-backward or side-to-side trunk motion), etc. | 通过康复机构或家庭固定摄像头，分析儿童行为视频，利用姿态估计和时序动作检测技术识别重复性刻板动作，包括转圈（身体旋转360°以上）、摆手（手臂非功能性重复摆动）、摇晃（躯干前后或左右有节律摆动）等。该技能可辅助康复师和家长客观记录行为变化，评估干预效果。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Autism Stereotyped Behavior Detection (Spinning / Hand-Flapping) | 自闭症儿童刻板行为识别（转圈/摆手）
@@ -48,8 +48,8 @@ Using a fixed camera in rehabilitation centers or homes, the system analyzes chi
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
