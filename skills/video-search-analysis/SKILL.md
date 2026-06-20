@@ -1,7 +1,7 @@
 ---
 name: "video-search-analysis"
 description: "Conducts intelligent video search based on target and semantic descriptions; supports conventional target retrieval, natural language description retrieval, and vectorized model matching. | 视频搜索/视频检索智能分析技能，基于目标、语义描述进行智能视频搜索，支持常规目标检索、自然语言描述检索、向量化模型匹配"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Intelligent Video Search & Retrieval Analysis Skill | 视频搜索检索智能分析技能
@@ -63,8 +63,8 @@ surveillance and video asset management.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
