@@ -1,7 +1,7 @@
 ---
 name: "smyx-fish-feeding-activity-analysis"
 description: "Through built-in cameras of smart feeders or fixed cameras on aquariums, the system captures fish feeding videos after feeding. Using AI object detection and motion analysis, it identifies the number of fish gathering for food, feeding intensity (fish swimming speed, feeding action frequency), and remaining feed amount, and computes a comprehensive feeding activity score (0-100). | 通过智能喂食器内置摄像头或鱼缸固定摄像头，在投喂后拍摄鱼群摄食视频，利用 AI 目标检测和运动分析技术，识别鱼群聚集抢食的数量、摄食强度（鱼只游动速度、摄食动作频率）以及剩余饲料量，综合计算摄食活跃度评分（0-100 分）。当活跃度评分低于阈值时，输出'食欲下降'提示，可能预示疾病、水质恶化或应激反应。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Fish Feeding Behavior Activity Analysis | 鱼类摄食行为活跃度分析
@@ -48,8 +48,8 @@ Through built-in cameras of smart feeders or fixed cameras on aquariums, the sys
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
