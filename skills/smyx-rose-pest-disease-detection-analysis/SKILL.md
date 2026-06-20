@@ -1,7 +1,7 @@
 ---
 name: "smyx-rose-pest-disease-detection-analysis"
 description: "AI-powered pest & disease detection for roses (Rosa spp.). From garden cameras or mobile phone images of leaves, young shoots and flower buds, detects common rose enemies including black spot (black round/irregular spots with yellow halo), powdery mildew (white powdery layer on leaves/shoots), spider mites (tiny red/white dots on leaf back with webbing in severe cases) and aphids (green/black clustered tiny insects on shoots and buds). Outputs pest/disease type, severity grade and general control suggestions. Helps gardeners detect issues early and act in time. Scenarios: home gardens, rose specialty gardens, courtyard landscaping, cut-flower production bases. | 通过庭院摄像头或手机拍摄月季/玫瑰的叶片、嫩芽、花苞图像，利用AI视觉分析技术检测黑斑病（叶面黑色圆形或不规则斑点，周围黄晕）、白粉病（叶片、嫩芽表面白色粉状霉层）、红蜘蛛（叶片背面细小红色或白色点状螨虫，严重时结网）、蚜虫（嫩芽、花苞上绿色或黑色聚集的小虫）等常见病虫害，输出病虫害类型及严重程度，并提供防治建议。该技能有助于月季种植者早期发现问题，及时采取措施。应用场景：家庭花园、月季专类园、庭院绿化、切花生产基地。"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Rose Pest & Disease Detection | 月季/玫瑰常见病虫害识别
@@ -44,8 +44,8 @@ AI-powered pest & disease detection for roses (Rosa spp.). From garden cameras o
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
