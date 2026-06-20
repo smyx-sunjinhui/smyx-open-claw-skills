@@ -1,7 +1,7 @@
 ---
 name: "smyx-child-outdoor-activity-monitor-analysis"
 description: "Using a fixed camera at the balcony door or home entrance, the system detects how many times the child enters/exits the home or balcony. With person-tracking and region-entry/exit logic, it records the timestamps of each 'leaving indoor (outdoor)' and 'returning indoor' event, and accumulates the daily total outdoor-activity duration. | 通过家庭阳台门或入户门口的固定摄像头，检测儿童进出家门或阳台的次数，利用人体跟踪和区域进出判定技术，记录每次离开室内（外出）和返回室内（归来）的时间点，累计每日户外活动总时长。当当日总时长低于预设推荐值（默认建议学龄儿童每天至少1小时户外活动）时，输出'户外活动不足'提醒，建议家长带孩子增加户外时间。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Child Outdoor Activity Duration Monitoring | 儿童户外活动时长监测
@@ -48,8 +48,8 @@ Using a fixed camera at the balcony door or home entrance, the system detects ho
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
