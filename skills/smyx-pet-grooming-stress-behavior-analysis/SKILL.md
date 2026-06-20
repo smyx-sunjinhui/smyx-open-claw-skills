@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-grooming-stress-behavior-analysis"
 description: "Triggers when a user provides a pet grooming session video URL or file for analysis; supports local video uploads or network URLs to call server-side APIs for stress behavior recognition, detecting struggling, panting, tail tucking and other stress signals during grooming, outputting stress level grading to help groomers intervene promptly. Application scenarios: pet grooming shop cameras, veterinary clinics, pet care services. | 当用户提供宠物美容过程视频URL或文件时，触发本技能进行应激行为分析；支持通过上传本地视频或网络视频URL，调用服务端API进行识别，检测挣扎、张口喘气、尾巴夹紧等应激行为信号，输出应激等级，帮助美容师及时干预，减少宠物应激伤害，提升服务体验。应用场景：宠物美容店摄像头、宠物医院、宠物护理服务。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Grooming Stress Behavior Analysis | 宠物美容过程应激行为识别
@@ -50,8 +50,8 @@ scenarios: pet grooming shop cameras, veterinary clinics, pet care services.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
