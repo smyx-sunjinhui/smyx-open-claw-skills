@@ -1,7 +1,7 @@
 ---
 name: "smyx-dementia-confusion-orientation-analysis"
 description: "Through fixed cameras (and optional microphones) in dementia care facilities or homes, the system analyzes behaviors of people with dementia to identify confusion/disorientation states: sudden activity stops (interrupting ongoing actions such as eating or walking for ≥ 5 seconds), gaze drifting (eyes wandering without focus), looking around (frequent head turning), and repeated disorientation questions ('Where is this?'. | 通过失智照护机构或家庭固定摄像头（及可选麦克风），分析失智老人的行为，识别困惑/迷惘状态：突然停止活动（中断正在进行的动作，如吃饭、行走 ≥ 5 秒）、眼神游离（视线漫无目的漂移、不聚焦）、四处张望（头部频繁转动）、反复询问'这是哪''现在几点''你是谁'等定向障碍问题（需配合声纹或语音识别）。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Dementia Confusion / Disorientation Recognition and Orientation Soothing | 失智老人困惑/迷惘识别与定向安抚
@@ -48,8 +48,8 @@ Through fixed cameras (and optional microphones) in dementia care facilities or 
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
