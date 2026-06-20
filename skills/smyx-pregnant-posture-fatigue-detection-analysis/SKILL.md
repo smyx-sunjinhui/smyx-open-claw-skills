@@ -1,7 +1,7 @@
 ---
 name: "smyx-pregnant-posture-fatigue-detection-analysis"
 description: "Uses a fixed home camera to detect prolonged standing, bending, and related posture of a pregnant woman, track standing duration and bending frequency, and assess fatigue risk. It sends rest reminders via speaker or app when tiring behavior is found. Suitable for homes, prenatal schools, community health centers, and smart-home or pregnancy apps. For health reference only, not medical diagnosis. | 通过家庭固定摄像头识别孕妇久站、弯腰等姿态，统计连续站立时长和弯腰频次，评估孕期劳累风险。发现久站、频繁弯腰或疑似重体力活动时，生成休息提醒，并可通过智能音箱或手机App推送。适用于家庭、孕妇学校、社区健康中心，可接入智能家居或孕期管理应用；结果仅供健康参考，不替代医生诊断。"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Pregnant Prolonged-Standing / Over-Fatigue Detection | 孕妇久站/过度劳累识别
@@ -48,8 +48,8 @@ Using a fixed camera at home (e.g., living room, kitchen), the system analyzes a
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
