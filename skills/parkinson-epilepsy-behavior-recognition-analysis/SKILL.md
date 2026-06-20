@@ -1,7 +1,7 @@
 ---
 name: "parkinson-epilepsy-behavior-recognition-analysis"
 description: "Identifies abnormal behaviors such as limb tremors, convulsions, stiffness, and gait abnormalities through video recognition, assisting in home risk monitoring for patients with chronic conditions. | 帕金森癫痫行为识别技能，通过视频识别肢体震颤、抽搐、僵硬、步态异常等异常行为，辅助慢性病患者居家风险监测"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Parkinson's & Epileptic Behavior Recognition Skill | 帕金森癫痫行为识别技能
@@ -69,8 +69,8 @@ inspections, and significantly improving the management efficiency and security 
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
