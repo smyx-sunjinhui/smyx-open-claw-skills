@@ -1,7 +1,7 @@
 ---
 name: "incontinence_alert_analysis"
 description: "Automatically identifies wet clothing and abnormal excretion via visual AI. Instantly notifies caregivers to improve care for incontinent elderly, bedridden patients, and infants, reducing skin issues and complications. | 智能失禁状态提醒技能，基于视觉AI自动识别衣物潮湿、排泄异常等状况，第一时间推送通知给看护人员，提升失能老人、卧床病人、婴幼儿的护理质量，减少皮肤问题和并发症"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Smart Incontinence Status Alert Skill | 智能失禁状态提醒技能
@@ -57,8 +57,8 @@ rash, and infection, while enhancing nursing quality and response efficiency.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
