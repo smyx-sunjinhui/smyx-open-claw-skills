@@ -1,7 +1,7 @@
 ---
 name: "smyx-snake-stomatitis-detection-analysis"
 description: "Through fixed enclosure cameras, the system captures high-definition images of the moment a snake opens its mouth (yawning, post-feeding, or oral examination) and uses AI visual analysis to detect oral mucosa color (normal pink, mild inflammation red, severe inflammation dark-red or pale), the presence of pus points (white or yellow dots), ulcers, or necrotic tissue (irregular depressions, necrotic patches), comprehensively. | 通过蛇箱固定摄像头，捕捉蛇张口（打哈欠、进食后或口腔检查）时的瞬间高清图像，利用 AI 视觉分析技术检测口腔黏膜颜色（正常粉红色、轻度炎症红色、重度炎症暗红或苍白）、有无脓点（白色或黄色点状物）、溃疡或腐肉（不规则凹陷、坏死组织），综合输出口炎风险等级（低/中/高）。该技能有助于早期发现蛇类口腔感染，预防败血症。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Snake Stomatitis (Mouth Rot) Detection | 蛇类口腔腐肉识别（口炎）
@@ -47,8 +47,8 @@ Through fixed enclosure cameras, the system captures high-definition images of t
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
