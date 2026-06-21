@@ -1,7 +1,7 @@
 ---
 name: "smyx-grooming-effectiveness-analysis"
 description: "Triggers when a user provides a pet grooming area video or image URL/file for analysis; supports local uploads or network URLs to call server-side APIs for coat condition and shed hair recognition, detecting matting area ratio and shed hair volume to output hairball risk level, helping prevent hairball syndrome. Application scenarios: smart grooming tools, long-haired pet care, pet health management. | 当用户提供梳毛器区域的视频/图像URL或文件时，触发本技能进行毛发表面状态分析；支持通过上传本地视频/图片或网络URL，调用服务端API进行识别，检测打结面积占比、梳下毛发量（堆积面积），输出毛球风险等级，帮助预防毛球症。应用场景：智能梳毛器、长毛宠物护理、宠物健康管理。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Grooming Effectiveness & Hairball Risk Analysis | 宠物梳毛器梳理效果与毛球风险分析
@@ -50,8 +50,8 @@ tools, long-haired pet care, pet health management.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
