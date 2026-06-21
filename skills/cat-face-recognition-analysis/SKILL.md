@@ -1,7 +1,7 @@
 ---
 name: "cat-face-recognition-analysis"
 description: "Dentifies specific cats by comparing images or videos of their faces. It supports distinguishing between different individuals in multi-cat households, ensuring accurate recognition once the data is registered in the database. | 猫脸识别技能，通过猫脸图片/视频比对识别具体是哪只猫咪，支持多猫家庭区分不同个体，录入底库后可准确识别"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Cat Face Recognition Skill | 猫脸识别技能
@@ -73,8 +73,8 @@ alerts, and behavior logging.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
