@@ -1,7 +1,7 @@
 ---
 name: "smyx-grooming-effect-assessment-analysis"
 description: "AI-powered pet grooming effect assessment: detects mat residue area, dandruff coverage, and coat smoothness from post-grooming images, outputs a 0-100 grooming score with targeted re-grooming suggestions. Scenarios: daily home grooming, pet salon quality check, long-hair cat/dog shedding season management. | 通过智能梳毛器或普通摄像头拍摄梳毛后的宠物皮肤和毛发高清图像，利用AI图像识别技术检测毛结团块残留面积、皮屑覆盖率以及毛发顺滑度，自动评估本次梳毛效果，并提示是否需要进行二次梳理或进一步护理。有助于宠物主人判断梳毛是否彻底，预防毛球症和皮肤问题。应用场景：宠物家庭日常梳理、宠物美容店服务质检、长毛猫/犬换毛期管理。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Grooming Effect Assessment (Mats/Dandruff) | 宠物梳毛效果评估（毛结/皮屑）
@@ -50,8 +50,8 @@ grooming, pet salon quality check, long-hair cat/dog shedding season management.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
