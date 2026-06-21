@@ -1,7 +1,11 @@
 ---
 name: "smyx-elderly-tv-sedentary-reminder-analysis"
+<<<<<<< HEAD
+description: "Using a fixed camera in the living room (aimed at the sofa and TV area), the system analyzes the elderly person's continuous sitting time while watching TV, detecting whether the body remains in a seated posture and the face is oriented toward the TV area (watching). When continuous TV-watching exceeds a preset threshold (default 2 hours) without standing up, the system outputs a 'time-to-move reminder', suggesting the elderly stand up, walk, and do stretching exercises. The skill helps prevent health issues caused by prolonged sitting, such as muscle atrophy, lower-limb thrombosis, and metabolic disorders. Application scenarios: home-based elderly care, nursing-home activity rooms, community daycare centers. Real-time monitoring; when prolonged sitting is detected, the system pushes via smart speaker or mobile app (e.g., 'Grandpa Zhang, you've been watching TV for 2 hours, please get up and move around'). Skill features: long sedentary TV-watching is a common lifestyle pattern among the elderly and can induce deep-vein thrombosis, lumbar/back pain, etc. AI automatic monitoring and gentle reminders help the elderly form a habit of regular activity and improve their health. Can be integrated into home security cameras or elderly-care service platforms as a practical proactive health-management feature. | 通过客厅固定摄像头（对准沙发和电视区域），分析老年人连续观看电视的坐姿时长，检测人体是否持续处于坐姿且面部朝向电视区域（注视电视）。当连续坐姿观看电视超过预设阈值（默认2小时）且期间未起身活动时，输出'久坐活动提醒'，建议老年人起身走动、做伸展运动。该技能有助于预防因长时间静坐导致的肌肉萎缩、下肢血栓、代谢紊乱等健康问题。应用场景：居家养老、养老院活动室、社区日间照料中心。系统实时监测，当久坐超时时通过智能音箱语音提醒或手机APP推送'张爷爷，您已经看了2小时电视，起来活动一下吧'。技能特点：老年人长时间久坐看电视是常见生活方式，易诱发深静脉血栓、腰背疼痛等问题。通过AI自动监测并温馨提醒，可帮助老人养成定时活动习惯，改善健康。该技能可集成到居家安防摄像头或养老服务平台中，成为主动健康管理的实用功能。"
+=======
 description: "Using a fixed camera in the living room (aimed at the sofa and TV area), the system analyzes the elderly person's continuous sitting time while watching TV, detecting whether the body remains in a seated posture and the face is oriented toward the TV area (watching). | 通过客厅固定摄像头（对准沙发和电视区域），分析老年人连续观看电视的坐姿时长，检测人体是否持续处于坐姿且面部朝向电视区域（注视电视）。当连续坐姿观看电视超过预设阈值（默认2小时）且期间未起身活动时，输出'久坐活动提醒'，建议老年人起身走动、做伸展运动。"
-version: "1.0.2"
+>>>>>>> 2ac8d1216af5489e2c4ef1b07b80962e56bc7194
+version: "1.0.3"
 ---
 
 # Elderly TV Watching & Sedentary Reminder | 老年人电视观看时长与久坐关联
@@ -48,8 +52,8 @@ Using a fixed camera in the living room (aimed at the sofa and TV area), the sys
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
