@@ -1,7 +1,7 @@
 ---
 name: "smyx-excitement-calming-guide-analysis"
 description: "AI-powered pet over-excitement detection & calming guidance. Real-time camera analysis tracks movement speed, jump height, spin laps, and jumping-on-people actions to score excitement level. When the score exceeds safety thresholds, the system auto-issues calming cues (play owner's voice command like 'sit'/'slow down', soft prompt tone, release calming pheromone, dim lights). Helps prevent injuries from over-excitement and keeps the household safe. Scenarios: lively pet households, pet boarding centers, pet daycare, dog training schools. | 通过宠物活动区的固定摄像头实时分析宠物的运动状态，检测狂跳、高速转圈、反复扑人等极度兴奋行为，评估兴奋等级。当兴奋等级超过安全阈值时，自动输出冷静引导指令，包括播放主人的语音口令（如\"坐下\"、\"慢下来\"）、发出柔和提示音，或联动环境设备（如释放宠物镇静信息素、调暗灯光），预防宠物因过度兴奋而撞伤、摔倒或伤人，维护家庭安全。应用场景：宠物家庭（尤其活泼好动的犬猫）、宠物寄养中心、宠物日托班、宠物训练学校。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Excitement Calming Guide | 宠物兴奋过度冷静引导
@@ -46,8 +46,8 @@ AI-powered pet over-excitement detection & calming guidance. Real-time camera an
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
