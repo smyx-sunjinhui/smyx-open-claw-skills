@@ -1,7 +1,7 @@
 ---
 name: "smyx-child-emotion-recognition-analysis"
 description: "Using fixed cameras (and optional microphones) at home or in kindergartens, AI multimodal analysis recognizes a child's facial expressions (eyebrow/eye shape, mouth-corner curvature), cry-sound features (pitch, frequency, duration), and body-motion amplitude (waving, stomping, curling up) in real time, and jointly identifies the child's typical emotional state: happy, sad, angry, fearful, etc. | 通过家庭或幼儿园内的固定摄像头（及可选麦克风），利用AI多模态分析技术实时分析儿童的面部表情（如眉眼形态、嘴角弧度）、哭声音频特征（音调、频率、持续时间）以及肢体动作幅度（挥手、跺脚、蜷缩等），综合识别出儿童当前的典型情绪状态：快乐、悲伤、愤怒、恐惧等。"
-version: "1.0.0"
+version: "1.0.1"
 ---
 
 # Child Emotion Recognition (Crying/Tantrum/Low Mood) | 儿童情绪波动识别（哭闹/暴躁/低落）
@@ -48,8 +48,8 @@ Using fixed cameras (and optional microphones) at home or in kindergartens, AI m
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
