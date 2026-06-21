@@ -1,7 +1,7 @@
 ---
 name: "unaccompanied-monitoring-analysis"
 description: "Determines when elderly people living alone have no interaction or visitors for extended periods, and actively pushes care reminders to family members, suitable for remote care scenarios for elderly people living alone at home. | 无人陪伴监测技能，判定独居老人长时间无人互动来访，主动推送关怀提醒给家属，适用于居家独居老人远程关怀场景"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Unattended Monitoring Skill | 无人陪伴监测技能
@@ -66,8 +66,8 @@ feature provides robust data support and an early warning mechanism for effectiv
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
