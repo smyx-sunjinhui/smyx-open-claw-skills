@@ -5,7 +5,7 @@ description: "Using agricultural cameras to capture high-resolution images of pl
 =======
 description: "Using agricultural cameras to capture high-resolution images of plant leaves, AI vision techniques detect leaf curling direction (up-curling or down-curling) and the distribution of leaf-margin scorch (old vs new leaves, tip vs margin). | 通过农业摄像头拍摄植物叶片的高清图像，利用AI视觉分析技术检测叶片卷曲方向（上卷或下卷）、焦边（叶缘干枯）的分布特征（老叶/新叶、叶尖/叶缘），并可结合土壤湿度传感器数据（可选），综合判断卷叶/焦边的主要原因（干旱胁迫、病害如白粉病/病毒病、药害、肥害等）。系统定期巡检，发现卷叶或焦边时自动分析原因，输出诊断及建议（如'叶片上卷、叶缘焦枯，土壤湿度偏低，可能干旱，建议灌溉'）。"
 >>>>>>> 2ac8d1216af5489e2c4ef1b07b80962e56bc7194
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Leaf Curling & Margin Scorch Diagnosis | 植物卷叶/焦边识别（干旱/病害）
@@ -66,8 +66,8 @@ AI。你的任务是分析植物叶片的图像，识别卷曲方向（上卷/�
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
