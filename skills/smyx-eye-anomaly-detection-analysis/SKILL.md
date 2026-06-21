@@ -1,7 +1,7 @@
 ---
 name: "smyx-eye-anomaly-detection-analysis"
 description: "AI-powered pet eye anomaly detection from close-up facial images/video. Detects conjunctival redness, abnormal tearing/tear stains, and pupil/cornea opacity (cataract / corneal edema), then outputs anomaly alerts to help owners catch eye disease risks early. Scenarios: daily home health self-check, boarding center routine inspection, animal hospital triage, senior pet cataract monitoring. | 通过宠物摄像头捕捉宠物面部近景视频，利用AI视觉分析技术检测眼部充血（结膜颜色发红）、异常流泪（泪痕严重或持续性溢泪）、瞳孔区域浑浊（可能为白内障或角膜水肿）等异常征象，输出异常提示，帮助主人及早发现眼部疾病风险。适用于日常健康监测、老年宠物护理及宠物医院预检。应用场景：宠物家庭日常健康自检、宠物寄养中心巡检、宠物医院门诊初筛、老年宠物白内障监测。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pet Eye Anomaly Detection (Redness / Tearing / Cataract) | 宠物眼睛异常识别（红肿/流泪/白内障）
@@ -46,8 +46,8 @@ AI-powered pet eye anomaly detection from close-up facial images/video. Detects 
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
