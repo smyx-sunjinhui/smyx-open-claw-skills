@@ -1,7 +1,7 @@
 ---
 name: "smoking-detection-analysis"
 description: "Automatically detects smoking behavior in target areas based on computer vision; supports real-time detection of video streams, images, and video files; identifies violation smoking behavior and triggers violation alerts, assisting in smoking control safety management for parks/communities/units. | 公共场所吸烟行为智能检测技能，基于计算机视觉自动检测目标区域内的吸烟行为，支持视频流、图片、视频文件实时检测，识别违规吸烟行为，触发违规预警，助力园区/社区/单位控烟安全管理"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # 🔴 强制依赖声明
@@ -67,8 +67,8 @@ parks, communities, and enterprises.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
