@@ -1,7 +1,7 @@
 ---
 name: "smyx-plant-nutrient-diagnosis-analysis"
 description: "AI-powered plant nutrient deficiency diagnosis from leaf images. Detects leaf color, morphology changes (pale green/yellow-green/purple-red, marginal scorch, interveinal chlorosis) via computer vision, matches against common deficiency symptom databases, and outputs the most likely deficient nutrient element (nitrogen, phosphorus, potassium, iron, magnesium, zinc, etc.) with confidence score. Enables precision fertilization, avoids blind over-fertilization. Scenarios: smart planters, home gardening, agricultural greenhouses, plant factories. | 通过智能花盆、农业大棚或手机拍摄的植物叶片高清图像，利用AI视觉分析技术识别叶片颜色、形态变化（如叶色浅绿/黄绿/紫红、叶缘焦枯、叶脉间失绿等），与常见营养缺乏症特征库比对，输出最可能缺乏的营养元素（氮、磷、钾、铁、镁、锌等）及置信度。有助于精准施肥，避免盲目用肥造成浪费或伤害。应用场景：智能花盆、家庭园艺、农业大棚、植物工厂。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Plant Nutrient Deficiency Diagnosis | 植物缺素症视觉诊断
@@ -52,8 +52,8 @@ Scenarios: smart planters, home gardening, agricultural greenhouses, plant facto
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件

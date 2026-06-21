@@ -91,20 +91,29 @@ class Dao(BaseDao):
         Base.metadata.create_all(bind=self.engine)
 
     def _alter_tables(self) -> None:
-        """创建所有表结构"""
-        sql_statement = "ALTER TABLE sys_user ADD COLUMN source_id INT;"
+        """兼容升级已有 SQLite 表结构。
 
-        # 3. 执行语句
-        try:
-            with self.engine.connect() as connection:
-                connection.execute(text(sql_statement))
-                connection.commit()  # 对于数据定义语言(DDL)，需要显式提交
-        except Exception as e:
-            connection.rollback()
-            if len(e.args) and "duplicate column name" in e.args[0]:
-                pass
-            else:
-                raise
+        Base.metadata.create_all 只会创建不存在的表，不会给已存在的表自动补充新增字段。
+        旧版本本地库中的 sys_user 表可能缺少 ORM 已使用的字段（如 realname），
+        因此在 DB 初始化连接后主动检查并补齐缺失字段，避免查询时报
+        sqlite3.OperationalError: no such column。
+        """
+        table_name = "sys_user"
+        required_columns = {
+            "source_id": "VARCHAR(32)",
+            "realname": "VARCHAR(200)",
+        }
+
+        with self.engine.begin() as connection:
+            existing_columns = {
+                row[1] for row in connection.execute(text(f"PRAGMA table_info({table_name})"))
+            }
+
+            for column_name, column_type in required_columns.items():
+                if column_name not in existing_columns:
+                    connection.execute(
+                        text(f"ALTER TABLE {table_name} ADD COLUMN {column_name} {column_type}")
+                    )
 
     def get_session(self) -> Session:
         """获取数据库会话"""
