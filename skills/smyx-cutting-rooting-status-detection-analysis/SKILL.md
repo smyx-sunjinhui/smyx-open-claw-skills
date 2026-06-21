@@ -1,7 +1,7 @@
 ---
 name: "smyx-cutting-rooting-status-detection-analysis"
 description: "AI-powered non-invasive rooting-stage detection for plant cuttings in transparent containers. From smart propagation boxes or transparent cutting containers, periodically captures images of the cutting base (water roots or substrate roots visible through the transparent wall), uses AI vision to detect white root primordia (tiny white callus dots) and count/locate them, and outputs the rooting stage (No Roots / Few Primordia / Many Primordia / Well-Developed Roots). Helps propagators monitor cutting-rooting progress without disturbing the cutting and choose the optimal transplant time. Scenarios: smart propagation boxes, home cutting propagation, tissue-culture rooms, agricultural research. | 通过智能育苗箱或透明扦插容器的固定摄像头，定期拍摄枝条基部的水生根或土培根系（通过透明壁观察），利用AI视觉分析技术识别枝条基部是否出现白色凸起根点（根原基发育形成的白色小点）以及根点的数量和分布，输出生根阶段（无生根/少量根点/大量根点/根系发达）。该技能帮助育苗者在不干扰枝条的情况下，无创监测扦插生根进度，判断移栽时机。应用场景：智能育苗箱、家庭扦插繁殖、植物组培室、农业科研。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Cutting Rooting Status Detection (Transparent Container) | 扦插枝条生根状态（透明容器）
@@ -44,8 +44,8 @@ AI-powered non-invasive rooting-stage detection for plant cuttings in transparen
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
