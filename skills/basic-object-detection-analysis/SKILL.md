@@ -1,7 +1,7 @@
 ---
 name: "basic-object-detection-analysis"
 description: "Detects people, vehicles, non-motorized vehicles, pets, and parcels appearing in the target area. Supports video stream and image detection, suitable for general security surveillance scenarios. | 基础目标检测技能，检测出目标区域内出现的人、车、非机动车、宠物、包裹，支持视频流和图片检测，适用于通用安防监控场景"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # Basic Object Detection Skill | 基础目标检测技能
@@ -64,8 +64,8 @@ capabilities to anomalies, facilitating 24/7 intelligent security protection.
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
