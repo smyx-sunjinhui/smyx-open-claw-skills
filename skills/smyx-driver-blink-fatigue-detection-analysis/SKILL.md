@@ -1,7 +1,7 @@
 ---
 name: "smyx-driver-blink-fatigue-detection-analysis"
 description: "Using an in-cabin DMS camera, the system analyzes the driver's facial video in real time, detects eye open/closed state, calculates blink rate per minute (normal range 15-20 blinks/min), and identifies single-blink closure duration. | 通过车载DMS摄像头实时分析驾驶员面部视频，检测眼部开闭状态，计算每分钟眨眼频率（正常约为15-20次/分钟），并识别闭眼持续时间。当眨眼频率异常降低（如<10次/分钟）或出现单次闭眼超过2秒（微睡眠前兆）时，输出疲劳驾驶预警，联动车内语音提醒或震动座椅，预防因疲劳导致的事故。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Driver Blink-Rate & Eye-Closure Fatigue Detection | 驾驶员眨眼频率与闭眼时长检测
@@ -48,8 +48,8 @@ Using an in-cabin DMS camera, the system analyzes the driver's facial video in r
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
