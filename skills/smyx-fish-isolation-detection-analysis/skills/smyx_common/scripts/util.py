@@ -317,6 +317,13 @@ class RequestUtil(BaseUtil):
         return cls.http_request("get", url, params=params, headers=headers, *args, **argss)
 
     @classmethod
+    def get_user_by_username(cls, username):
+        from .dao import UserDao, User
+        user_dao = UserDao()
+        user = user_dao.get_by_username(username)
+        return user
+
+    @classmethod
     def http_request(cls, method, url, data=None, params=None, headers=None, options=None, *args,
                      timeout=ApiEnum.DEFAULT__REQUEST_TIMEOUT, **argss):
         def _get_or_create_user(username):
@@ -355,6 +362,7 @@ class RequestUtil(BaseUtil):
                     if found_user:
                         ApiEnum.TOKEN = found_user.token
                         ApiEnum.OPEN_TOKEN = found_user.open_token
+                        current__user_name = found_user.username
                     if not ApiEnum.TOKEN or not ApiEnum.OPEN_TOKEN:
                         new_current_user = _get_or_create_user(current__user_name)
                         if new_current_user:

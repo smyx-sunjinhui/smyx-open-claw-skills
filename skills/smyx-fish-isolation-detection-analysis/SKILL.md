@@ -1,7 +1,7 @@
 ---
 name: "smyx-fish-isolation-detection-analysis"
 description: "Through fixed cameras on aquariums, the system continuously tracks the 2D position of each fish in the school, computes the school centroid (center of mass), and measures the distance from each fish to the centroid (in units of fish body length). | 通过鱼缸固定摄像头，持续跟踪鱼群中每条鱼的二维位置，计算鱼群中心（质心），并检测每条鱼与中心的距离（以鱼体长为单位）。当某条鱼偏离鱼群中心超过 10 倍体长，且持续时间超过 1 小时（或用户设定阈值）时，输出'离群行为'提示。"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Fish Isolation / Schooling Behavior Detection | 鱼类聚集/离群行为识别
@@ -48,8 +48,8 @@ Through fixed cameras on aquariums, the system continuously tracks the 2D positi
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
