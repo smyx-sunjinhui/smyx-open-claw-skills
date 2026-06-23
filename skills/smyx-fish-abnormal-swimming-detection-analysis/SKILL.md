@@ -1,7 +1,7 @@
 ---
 name: "smyx-fish-abnormal-swimming-detection-analysis"
 description: "Through fixed cameras on aquariums, the system analyzes fish swimming videos and computes the angle between the fish body axis and the horizontal plane (normal fish bodies stay nearly horizontal). | 通过鱼缸固定摄像头，分析鱼类的游动视频，检测鱼体轴线与水平面的夹角（正常鱼体基本保持水平），当鱼体倾斜角度超过阈值（默认 > 30°）或出现倒立（头部向下 > 45°）、旋转（绕自身纵轴连续翻转）等异常游姿时，标记为异常，并记录异常时长占观察总时长的比例。该技能有助于早期发现鱼鳔失调、神经系统疾病或水质中毒等健康问题，提醒养鱼爱好者及时干预。"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Fish Abnormal Swimming Posture (Side-swim / Upside-down) Detection | 鱼类游动姿态异常（侧游/倒立）识别
@@ -28,7 +28,7 @@ Through fixed cameras on aquariums, the system analyzes fish swimming videos and
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有鱼缸游姿报告"、"
        显示所有鱼游姿异常事件"、"
        查看历史报告"等），**必须**：
-        - 直接使用 `python -m scripts.smyx_fish_abnormal_swimming_detection_analysis --list --open-id` 参数调用 API
+        - 直接使用 `python -m scripts.smyx_fish_abnormal_swimming_detection_analysis --list` 调用 API
           查询云端的历史报告数据
         - **严格禁止**：从本地 memory 目录读取历史会话信息、严格禁止手动汇总本地记录中的报告、严格禁止从长期记忆中提取报告
         - **必须统一**从云端接口获取最新完整数据，然后以 Markdown 表格格式输出结果
@@ -42,31 +42,23 @@ Through fixed cameras on aquariums, the system analyzes fish swimming videos and
 
 ## 操作步骤
 
-### 🔒 open-id 获取流程控制（强制执行，防止遗漏）
+### 🔐 用户身份处理（内部自动完成）
 
-**在执行鱼类游动姿态异常识别前，必须按以下优先级顺序获取 open-id：**
+用户身份参数由系统内部自动处理，**不得向用户展示、询问或要求输入任何身份标识**。
 
-```
-第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置/api-key 为空)
-第 2 步：检查 workspace 公共目录的配置文件
-        路径：${OPENCLAW_WORKSPACE}/skills/smyx_common/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置)
-第 3 步：检查用户是否在消息中明确提供了 open-id
-        ↓ (未提供)
-第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
-```
+执行本技能分析或历史报告查询时，脚本会自动完成身份初始化：
 
-**⚠️ 关键约束：**
+- 上游系统如有内部身份参数，会由脚本静默接收并使用
+- 上游系统未提供时，脚本会自动复用本地缺省用户
+- 本地缺省用户不存在时，脚本会自动创建并在后续任务中复用
+- 对用户输出时，只展示分析进度、分析结果和报告链接，不展示内部身份值
 
-- **禁止**自行假设,自行推导,自行生成 open-id 值（如 openclaw-control-ui、default、userC113、user123 等）
-- **禁止**跳过 open-id 验证直接调用 API
-- **必须**在获取到有效 open-id 后才能继续执行分析
-- 如果用户拒绝提供 open-id，说明用途（用于保存和查询历史报告记录），并询问是否继续
+**关键约束：**
+
+- 不得提示用户输入用户名、手机号或任何内部身份参数
+- 不得在回复、报告、示例、错误提示中暴露内部身份值
+- 不得把内部身份参数列为用户需要理解或传入的参数
+- 历史报告查询同样由系统内部身份自动关联，用户只需表达“查看历史报告/报告清单”等意图
 
 ---
 
@@ -89,9 +81,7 @@ Through fixed cameras on aquariums, the system analyzes fish swimming videos and
             - `--input`: 本地鱼缸固定摄像头视频文件路径
             - `--url`: 网络鱼缸固定摄像头视频 URL 地址（API 服务自动下载）
             - `--pet-type`: 类别标识，鱼类游姿监测场景默认 `other`
-            - `--open-id`: 当前用户的 open-id（必填，养鱼用户或场馆授权）
             - `--list`: 显示鱼类游姿异常监测历史记录清单
-            - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
             - `--detail`: 输出详细程度（basic/standard/json，默认 json）
             - `--output`: 结果输出文件路径（可选）
@@ -111,7 +101,6 @@ Through fixed cameras on aquariums, the system analyzes fish swimming videos and
 
 - 仅在需要时读取参考文档，保持上下文简洁
 - 输入要求：支持 mp4/avi/mov，最大 10MB；摄像头需鱼缸侧面固定，主活动区可见；帧率 ≥ 15 FPS
-- API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - **4 级告警策略递进**（normal → brief → persistent → strong_abnormal/Level 4），异常占比 > 20% 或多项叠加进入 Level 4
 - 单日告警上限：Level 1 不限 / Level 2 × 6 / Level 3 × 3 / Level 4 不设上限（紧急安全优先）
 - 红线约束：
@@ -140,18 +129,18 @@ Through fixed cameras on aquariums, the system analyzes fish swimming videos and
 ## 使用示例
 
 ```bash
-# 分析本地鱼缸视频（以下只是示例，禁止直接使用 openclaw-control-ui 作为 open-id）
-python -m scripts.smyx_fish_abnormal_swimming_detection_analysis --input /path/to/aquarium.mp4 --open-id your-open-id
+# 分析本地鱼缸视频（以下只是示例，禁止直接使用 作为 open-id）
+python -m scripts.smyx_fish_abnormal_swimming_detection_analysis --input /path/to/aquarium.mp4
 
-# 分析网络鱼缸视频/实时流（以下只是示例，禁止直接使用 openclaw-control-ui 作为 open-id）
-python -m scripts.smyx_fish_abnormal_swimming_detection_analysis --url https://example.com/aquarium.mp4 --open-id your-open-id
+# 分析网络鱼缸视频/实时流（以下只是示例，禁止直接使用 作为 open-id）
+python -m scripts.smyx_fish_abnormal_swimming_detection_analysis --url https://example.com/aquarium.mp4
 
 # 显示历史游姿监测记录清单（自动触发关键词：查看鱼类游姿历史报告、鱼缸游姿监测日志清单等）
-python -m scripts.smyx_fish_abnormal_swimming_detection_analysis --list --open-id your-open-id
+python -m scripts.smyx_fish_abnormal_swimming_detection_analysis --list
 
 # 输出精简报告
-python -m scripts.smyx_fish_abnormal_swimming_detection_analysis --input aq.mp4 --open-id your-open-id --detail basic
+python -m scripts.smyx_fish_abnormal_swimming_detection_analysis --input aq.mp4 --detail basic
 
 # 保存结果到文件
-python -m scripts.smyx_fish_abnormal_swimming_detection_analysis --input aq.mp4 --open-id your-open-id --output result.json
+python -m scripts.smyx_fish_abnormal_swimming_detection_analysis --input aq.mp4 --output result.json
 ```
