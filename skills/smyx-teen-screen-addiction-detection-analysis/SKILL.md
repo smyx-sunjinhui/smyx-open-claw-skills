@@ -1,11 +1,7 @@
 ---
 name: "smyx-teen-screen-addiction-detection-analysis"
-<<<<<<< HEAD
-description: "Using fixed cameras at home, study rooms or schools, the system analyzes adolescents' posture while using phones or gaming devices: head pitch angle (downward > 45°) and hand-holding-device posture (hand grasp + bent arm). It counts daily cumulative screen-looking time. When continuous screen-looking exceeds a configured threshold (e.g., single session > 30 minutes, or daily total > 2 hours), a 'phone/game addiction' reminder is generated, suggesting parental guidance and healthy eye-use habits. This helps prevent adolescent myopia, cervical-spine issues and gaming addiction. Application scenarios: family study, adolescent bedroom, study rooms, school classrooms. The system monitors in real time and pushes reminders via mobile APP or links to smart devices to issue voice prompts when over-time use is detected. Skill features: long head-down phone use among adolescents easily causes myopia, cervical-spine disease and social barriers. AI auto-monitoring and reminders help parents objectively understand their child's eye-use habits, enabling timely intervention and protecting vision. Can be integrated into smart-home cameras or family-education APPs as a practical family-health management tool. | 通过家庭、自习室或学校固定摄像头，分析青少年使用手机或游戏设备的姿势，检测头部低垂角度（俯仰角大于45°）以及手持设备的姿态（手部抓握且手臂弯曲），统计每日累计低头看屏幕的时长。当连续低头时长超过设定阈值（如单次超过30分钟，或日累计超过2小时）时，输出'沉迷手机/游戏'提醒，建议家长干预并引导健康用眼习惯。该技能有助于预防青少年近视、颈椎问题及游戏成瘾。应用场景：家庭书房、青少年卧室、自习室、学校教室。系统实时监测，当沉迷行为超时时通过手机APP推送提醒或联动智能设备发出语音提示。技能特点：青少年长时间低头看手机，易导致近视、颈椎病、社交障碍等。通过AI自动监测并提醒，可帮助家长客观了解孩子用眼习惯，及时干预，保护视力健康。该技能可集成到智能家居摄像头或家庭教育APP中，成为家庭健康管理的实用工具。"
-=======
 description: "Using fixed cameras at home, study rooms or schools, the system analyzes adolescents' posture while using phones or gaming devices: head pitch angle (downward > 45°) and hand-holding-device posture (hand grasp + bent arm). It counts daily cumulative screen-looking time. | 通过家庭、自习室或学校固定摄像头，分析青少年使用手机或游戏设备的姿势，检测头部低垂角度（俯仰角大于45°）以及手持设备的姿态（手部抓握且手臂弯曲），统计每日累计低头看屏幕的时长。当连续低头时长超过设定阈值（如单次超过30分钟，或日累计超过2小时）时，输出'沉迷手机/游戏'提醒，建议家长干预并引导健康用眼习惯。"
->>>>>>> 2ac8d1216af5489e2c4ef1b07b80962e56bc7194
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Teen Phone / Game Screen Addiction Detection | 青少年沉迷手机/游戏行为识别
@@ -32,7 +28,7 @@ Using fixed cameras at home, study rooms or schools, the system analyzes adolesc
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有青少年屏幕沉迷报告"、"
        显示所有家长日报"、"
        查看历史报告"等），**必须**：
-        - 直接使用 `python -m scripts.smyx_teen_screen_addiction_detection_analysis --list --open-id` 参数调用 API
+        - 直接使用 `python -m scripts.smyx_teen_screen_addiction_detection_analysis --list` 调用 API
           查询云端的历史报告数据
         - **严格禁止**：从本地 memory 目录读取历史会话信息、严格禁止手动汇总本地记录中的报告、严格禁止从长期记忆中提取报告
         - **必须统一**从云端接口获取最新完整数据，然后以 Markdown 表格格式输出结果
@@ -46,31 +42,23 @@ Using fixed cameras at home, study rooms or schools, the system analyzes adolesc
 
 ## 操作步骤
 
-### 🔒 open-id 获取流程控制（强制执行，防止遗漏）
+### 🔐 用户身份处理（内部自动完成）
 
-**在执行青少年沉迷手机/游戏行为识别前，必须按以下优先级顺序获取 open-id：**
+用户身份参数由系统内部自动处理，**不得向用户展示、询问或要求输入任何身份标识**。
 
-```
-第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置/api-key 为空)
-第 2 步：检查 workspace 公共目录的配置文件
-        路径：${OPENCLAW_WORKSPACE}/skills/smyx_common/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置)
-第 3 步：检查用户是否在消息中明确提供了 open-id
-        ↓ (未提供)
-第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
-```
+执行本技能分析或历史报告查询时，脚本会自动完成身份初始化：
 
-**⚠️ 关键约束：**
+- 上游系统如有内部身份参数，会由脚本静默接收并使用
+- 上游系统未提供时，脚本会自动复用本地缺省用户
+- 本地缺省用户不存在时，脚本会自动创建并在后续任务中复用
+- 对用户输出时，只展示分析进度、分析结果和报告链接，不展示内部身份值
 
-- **禁止**自行假设,自行推导,自行生成 open-id 值（如 openclaw-control-ui、default、userC113、user123 等）
-- **禁止**跳过 open-id 验证直接调用 API
-- **必须**在获取到有效 open-id 后才能继续执行分析
-- 如果用户拒绝提供 open-id，说明用途（用于保存和查询历史报告记录），并询问是否继续
+**关键约束：**
+
+- 不得提示用户输入用户名、手机号或任何内部身份参数
+- 不得在回复、报告、示例、错误提示中暴露内部身份值
+- 不得把内部身份参数列为用户需要理解或传入的参数
+- 历史报告查询同样由系统内部身份自动关联，用户只需表达“查看历史报告/报告清单”等意图
 
 ---
 
@@ -82,18 +70,16 @@ Using fixed cameras at home, study rooms or schools, the system analyzes adolesc
         - 多人场景需按目标跟踪，避免身份串扰
         - 隐私敏感场景必须启用人体轮廓 + 面部马赛克模式
         - 可选附带：青少年姓名 / 年龄、阈值覆盖（单次 / 日累计 / 夜间）、写作业时段白名单
-    2. **获取 open-id（强制执行）**
-        - 按上述流程控制获取 open-id
-        - 如无法获取，必须提示用户提供用户名或手机号
+    2. **系统自动完成身份关联**
+        - 无需用户输入任何身份参数
+        - 不在回复中展示内部身份值
     3. **执行青少年沉迷手机/游戏行为识别**
         - 调用 `-m scripts.smyx_teen_screen_addiction_detection_analysis` 处理输入（**必须在技能根目录下运行脚本**）
         - 参数说明:
             - `--input`: 本地家庭/自习室/学校固定摄像头视频文件路径
             - `--url`: 网络家庭/自习室/学校固定摄像头视频 URL 地址（API 服务自动下载）
             - `--pet-type`: 类别标识，青少年健康行为监测场景默认 `other`
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示青少年沉迷手机/游戏行为识别历史分析报告列表清单（可以输入起始日期参数过滤数据范围）
-            - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
             - `--detail`: 输出详细程度（basic/standard/json，默认 json）
             - `--output`: 结果输出文件路径（可选）
@@ -113,7 +99,6 @@ Using fixed cameras at home, study rooms or schools, the system analyzes adolesc
 
 - 仅在需要时读取参考文档，保持上下文简洁
 - 输入要求：支持 mp4/avi/mov 视频，最大 10MB；**关键**：侧面/斜侧上半身视角，可观察头部俯仰角与手臂姿态
-- API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - **必须**正确区分写作业 / 看书 / 网课（前方有书本/课本、头部朝下但角度多在 30-45° 之间）与"低头看屏幕"，避免将正常学习行为误报为沉迷
 - 短时低头取物、写字时短暂低头等情形不应计入连续低头段；建议连续 ≥ 5 分钟才计为 1 段
 - 红线约束：**禁止**输出"游戏成瘾症"等精神医学诊断或量表评分；**禁止**长期存储青少年原始视频；**禁止**未经监护人同意将数据提供给学校或第三方；**禁止**使用强惩罚性语言
@@ -135,18 +120,18 @@ Using fixed cameras at home, study rooms or schools, the system analyzes adolesc
 ## 使用示例
 
 ```bash
-# 分析本地青少年使用屏幕视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.smyx_teen_screen_addiction_detection_analysis --input /path/to/study_room.mp4 --open-id your-open-id
+# 分析本地青少年使用屏幕视频
+python -m scripts.smyx_teen_screen_addiction_detection_analysis --input /path/to/study_room.mp4
 
-# 分析网络青少年使用屏幕视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.smyx_teen_screen_addiction_detection_analysis --url https://example.com/study_room.mp4 --open-id your-open-id
+# 分析网络青少年使用屏幕视频
+python -m scripts.smyx_teen_screen_addiction_detection_analysis --url https://example.com/study_room.mp4
 
 # 显示历史青少年沉迷手机/游戏报告（自动触发关键词：查看孩子沉迷手机历史报告、家长日报清单等）
-python -m scripts.smyx_teen_screen_addiction_detection_analysis --list --open-id your-open-id
+python -m scripts.smyx_teen_screen_addiction_detection_analysis --list
 
 # 输出精简报告
-python -m scripts.smyx_teen_screen_addiction_detection_analysis --input sr.mp4 --open-id your-open-id --detail basic
+python -m scripts.smyx_teen_screen_addiction_detection_analysis --input sr.mp4 --detail basic
 
 # 保存结果到文件
-python -m scripts.smyx_teen_screen_addiction_detection_analysis --input sr.mp4 --open-id your-open-id --output result.json
+python -m scripts.smyx_teen_screen_addiction_detection_analysis --input sr.mp4 --output result.json
 ```
