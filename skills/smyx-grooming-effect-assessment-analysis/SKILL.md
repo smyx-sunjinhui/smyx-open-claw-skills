@@ -1,7 +1,7 @@
 ---
 name: "smyx-grooming-effect-assessment-analysis"
 description: "AI-powered pet grooming effect assessment: detects mat residue area, dandruff coverage, and coat smoothness from post-grooming images, outputs a 0-100 grooming score with targeted re-grooming suggestions. Scenarios: daily home grooming, pet salon quality check, long-hair cat/dog shedding season management. | 通过智能梳毛器或普通摄像头拍摄梳毛后的宠物皮肤和毛发高清图像，利用AI图像识别技术检测毛结团块残留面积、皮屑覆盖率以及毛发顺滑度，自动评估本次梳毛效果，并提示是否需要进行二次梳理或进一步护理。有助于宠物主人判断梳毛是否彻底，预防毛球症和皮肤问题。应用场景：宠物家庭日常梳理、宠物美容店服务质检、长毛猫/犬换毛期管理。"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Pet Grooming Effect Assessment (Mats/Dandruff) | 宠物梳毛效果评估（毛结/皮屑）
@@ -30,7 +30,7 @@ grooming, pet salon quality check, long-hair cat/dog shedding season management.
     1. 如果用户上传了附件或者图像/视频文件，则自动保存为本地文件
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有梳毛评估报告"、"
        显示梳理效果报告"、"查看历史报告"等），**必须**：
-        - 直接使用 `python -m scripts.smyx_grooming_effect_assessment_analysis --list --open-id` 参数调用 API
+        - 直接使用 `python -m scripts.smyx_grooming_effect_assessment_analysis --list` 调用 API
           查询云端的历史报告数据
         - **严格禁止**：从本地 memory 目录读取历史会话信息、严格禁止手动汇总本地记录中的报告、严格禁止从长期记忆中提取报告
         - **必须统一**从云端接口获取最新完整数据，然后以 Markdown 表格格式输出结果
@@ -44,31 +44,23 @@ grooming, pet salon quality check, long-hair cat/dog shedding season management.
 
 ## 操作步骤
 
-### 🔒 open-id 获取流程控制（强制执行，防止遗漏）
+### 🔐 用户身份处理（内部自动完成）
 
-**在执行梳毛效果评估前，必须按以下优先级顺序获取 open-id：**
+用户身份参数由系统内部自动处理，**不得向用户展示、询问或要求输入任何身份标识**。
 
-```
-第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置/api-key 为空)
-第 2 步：检查 workspace 公共目录的配置文件
-        路径：${OPENCLAW_WORKSPACE}/skills/smyx_common/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置)
-第 3 步：检查用户是否在消息中明确提供了 open-id
-        ↓ (未提供)
-第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
-```
+执行本技能分析或历史报告查询时，脚本会自动完成身份初始化：
 
-**⚠️ 关键约束：**
+- 上游系统如有内部身份参数，会由脚本静默接收并使用
+- 上游系统未提供时，脚本会自动复用本地缺省用户
+- 本地缺省用户不存在时，脚本会自动创建并在后续任务中复用
+- 对用户输出时，只展示分析进度、分析结果和报告链接，不展示内部身份值
 
-- **禁止**自行假设,自行推导,自行生成 open-id 值（如 openclaw-control-ui、default、userC113、user123 等）
-- **禁止**跳过 open-id 验证直接调用 API
-- **必须**在获取到有效 open-id 后才能继续执行分析
-- 如果用户拒绝提供 open-id，说明用途（用于保存和查询历史报告记录），并询问是否继续
+**关键约束：**
+
+- 不得提示用户输入用户名、手机号或任何内部身份参数
+- 不得在回复、报告、示例、错误提示中暴露内部身份值
+- 不得把内部身份参数列为用户需要理解或传入的参数
+- 历史报告查询同样由系统内部身份自动关联，用户只需表达“查看历史报告/报告清单”等意图
 
 ---
 
@@ -77,18 +69,16 @@ grooming, pet salon quality check, long-hair cat/dog shedding season management.
         - 提供本地图像/视频文件路径或网络图像/视频 URL
         - 确保图像/视频清晰展示梳毛后宠物皮肤和毛发状态，光线充足，尽量拍摄背部、腹部、四肢等典型部位
         - 支持图像（jpg/png）和视频（mp4/avi/mov）格式
-    2. **获取 open-id（强制执行）**
-        - 按上述流程控制获取 open-id
-        - 如无法获取，必须提示用户提供用户名或手机号
+    2. **系统自动完成身份关联**
+        - 无需用户输入任何身份参数
+        - 不在回复中展示内部身份值
     3. **执行梳毛效果评估**
         - 调用 `-m scripts.smyx_grooming_effect_assessment_analysis` 处理图像/视频文件（**必须在技能根目录下运行脚本**）
         - 参数说明:
             - `--input`: 本地图像/视频文件路径
             - `--url`: 网络图像/视频 URL 地址（API 服务自动下载）
             - `--pet-type`: 宠物类型，可选值：cat/dog/other，默认 cat
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示梳毛效果评估历史报告列表清单（可以输入起始日期参数过滤数据范围）
-            - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
             - `--detail`: 输出详细程度（basic/standard/json，默认 json）
             - `--output`: 结果输出文件路径（可选）
@@ -120,7 +110,6 @@ grooming, pet salon quality check, long-hair cat/dog shedding season management.
 
 - 仅在需要时读取参考文档，保持上下文简洁
 - 支持 jpg/png/mp4/avi/mov 格式，最大 10MB
-- API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 评估结果仅供梳毛效果参考，不提供医疗诊断或治疗建议
 - 禁止临时生成脚本，只能用技能本身的脚本
 - 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，API 服务会自动下载
@@ -138,18 +127,18 @@ grooming, pet salon quality check, long-hair cat/dog shedding season management.
 ## 使用示例
 
 ```bash
-# 分析本地梳毛后宠物图像/视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.smyx_grooming_effect_assessment_analysis --input /path/to/grooming_photo.jpg --pet-type cat --open-id your-open-id
+# 分析本地梳毛后宠物图像/视频
+python -m scripts.smyx_grooming_effect_assessment_analysis --input /path/to/grooming_photo.jpg --pet-type cat
 
-# 分析网络梳毛后宠物图像/视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.smyx_grooming_effect_assessment_analysis --url https://example.com/grooming_video.mp4 --pet-type cat --open-id your-open-id
+# 分析网络梳毛后宠物图像/视频
+python -m scripts.smyx_grooming_effect_assessment_analysis --url https://example.com/grooming_video.mp4 --pet-type cat
 
 # 显示历史评估报告/显示评估报告清单列表（自动触发关键词：查看历史梳毛评估报告、历史报告、梳理效果报告清单等）
-python -m scripts.smyx_grooming_effect_assessment_analysis --list --open-id your-open-id
+python -m scripts.smyx_grooming_effect_assessment_analysis --list
 
 # 输出精简报告
-python -m scripts.smyx_grooming_effect_assessment_analysis --input photo.jpg --pet-type cat --open-id your-open-id --detail basic
+python -m scripts.smyx_grooming_effect_assessment_analysis --input photo.jpg --pet-type cat --detail basic
 
 # 保存结果到文件
-python -m scripts.smyx_grooming_effect_assessment_analysis --input photo.jpg --pet-type cat --open-id your-open-id --output result.json
+python -m scripts.smyx_grooming_effect_assessment_analysis --input photo.jpg --pet-type cat --output result.json
 ```
