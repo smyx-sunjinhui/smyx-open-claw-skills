@@ -5,7 +5,7 @@ description: "Through fixed cameras on aquariums or underwater cameras capturing
 =======
 description: "Through fixed cameras on aquariums or underwater cameras capturing high-definition fish images, the system uses AI vision analysis to detect abnormal symptoms on the fish body surface: white-spot disease (white spots of about 0.5-1mm in diameter, salt-grain like), hyperemia (red blood streaks or patches on skin or fin bases), and fin-rot (tail-fin edges turning white, ragged or rotting). | 通过鱼缸固定摄像头或水下摄像头拍摄鱼类高清图像，利用 AI 视觉分析技术检测鱼体表面的异常症状：白点病（白色点状物，直径约 0.5-1mm，类似盐粒）、充血（皮肤或鳍条基部出现红色血丝或斑块）、烂尾（尾鳍边缘发白、残缺、腐烂）。该技能有助于早期发现观赏鱼常见疾病，指导用户采取隔离、升温、用药（用药请咨询专业水族兽医）等措施。"
 >>>>>>> 2ac8d1216af5489e2c4ef1b07b80962e56bc7194
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Fish Surface Symptom (White-spot / Hyperemia / Fin-rot) Detection | 鱼类体表白点/充血/烂尾识别
@@ -52,8 +52,8 @@ Through fixed cameras on aquariums or underwater cameras capturing high-definiti
 
 ```
 第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        路径：scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
         → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
         ↓ (未找到/未配置/api-key 为空)
 第 2 步：检查 workspace 公共目录的配置文件
