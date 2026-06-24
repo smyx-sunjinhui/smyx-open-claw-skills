@@ -1,7 +1,7 @@
 ---
 name: "smyx-family-conflict-intensity-detect-analysis"
 description: "Using a fixed camera with microphone in the living room, the system analyzes audio and video in real time, detecting sound intensity (dB) and the intensity of body movements (e.g., rapid hand waving, finger pointing, pushing, throwing objects). It comprehensively evaluates the family conflict intensity level (low / medium / high). | 通过客厅固定摄像头（含麦克风），实时分析音频和视频，检测声音强度（分贝）和肢体动作激烈程度（如快速挥手、戳指、推搡、摔物等）。综合评估家庭争吵的冲突强度等级（低/中/高），当强度达到中或高时，通过手机APP推送提醒（如'检测到高强度冲突，建议冷静沟通或暂时分开'）。"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # Family / Couple Conflict Intensity Detection | 夫妻/家庭争吵强度识别
@@ -28,7 +28,7 @@ Using a fixed camera with microphone in the living room, the system analyzes aud
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有家庭冲突报告"、"
        显示所有争吵强度报告"、"
        查看历史报告"等），**必须**：
-        - 直接使用 `python -m scripts.smyx_family_conflict_intensity_detect_analysis --list --open-id` 参数调用 API
+        - 直接使用 `python -m scripts.smyx_family_conflict_intensity_detect_analysis --list` 调用 API
           查询云端的历史报告数据
         - **严格禁止**：从本地 memory 目录读取历史会话信息、严格禁止手动汇总本地记录中的报告、严格禁止从长期记忆中提取报告
         - **必须统一**从云端接口获取最新完整数据，然后以 Markdown 表格格式输出结果
@@ -42,31 +42,23 @@ Using a fixed camera with microphone in the living room, the system analyzes aud
 
 ## 操作步骤
 
-### 🔒 open-id 获取流程控制（强制执行，防止遗漏）
+### 🔐 用户身份处理（内部自动完成）
 
-**在执行夫妻/家庭争吵强度识别前，必须按以下优先级顺序获取 open-id：**
+用户身份参数由系统内部自动处理，**不得向用户展示、询问或要求输入任何身份标识**。
 
-```
-第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置/api-key 为空)
-第 2 步：检查 workspace 公共目录的配置文件
-        路径：${OPENCLAW_WORKSPACE}/skills/smyx_common/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置)
-第 3 步：检查用户是否在消息中明确提供了 open-id
-        ↓ (未提供)
-第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
-```
+执行本技能分析或历史报告查询时，脚本会自动完成身份初始化：
 
-**⚠️ 关键约束：**
+- 上游系统如有内部身份参数，会由脚本静默接收并使用
+- 上游系统未提供时，脚本会自动复用本地缺省用户
+- 本地缺省用户不存在时，脚本会自动创建并在后续任务中复用
+- 对用户输出时，只展示分析进度、分析结果和报告链接，不展示内部身份值
 
-- **禁止**自行假设,自行推导,自行生成 open-id 值（如 openclaw-control-ui、default、userC113、user123 等）
-- **禁止**跳过 open-id 验证直接调用 API
-- **必须**在获取到有效 open-id 后才能继续执行分析
-- 如果用户拒绝提供 open-id，说明用途（用于保存和查询历史报告记录），并询问是否继续
+**关键约束：**
+
+- 不得提示用户输入用户名、手机号或任何内部身份参数
+- 不得在回复、报告、示例、错误提示中暴露内部身份值
+- 不得把内部身份参数列为用户需要理解或传入的参数
+- 历史报告查询同样由系统内部身份自动关联，用户只需表达“查看历史报告/报告清单”等意图
 
 ---
 
@@ -78,18 +70,16 @@ Using a fixed camera with microphone in the living room, the system analyzes aud
         - 安装时录制 30 秒室内静音作为环境本底（baseline_db）
         - 隐私敏感场景必须启用人体轮廓 + 面部马赛克模式
         - 可选附带：家庭成员构成（是否含儿童/老人）、紧急联系人开关（默认关）、阈值覆盖
-    2. **获取 open-id（强制执行）**
-        - 按上述流程控制获取 open-id
-        - 如无法获取，必须提示用户提供用户名或手机号
+    2. **系统自动完成身份关联**
+        - 无需用户输入任何身份参数
+        - 不在回复中展示内部身份值
     3. **执行夫妻/家庭争吵强度识别**
         - 调用 `-m scripts.smyx_family_conflict_intensity_detect_analysis` 处理输入（**必须在技能根目录下运行脚本**）
         - 参数说明:
             - `--input`: 本地客厅固定摄像头（含麦克风）音视频文件路径
             - `--url`: 网络客厅固定摄像头（含麦克风）音视频 URL 地址（API 服务自动下载）
             - `--pet-type`: 类别标识，家庭情绪与冲突分析场景默认 `other`
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
             - `--list`: 显示夫妻/家庭争吵强度识别历史分析报告列表清单（可以输入起始日期参数过滤数据范围）
-            - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
             - `--detail`: 输出详细程度（basic/standard/json，默认 json）
             - `--output`: 结果输出文件路径（可选）
@@ -109,7 +99,6 @@ Using a fixed camera with microphone in the living room, the system analyzes aud
 
 - 仅在需要时读取参考文档，保持上下文简洁
 - 输入要求：支持 mp4/avi/mov 含音轨视频，最大 10MB；**关键**：必须包含麦克风音轨
-- API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - 看电视/电影、儿童打闹游戏、激烈讨论但无攻击性词汇等情形容易被误识为冲突，建议结合声学 + 视觉 + 攻击性词汇多模态综合判定
 - 攻击性词汇命中**仅本地推理**，**禁止上传原始语音**到任何外部服务
 - 红线约束：**禁止**根据本工具结论给当事人贴"家暴施害者/受害者"标签；**禁止**自动报警；**禁止**长期存储原始音视频；**禁止**输出法律意见或处方
@@ -131,18 +120,18 @@ Using a fixed camera with microphone in the living room, the system analyzes aud
 ## 使用示例
 
 ```bash
-# 分析本地客厅音视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.smyx_family_conflict_intensity_detect_analysis --input /path/to/livingroom.mp4 --open-id your-open-id
+# 分析本地客厅音视频
+python -m scripts.smyx_family_conflict_intensity_detect_analysis --input /path/to/livingroom.mp4
 
-# 分析网络客厅音视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.smyx_family_conflict_intensity_detect_analysis --url https://example.com/livingroom.mp4 --open-id your-open-id
+# 分析网络客厅音视频
+python -m scripts.smyx_family_conflict_intensity_detect_analysis --url https://example.com/livingroom.mp4
 
 # 显示历史家庭争吵强度报告（自动触发关键词：查看家庭冲突历史报告、争吵强度报告清单等）
-python -m scripts.smyx_family_conflict_intensity_detect_analysis --list --open-id your-open-id
+python -m scripts.smyx_family_conflict_intensity_detect_analysis --list
 
 # 输出精简报告
-python -m scripts.smyx_family_conflict_intensity_detect_analysis --input lr.mp4 --open-id your-open-id --detail basic
+python -m scripts.smyx_family_conflict_intensity_detect_analysis --input lr.mp4 --detail basic
 
 # 保存结果到文件
-python -m scripts.smyx_family_conflict_intensity_detect_analysis --input lr.mp4 --open-id your-open-id --output result.json
+python -m scripts.smyx_family_conflict_intensity_detect_analysis --input lr.mp4 --output result.json
 ```
