@@ -57,9 +57,10 @@ class Skill(SkillParent):
             output_content = "⚠️ 暂无分析结果"
         return output_content
 
-    def get_output_analysis(self, input_path, params={}):
+    def get_output_analysis(self, input_path, params={}, *args, **argss):
         response = self.get_analysis(
-            input_path, params
+            input_path, params,
+            *args, **argss
         )
 
         def _analysis_result():
@@ -76,7 +77,7 @@ class Skill(SkillParent):
             output_content = self.get_output_analysis_content(new_response)
         return output_content
 
-    def get_analysis(self, input_path, params={}):
+    def get_analysis(self, input_path, params={}, **argss):
         import mimetypes
 
         def _validate_file(file_path):
