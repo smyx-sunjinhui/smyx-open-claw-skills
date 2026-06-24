@@ -1,11 +1,7 @@
 ---
 name: "smyx-family-conflict-aftercare-suggest-analysis"
-<<<<<<< HEAD
-description: "Through fixed cameras (with microphones) in the family living room or kitchen, the system monitors conflict events among family members in real time, identifying high-decibel arguments (sound intensity exceeding a threshold and lasting more than 10 seconds), door slams (object impact sound + door-frame vibration), and aggressive arm-swing actions. After a conflict ends (both audio and video remain calm beyond a preset window, default 10 minutes) and no new conflict occurs, the system automatically outputs an aftercare prompt: playing soft music via a smart speaker or pushing caring messages through a mobile APP (such as 'Need a cup of tea?', 'Take a deep breath, speak slowly'). This skill aims to help family members soothe their emotions after intense arguments and restore communication. Application scenarios: family living rooms, kitchens, dining rooms and other conflict-prone areas. The system provides non-intrusive emotional comfort after conflicts. Skill features: family emotions easily continue to deteriorate after a conflict; appropriate external cues (music, caring words) can break the negative loop and encourage calm communication. AI-based automatic conflict detection with timely soothing helps maintain family harmony, especially for families with teenagers or members prone to emotional escalation. Can be integrated into smart speakers or home-security systems as a distinctive family-care feature. | 通过家庭客厅或厨房的固定摄像头（含麦克风），实时监测家庭成员间的冲突事件，识别高分贝争吵（声音强度超过阈值且持续时间>10秒）、摔门（物体撞击声+门框振动）、甩手等激烈肢体动作。当冲突事件结束后（音频和视频均平静超过预设时间，默认10分钟）且无新冲突，系统自动输出缓和提示：通过智能音箱播放轻柔音乐，或通过手机APP推送关怀语（如'需要一杯茶吗？'、'深呼吸，慢慢说'）。该技能旨在帮助家庭成员在激烈争执后平复情绪，促进沟通恢复。应用场景：家庭客厅、厨房、餐厅等易发生冲突的区域。系统在冲突后提供非介入式情绪安抚。技能特点：家庭冲突后情绪易持续恶化，适当的外界提示（如音乐、关怀语）可打断负面情绪循环，促进冷静沟通。通过AI自动识别冲突并适时提供安抚，有助于维护家庭和谐，尤其适合有青少年或情绪易失控成员的家庭。该技能可集成到智能音箱或家庭安防系统中，成为家庭关怀的特色功能。"
-=======
 description: "Through fixed cameras (with microphones) in the family living room or kitchen, the system monitors conflict events among family members in real time, identifying high-decibel arguments (sound intensity exceeding a threshold and lasting more than 10 seconds), door slams (object impact sound + door-frame vibration), and aggressive arm-swing actions. | 通过家庭客厅或厨房的固定摄像头（含麦克风），实时监测家庭成员间的冲突事件，识别高分贝争吵（声音强度超过阈值且持续时间>10秒）、摔门（物体撞击声+门框振动）、甩手等激烈肢体动作。当冲突事件结束后（音频和视频均平静超过预设时间，默认10分钟）且无新冲突，系统自动输出缓和提示：通过智能音箱播放轻柔音乐，或通过手机APP推送关怀语（如'需要一杯茶吗？"
->>>>>>> 2ac8d1216af5489e2c4ef1b07b80962e56bc7194
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # Family Conflict Aftercare Suggestion | 夫妻/家人冲突后情绪缓和提示
@@ -32,7 +28,7 @@ Through fixed cameras (with microphones) in the family living room or kitchen, t
     2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有家庭冲突缓和报告"、"
        显示所有家庭情绪事件"、"
        查看历史报告"等），**必须**：
-        - 直接使用 `python -m scripts.smyx_family_conflict_aftercare_suggest_analysis --list --open-id` 参数调用 API
+        - 直接使用 `python -m scripts.smyx_family_conflict_aftercare_suggest_analysis --list` 调用 API
           查询云端的历史报告数据
         - **严格禁止**：从本地 memory 目录读取历史会话信息、严格禁止手动汇总本地记录中的报告、严格禁止从长期记忆中提取报告
         - **必须统一**从云端接口获取最新完整数据，然后以 Markdown 表格格式输出结果
@@ -46,31 +42,23 @@ Through fixed cameras (with microphones) in the family living room or kitchen, t
 
 ## 操作步骤
 
-### 🔒 open-id 获取流程控制（强制执行，防止遗漏）
+### 🔐 用户身份处理（内部自动完成）
 
-**在执行夫妻/家人冲突后情绪缓和提示前，必须按以下优先级顺序获取 open-id：**
+用户身份参数由系统内部自动处理，**不得向用户展示、询问或要求输入任何身份标识**。
 
-```
-第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置/api-key 为空)
-第 2 步：检查 workspace 公共目录的配置文件
-        路径：${OPENCLAW_WORKSPACE}/skills/smyx_common/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置)
-第 3 步：检查用户是否在消息中明确提供了 open-id
-        ↓ (未提供)
-第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
-```
+执行本技能分析或历史报告查询时，脚本会自动完成身份初始化：
 
-**⚠️ 关键约束：**
+- 上游系统如有内部身份参数，会由脚本静默接收并使用
+- 上游系统未提供时，脚本会自动复用本地缺省用户
+- 本地缺省用户不存在时，脚本会自动创建并在后续任务中复用
+- 对用户输出时，只展示分析进度、分析结果和报告链接，不展示内部身份值
 
-- **禁止**自行假设,自行推导,自行生成 open-id 值（如 openclaw-control-ui、default、userC113、user123 等）
-- **禁止**跳过 open-id 验证直接调用 API
-- **必须**在获取到有效 open-id 后才能继续执行分析
-- 如果用户拒绝提供 open-id，说明用途（用于保存和查询历史报告记录），并询问是否继续
+**关键约束：**
+
+- 不得提示用户输入用户名、手机号或任何内部身份参数
+- 不得在回复、报告、示例、错误提示中暴露内部身份值
+- 不得把内部身份参数列为用户需要理解或传入的参数
+- 历史报告查询同样由系统内部身份自动关联，用户只需表达“查看历史报告/报告清单”等意图
 
 ---
 
@@ -92,9 +80,7 @@ Through fixed cameras (with microphones) in the family living room or kitchen, t
             - `--input`: 本地家庭客厅/厨房/餐厅固定摄像头（含麦克风）音视频文件路径
             - `--url`: 网络家庭客厅/厨房/餐厅固定摄像头（含麦克风）音视频 URL 地址（API 服务自动下载）
             - `--pet-type`: 类别标识，家庭情绪缓和场景默认 `other`
-            - `--open-id`: 当前用户的 open-id（必填，家庭主用户授权）
             - `--list`: 显示夫妻/家人冲突后情绪缓和提示历史事件清单（可以输入起始日期参数过滤数据范围）
-            - `--api-key`: API 访问密钥（可选）
             - `--api-url`: API 服务地址（可选，使用默认值）
             - `--detail`: 输出详细程度（basic/standard/json，默认 json）
             - `--output`: 结果输出文件路径（可选）
@@ -114,7 +100,6 @@ Through fixed cameras (with microphones) in the family living room or kitchen, t
 
 - 仅在需要时读取参考文档，保持上下文简洁
 - 输入要求：支持 mp4/avi/mov + 音轨，最大 10MB；**关键**：必须含麦克风
-- API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
 - **冲突中绝不介入**：`intense_conflict` 期间播放音乐或语音会激化情绪；**必须等待平静窗口**
 - 与正常高分贝场景区分：聚会、大笑、儿童欢闹、看球赛——支持家庭主用户**整日关闭**
 - 红线约束：
@@ -141,18 +126,18 @@ Through fixed cameras (with microphones) in the family living room or kitchen, t
 ## 使用示例
 
 ```bash
-# 分析本地家庭公共区域音视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.smyx_family_conflict_aftercare_suggest_analysis --input /path/to/livingroom.mp4 --open-id your-open-id
+# 分析本地家庭公共区域音视频
+python -m scripts.smyx_family_conflict_aftercare_suggest_analysis --input /path/to/livingroom.mp4
 
-# 分析网络家庭公共区域音视频/实时流（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.smyx_family_conflict_aftercare_suggest_analysis --url https://example.com/livingroom.mp4 --open-id your-open-id
+# 分析网络家庭公共区域音视频/实时流
+python -m scripts.smyx_family_conflict_aftercare_suggest_analysis --url https://example.com/livingroom.mp4
 
 # 显示历史家庭冲突缓和事件清单（自动触发关键词：查看家庭冲突缓和历史报告、家庭情绪事件清单等）
-python -m scripts.smyx_family_conflict_aftercare_suggest_analysis --list --open-id your-open-id
+python -m scripts.smyx_family_conflict_aftercare_suggest_analysis --list
 
 # 输出精简报告
-python -m scripts.smyx_family_conflict_aftercare_suggest_analysis --input lr.mp4 --open-id your-open-id --detail basic
+python -m scripts.smyx_family_conflict_aftercare_suggest_analysis --input lr.mp4 --detail basic
 
 # 保存结果到文件
-python -m scripts.smyx_family_conflict_aftercare_suggest_analysis --input lr.mp4 --open-id your-open-id --output result.json
+python -m scripts.smyx_family_conflict_aftercare_suggest_analysis --input lr.mp4 --output result.json
 ```
