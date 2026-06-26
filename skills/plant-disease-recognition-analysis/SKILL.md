@@ -1,10 +1,23 @@
 ---
 name: "plant-disease-recognition-analysis"
 description: "Accurately identifies plant diseases based on computer vision and deep learning, supports both image and video input, outputs structured diagnostic reports including disease type, cause and prevention suggestions. | 植物病害识别技能，基于计算机视觉与深度学习，支持视频/图片输入，精准识别植物病害类型，输出包含病害名称、致病原因、防治建议的结构化诊断报告，为农业生产和园艺养护提供病害预警"
-version: "1.0.5"
+version: "1.0.6"
 ---
 
-# Plant Disease Recognition Skill | 植物病害识别技能
+# 🍃 Plant Disease Recognition Skill | 植物病害识别技能
+> **智能分析中枢** · 图片/视频智能分析 · 结构化报告 · 历史报告云端查询
+
+---
+
+## 🧭 技能概览 | Overview
+
+| 模块 | 内容 |
+|---|---|
+| 🏷️ 技能名称 | **植物病害识别技能** |
+| 🎯 核心目标 | 植物病害识别技能，基于计算机视觉与深度学习，支持视频/图片输入，精准识别植物病害类型，输出包含病害名称、致病原因、防治建议的结构化诊断报告，为农业生产和园艺养护提供病害预警 |
+| 🖼️ 输入类型 | 图片、视频、本地文件、网络 URL |
+| 📝 输出能力 | 结构化分析报告、识别/监测结果、建议与报告链接 |
+| 🧩 场景码 | `PLANT_NUTRITION_DIAGNOSIS` |
 
 Equipped with deep learning computer vision algorithms trained on large-scale plant disease datasets, this skill
 accurately identifies various plant diseases by analyzing visual symptoms such as leaf spots, discoloration, mold, and
@@ -17,156 +30,165 @@ take timely control measures to reduce yield losses.
 
 本技能搭载了基于大规模植物病害数据集训练的深度学习计算机视觉算法，能够通过分析叶片、茎秆、果实等部位出现的病斑、变色、霉层、萎蔫等视觉症状，精准识别多种常见植物病害。系统同时支持视频/图片输入，可快速区分真菌性、细菌性、病毒性病害以及生理性障碍，并结合环境因素和作物生长阶段信息，输出包含病害名称、致病原因、科学防治建议在内的结构化诊断报告，为农业生产、园艺养护和植物保护提供高效精准的病害预警与管理方案，帮助尽早发现病害，及时采取防控措施，减少产量损失。
 
-## 演示案例
+## 🎬 技能演示 | Skill Demo
 
-- [🔗 通过网路视频进行识别分析](https://www.coze.cn/s/pcRNsewBZtk/)
-- [🔗 通过上传视频进行识别分析](https://www.coze.cn/s/zhYN4ZE8xU8/)
-- [🔗 显示历史分析报告](https://www.coze.cn/s/Irs87YpwNm8/)
+[▶️ 点击查看技能使用介绍](https://lifeemergence.com/sample.html)
 
-## 任务目标
+## 🎯 任务目标 | Goals
 
-- 本 Skill 用于：识别视频/图片中的植物病斑，准确判断病害类型、严重程度，输出病害诊断报告和防治建议
-- 能力包含：病斑检测、病害分类、严重程度评估、防治建议输出
-- 支持输入：视频（mp4/avi/mov）和图片（jpg/jpeg/png），支持本地文件上传和网络URL分析
-- 支持场景：
-    - **农田病害诊断**：大田作物病害快速识别，指导及时防治
-    - **设施园艺**：大棚果蔬病害早期发现，预防病害扩散
-    - **果园管理**：果树病害诊断，指导科学用药
-    - **居家绿植**：家庭盆栽植物病害识别，提供养护建议
-    - **植保普查**：田间病害调查，提高普查效率
-    - **田间视频监测**：大田监测视频自动分析，发现病害早期预警
-- 触发条件:
-    1. **默认触发**：当用户提供植物发病部位视频/图片需要识别病害时，默认触发本技能
-    2. 当用户明确需要植物病害识别、病害诊断时，提及病害识别、病斑识别、叶子发黄、植物生病了、防治建议等关键词，并且上传了视频/图片，自动触发本技能
-    3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
-       ：查看历史识别报告、病害识别报告清单、识别报告列表、查询历史识别报告、显示所有识别报告、植物病害分析报告，查询植物病害识别分析报告
-- 自动行为：
-    1. 如果用户上传了附件或者视频/图片文件，则自动保存为本地文件
-    2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有识别报告"、"
-       显示所有植物病害识别"、"
-       查看历史报告"等），**必须**：
-        - 直接使用 `python -m scripts.plant_disease_recognition_analysis --list --open-id` 参数调用 API
-          查询云端的历史报告数据
-        - **严格禁止**：从本地 memory 目录读取历史会话信息、严格禁止手动汇总本地记录中的报告、严格禁止从长期记忆中提取报告
-        - **必须统一**从云端接口获取最新完整数据，然后以 Markdown 表格格式输出结果
+### 1. 🧩 技能用途
 
-## 前置准备
+识别视频/图片中的植物病斑，准确判断病害类型、严重程度，输出病害诊断报告和防治建议
 
+### 2. 🛠️ 能力范围
+
+| 序号 | 具体能力 |
+|---:|---|
+| 1 | 病斑检测 |
+| 2 | 病害分类 |
+| 3 | 严重程度评估 |
+| 4 | 防治建议输出 |
+
+### 3. ⚡ 触发条件
+
+| 触发类型 | 触发规则 |
+|---|---|
+| ✅ 默认触发 | **默认触发**：当用户提供植物发病部位视频/图片需要识别病害时，默认触发本技能 |
+| 🔎 明确分析意图 | 当用户明确需要植物病害识别、病害诊断时，提及病害识别、病斑识别、叶子发黄、植物生病了、防治建议等关键词，并且上传了视频/图片，自动触发本技能 |
+| 📚 历史报告查询 | 当用户提及以下关键词时，**自动触发历史报告查询功能** ：查看历史识别报告、病害识别报告清单、识别报告列表、查询历史识别报告、显示所有识别报告、植物病害分析报告，查询植物病害识别分析报告 |
+| 🖼️ 支持输入 | 视频（mp4/avi/mov）和图片（jpg/jpeg/png），支持本地文件上传和网络URL分析 |
+
+### 4. 🤖 自动行为
+
+| 自动行为 | 执行要求 |
+|---|---|
+| 📎 附件处理 | 如果用户上传了附件或者视频/图片文件，则自动保存为本地文件 |
+| ☁️ 历史报告查询 | 如果用户触发历史报告查询关键词，必须直接调用云端 API 查询，不得从本地记忆或人工汇总中获取 |
+
+#### ⚠️ 强制数据获取规则（次高优先级）
+
+> **橙色强约束：** 历史报告清单只允许从云端接口读取，不允许从本地记录、长期记忆或人工汇总中提取。
+
+必须执行：
+
+```bash
+python -m scripts.plant_disease_recognition_analysis --list
+```
+
+| 类型 | 要求 |
+|---|---|
+| ✅ 必须 | 使用 `python -m scripts.plant_disease_recognition_analysis --list` 调用 API 查询云端的历史报告数据 |
+| 🚫 严格禁止 | 从本地 `memory` 目录读取历史会话信息 |
+| 🚫 严格禁止 | 手动汇总本地记录中的报告 |
+| 🚫 严格禁止 | 从长期记忆中提取报告 |
+| ✅ 输出格式 | 必须统一从云端接口获取最新完整数据，然后以 Markdown 表格格式输出结果 |
+
+## 📦 前置准备 | Requirements
 - 依赖说明:scripts 脚本所需的依赖包及版本
   ```
   requests>=2.28.0
   ```
 
-## 识别要求（获得准确结果的前提）
+## 📸 识别要求 | Recognition Requirements
+| 要求项 | 说明 |
+|---|---|
+| 病征部位清晰 | 发病部位（叶片、果实、茎秆）完整出镜，对焦清晰 |
+| 典型症状展示 | 尽量拍摄典型病斑特征，避免完全腐烂无法辨认的部位 |
+| 光线充足均匀 | 避免强光逆光、严重阴影和过曝 |
+| 视频拍摄 | 尽量缓慢移动镜头，覆盖所有发病部位，避免画面抖动过度 |
 
-为了获得准确的病害识别，请确保：
+## 🚀 操作步骤 | Workflow
+### 🔐 用户身份处理（内部自动完成）
 
-1. **病征部位清晰**：发病部位（叶片、果实、茎秆）完整出镜，对焦清晰
-2. **典型症状展示**：尽量拍摄典型病斑特征，避免完全腐烂无法辨认的部位
-3. **光线充足均匀**：避免强光逆光、严重阴影和过曝
-4. **视频拍摄**：尽量缓慢移动镜头，覆盖所有发病部位，避免画面抖动过度
+> **绿色安全原则：** 用户身份参数由系统内部自动处理，**不得向用户展示、询问或要求输入任何身份标识**。
 
-## 操作步骤
+执行本技能分析或历史报告查询时，脚本会自动完成身份初始化：
 
-### 🔒 open-id 获取流程控制（强制执行，防止遗漏）
+| 场景 | 系统行为 |
+|---|---|
+| 上游系统有内部身份参数 | 由脚本静默接收并使用 |
+| 上游系统未提供内部身份参数 | 脚本会自动复用本地缺省用户 |
+| 本地缺省用户不存在 | 脚本会自动创建并在后续任务中复用 |
+| 对用户输出 | 只展示分析进度、分析结果和报告链接，不展示内部身份值 |
 
-**在执行植物病害识别分析前，必须按以下优先级顺序获取 open-id：**
+#### 🔒 关键约束
 
-```
-第 1 步：检查用户是否在消息中明确提供了 open-id
-        ↓ (未提供)
-第 2 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
-```
-
-**⚠️ 关键约束：**
-
-- **禁止**自行假设,自行推导,自行生成 open-id 值（如 openclaw-control-ui、default、plant123、id456 等）
-- **禁止**跳过 open-id 验证直接调用 API
-- **必须**在获取到有效 open-id 后才能继续执行分析
+| 禁止/要求 | 说明 |
+|---|---|
+| 🚫 不得询问身份 | 不得提示用户输入用户名、手机号或任何内部身份参数 |
+| 🚫 不得暴露身份值 | 不得在回复、报告、示例、错误提示中暴露内部身份值 |
+| 🚫 不得列为用户参数 | 不得把内部身份参数列为用户需要理解或传入的参数 |
+| ✅ 自动关联报告 | 历史报告查询同样由系统内部身份自动关联，用户只需表达“查看历史报告/报告清单”等意图 |
 
 ---
 
-- 标准流程:
-    1. **准备病害输入**
-        - 提供本地视频/图片文件路径或网络 URL
-        - 确保发病部位清晰，典型症状完整
-    2. **获取 open-id（强制执行）**
-        - 按上述流程控制获取 open-id
-        - 如无法获取，必须提示用户提供用户名或手机号
-    3. **执行植物病害识别分析**
-        - 调用 `-m scripts.plant_disease_recognition_analysis` 处理输入（**必须在技能根目录下运行脚本**）
-        - 参数说明:
-            - `--input`: 本地视频/图片文件路径
-            - `--url`: 网络视频/图片 URL 地址（API 服务自动下载）
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
-            - `--list`: 显示历史植物病害识别分析报告列表清单（可以输入起始日期参数过滤数据范围）
-            - `--api-key`: API 访问密钥（可选）
-            - `--api-url`: API 服务地址（可选，使用默认值）
-            - `--detail`: 输出详细程度（basic/standard/json，默认 json）
-            - `--output`: 结果输出文件路径（可选）
-    4. **查看分析结果**
-        - 接收结构化的植物病害识别诊断报告
-        - 包含：输入基本信息、病害名称、病害类型（真菌/细菌/病毒/生理）、严重程度、致病原因分析、防治措施建议
+### 🧪 标准流程 | Standard Flow
 
-## 资源索引
+| 步骤 | 阶段 | 执行动作 |
+|---:|---|---|
+| 1 | 📥 准备病害输入 | 提供本地文件路径或网络 URL；确保输入内容清晰、符合技能场景要求 |
+| 2 | 🔐 系统自动完成身份关联 | 无需用户输入任何身份参数；不在回复中展示内部身份值 |
+| 3 | ⚙️ 执行植物病害识别分析 | 调用 `-m scripts.plant_disease_recognition_analysis` 处理输入（**必须在技能根目录下运行脚本**） |
+| 4 | 📊 查看分析结果 | 接收结构化分析报告，查看识别/监测结果、风险提示、建议与报告链接 |
 
-- 必要脚本：见 [scripts/plant_disease_recognition_analysis.py](scripts/plant_disease_recognition_analysis.py)
-  (用途：调用 API 进行植物病害识别分析，本地文件上传(https)，网络 URL 由 API 服务自动下载)
+### ⚙️ 脚本参数说明
 
-- 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和格式限制)
-- 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
+| 参数 | 含义 | 备注 |
+|---|---|---|
+| `--input` | 本地视频/图片文件路径 | 适用于本地文件分析 |
+| `--url` | 网络视频/图片 URL 地址（API 服务自动下载） | API 服务自动下载网络资源 |
+| `--list` | 显示历史植物病害识别分析报告列表清单（可以输入起始日期参数过滤数据范围） | 用于云端历史报告查询 |
+| `--api-url` | API 服务地址（可选，使用默认值） | 按需填写 |
+| `--detail` | 输出详细程度（basic/standard/json，默认 json） | 输出详细程度 |
+| `--output` | 结果输出文件路径（可选） | 可选 |
 
-## 注意事项
+## 🗂️ 资源索引 | Resource Index
+| 资源类型 | 路径 | 用途 | 何时读取 |
+|---|---|---|---|
+| 🐍 必要脚本 | [`scripts/plant_disease_recognition_analysis.py`](scripts/plant_disease_recognition_analysis.py) | 调用 API、执行分析或查询历史报告 | 执行分析或查询时使用 |
+| 🐍 必要脚本 | [`scripts/config.py`](scripts/config.py) | 调用 API、执行分析或查询历史报告 | 执行分析或查询时使用 |
+| 📘 领域参考 | [`references/api_doc.md`](references/api_doc.md) | 了解 API 接口规范、字段说明和错误码 | 仅在需要了解接口规范或错误码时读取 |
 
-- 仅在需要时读取参考文档，保持上下文简洁
-- 支持格式：视频支持 mp4/avi/mov，图片支持 jpg/jpeg/png，最大 10MB
-- API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
-- 分析结果仅供病害诊断参考，具体防治请结合实际情况或咨询植保专业人员
-- 禁止临时生成脚本，只能用技能本身的脚本
-- 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
-- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
-  表格格式输出，包含"
-  报告名称"、"病害样本数"、"分析时间"、"点击查看"四列，其中"报告名称"列使用`植物病害识别报告-{记录id}`形式拼接, "点击查看"
-  列使用
-  `[🔗 查看报告](reportImageUrl)`
-  格式的超链接，用户点击即可直接跳转到对应的完整报告页面。
-- 表格输出示例：
-  | 报告名称 | 病害样本数 | 分析时间 | 点击查看 |
-  |----------|----------|----------|----------|
-  | 植物病害识别报告-20260414232700001 | 1份 | 2026-04-14 23:27:00 | [🔗 查看报告](https://example.com/report?id=xxx) |
+## ⚠️ 注意事项 | Notes
+| 分类 | 注意事项 |
+|---|---|
+| 📚 文档读取 | 仅在需要时读取参考文档，保持上下文简洁 |
+| 📁 格式支持 | 支持格式：视频支持 mp4/avi/mov，图片支持 jpg/jpeg/png，最大 10MB |
+| 🧑‍⚖️ 结果性质 | 分析结果仅供病害诊断参考，具体防治请结合实际情况或咨询植保专业人员 |
+| 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
+| 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 表格输出示例 |
 
-## 📝 隐私与数据安全声明
-
-本技能在处理用户上传的视频时，严格遵守数据安全规范：
-
-- **数据保密处理**：
-    - 系统基于 用户名/手机号 生成的标识仅作为用户关联信息，**不保存任何可直接识别个人身份的明文信息**。
-- **安全传输**：
-    - 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。
-- **数据留存策略**：
-    - 云端服务器遵循“最小必要原则”，**分析任务完成后即刻删除原始视频数据，不进行持久化存储**，确保用户隐私数据不被留存或滥用。
-
-## 使用示例
-
+## 📝 隐私与数据安全声明 | Privacy & Data Security
+| 序号 | 说明 |
+|---:|---|
+| 1 | **数据保密处理** |
+| 2 | 系统基于 用户名/手机号 生成的标识仅作为用户关联信息，**不保存任何可直接识别个人身份的明文信息**。 |
+| 3 | **安全传输** |
+| 4 | 所有数据（包括视频文件及关联标识）均通过 **HTTPS/TLS 加密通道** 发送至云端 API 进行分析，防止数据在传输过程中被窃取或篡改。 |
+| 5 | **数据留存策略** |
+| 6 | 云端服务器遵循“最小必要原则”，**分析任务完成后即刻删除原始视频数据，不进行持久化存储**，确保用户隐私数据不被留存或滥用。 |
+## 🧰 使用示例 | Examples
 ```bash
-# 识别本地视频中的植物病害（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.plant_disease_recognition_analysis --input /path/to/field_survey.mp4 --open-id your-open-id
+# 识别本地视频中的植物病害
+python -m scripts.plant_disease_recognition_analysis --input /path/to/field_survey.mp4
 
-# 识别本地图片中的植物病害（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.plant_disease_recognition_analysis --input /path/to/leaf.jpg --open-id your-open-id
+# 识别本地图片中的植物病害
+python -m scripts.plant_disease_recognition_analysis --input /path/to/leaf.jpg
 
-# 识别网络视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.plant_disease_recognition_analysis --url https://example.com/field_video.mp4 --open-id your-open-id
+# 识别网络视频
+python -m scripts.plant_disease_recognition_analysis --url https://example.com/field_video.mp4
 
-# 识别网络图片（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.plant_disease_recognition_analysis --url https://example.com/disease.jpg --open-id your-open-id
+# 识别网络图片
+python -m scripts.plant_disease_recognition_analysis --url https://example.com/disease.jpg
 
 # 显示历史识别报告/显示识别报告清单列表/显示历史植物病害识别（自动触发关键词：查看历史识别报告、历史报告、识别报告清单等）
-python -m scripts.plant_disease_recognition_analysis --list --open-id your-open-id
+python -m scripts.plant_disease_recognition_analysis --list
 
 # 输出精简报告
-python -m scripts.plant_disease_recognition_analysis --input disease.jpg --open-id your-open-id --detail basic
+python -m scripts.plant_disease_recognition_analysis --input disease.jpg --detail basic
 
 # 保存结果到文件
-python -m scripts.plant_disease_recognition_analysis --input disease.mp4 --open-id your-open-id --output result.json
+python -m scripts.plant_disease_recognition_analysis --input disease.mp4 --output result.json
 ```
