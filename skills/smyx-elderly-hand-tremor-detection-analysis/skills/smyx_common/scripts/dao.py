@@ -58,10 +58,11 @@ class Dao(BaseDao):
     def get_db_path(self, db_path):
         import os
 
-        cwd = os.getcwd()
-        workspace = os.path.dirname(cwd)
-        workspace = os.path.dirname(workspace)
-        workspace = os.environ.get('OPENCLAW_WORKSPACE', workspace)
+        workspace = os.environ.get('OPENCLAW_WORKSPACE')
+        if not workspace:
+            # dao.py 位于: <workspace>/skills/smyx_common/scripts/dao.py
+            # 不再依赖 os.getcwd()，避免不同启动目录写入不同的 smyx-common-claw.db。
+            workspace = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
         parent_dir = os.path.join(workspace, "data")
         FileUtil.mkdir(parent_dir)
         db_path = os.path.join(parent_dir, db_path)
@@ -91,20 +92,29 @@ class Dao(BaseDao):
         Base.metadata.create_all(bind=self.engine)
 
     def _alter_tables(self) -> None:
-        """创建所有表结构"""
-        sql_statement = "ALTER TABLE sys_user ADD COLUMN source_id INT;"
+        """兼容升级已有 SQLite 表结构。
 
-        # 3. 执行语句
-        try:
-            with self.engine.connect() as connection:
-                connection.execute(text(sql_statement))
-                connection.commit()  # 对于数据定义语言(DDL)，需要显式提交
-        except Exception as e:
-            connection.rollback()
-            if len(e.args) and "duplicate column name" in e.args[0]:
-                pass
-            else:
-                raise
+        Base.metadata.create_all 只会创建不存在的表，不会给已存在的表自动补充新增字段。
+        旧版本本地库中的 sys_user 表可能缺少 ORM 已使用的字段（如 realname），
+        因此在 DB 初始化连接后主动检查并补齐缺失字段，避免查询时报
+        sqlite3.OperationalError: no such column。
+        """
+        table_name = "sys_user"
+        required_columns = {
+            "source_id": "VARCHAR(32)",
+            "realname": "VARCHAR(200)",
+        }
+
+        with self.engine.begin() as connection:
+            existing_columns = {
+                row[1] for row in connection.execute(text(f"PRAGMA table_info({table_name})"))
+            }
+
+            for column_name, column_type in required_columns.items():
+                if column_name not in existing_columns:
+                    connection.execute(
+                        text(f"ALTER TABLE {table_name} ADD COLUMN {column_name} {column_type}")
+                    )
 
     def get_session(self) -> Session:
         """获取数据库会话"""
@@ -123,9 +133,19 @@ class Dao(BaseDao):
             )
 
         except Exception as e:
-            return self.update(
+            updated = self.update(
                 model
             )
+            if updated:
+                return updated
+
+            username = getattr(model, "username", None)
+            if username:
+                column_names = self.__model__.__table__.columns.keys()
+                update_data = {key: getattr(model, key) for key in column_names if key != "username"}
+                return self.update_by_username(username, **update_data)
+
+            return None
 
     def add(self, model) -> T:
         """
@@ -353,6 +373,28 @@ class UserDao(Dao):
     """用户Dao，继承BaseDao即可拥有所有基础CRUD功能"""
     __model__ = User
     __tablename__ = "users"
+
+    def get_first_default_user(self, prefix: str = "User_", username_length: int = 11) -> Optional[User]:
+        """查询第一个系统自动分配的默认用户。
+
+        默认用户名规则：以 ``User_`` 开头且总长度为 11，例如 ``User_ab12cd``。
+        优先复用最早创建的未删除记录，保证未显式传入 open-id 时始终使用同一个缺省用户。
+        """
+        session = self.get_session()
+        try:
+            return session.query(self.__model__).filter(
+                self.__model__.username.like(f"{prefix}%"),
+                func.length(self.__model__.username) == username_length,
+                or_(
+                    self.__model__.del_flag == 0,
+                    self.__model__.del_flag.is_(None)
+                )
+            ).order_by(
+                self.__model__.create_time.asc(),
+                self.__model__.id.asc()
+            ).first()
+        finally:
+            session.close()
 
 
 if __name__ == "__main__":
