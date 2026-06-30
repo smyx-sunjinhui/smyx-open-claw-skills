@@ -1,7 +1,7 @@
 ---
 name: "smyx-reptile-circadian-activity-analysis"
 description: "Through a fixed camera in a reptile enclosure, the system continuously captures 24-hour video and uses motion-detection techniques to count hourly activity volume (pixel-change area or motion-pixel ratio), producing a circadian activity distribution chart. | 通过爬宠箱固定摄像头，连续 24 小时采集视频，利用运动检测技术统计每小时的活动量（像素变化面积或运动像素比例），生成昼夜活动分布图。当节律异常持续多日时，输出'昼夜节律紊乱'提示，建议调整光照周期或检查环境干扰（如夜间灯光、噪音）。"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # 🌙 Reptile Circadian Activity Analysis | 爬宠活动量昼夜节律分析
@@ -179,7 +179,7 @@ python -m scripts.smyx_reptile_circadian_activity_analysis --list
 | 📜 报告输出 | **必须**：节律分析报告**按 enclosure_id + individual_id + 报告日期输出**，含 24h 活动数组 + 高峰时段 + 一致性评分 + 建议动作 + 免责声明 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📜 报告输出 | 当显示历史节律分析记录清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史节律分析记录清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples
