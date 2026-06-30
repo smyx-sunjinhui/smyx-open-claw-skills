@@ -1,7 +1,7 @@
 ---
 name: "child-dangerous-behavior-recognition-analysis"
 description: "Detects climbing, playing with fire, touching power sources, and dangerous actions near windows, providing real-time alerts. It is suitable for child safety supervision in scenarios such as homes, kindergartens, and nurseries. | 儿童危险行为识别技能，识别攀爬、玩火、触电源、窗边危险动作并实时预警，适用于家庭、幼儿园、托儿所等场景儿童安全监护"
-version: "1.0.5"
+version: "1.0.6"
 ---
 
 # 🧒 Child Hazardous Behavior Recognition Tool | 儿童危险行为识别分析工具
@@ -146,7 +146,7 @@ python -m scripts.child_dangerous_behavior_recognition_analysis --list
 | 🔎 使用提醒 | 本技能仅作儿童安全监护辅助，发现危险预警请立即确认 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📁 格式支持 | 当显示历史识别报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含" |
+| 📁 格式支持 | 当显示历史识别报告清单的时候，从数据 json 中提取字段  作为超链接地址，使用 Markdown 表格格式输出，包含" |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples
