@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-oral-snapshot-gum-redness-analysis"
 description: "Triggers when a user provides an oral snapshot image/video of a pet (usually auto-captured during yawning, lip-licking or mouth-opening moments) for analysis; supports local uploads or network URLs to call server-side APIs for oral health recognition, evaluating gum color (pink / bright red / dark red) and tartar coverage area, outputting standardized oral health observations to help early discovery of periodontal disease (without diagnosing diseases). Application scenarios: pet cameras, smart pet products, pet health management platforms. | 当用户提供宠物口腔抓拍图像/视频（通常在宠物打哈欠、舔嘴、张嘴时自动触发抓拍）时，触发本技能进行口腔健康识别；支持通过上传本地文件或网络URL，调用服务端API分析牙龈颜色（粉红、鲜红、暗红）与牙结石覆盖面积，输出标准化口腔健康观察结果，帮助早期发现牙周病等问题（不诊断疾病）。应用场景：宠物摄像头、智能宠物用品、宠物健康管理平台。"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # 🦷 Pet Oral Snapshot & Gum Redness Recognition | 宠物口腔抓拍与牙龈红肿识别
@@ -169,7 +169,7 @@ python -m scripts.smyx_pet_oral_snapshot_gum_redness_analysis --list
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，API 服务会自动下载 |
 | 🔎 使用提醒 | 设备端建议：在宠物打哈欠、舔嘴、张嘴等口部张开动作时自动触发抓拍，提升识别效果 |
 | 🔎 使用提醒 | 短头颅犬种（法斗、巴哥）、老龄宠物天然更易出现牙结石堆积，AI 角色在输出时需主动提醒 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 `reportImageUrl` 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 `` 作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples
