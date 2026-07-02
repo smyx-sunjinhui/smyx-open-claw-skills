@@ -1,7 +1,7 @@
 ---
 name: "smyx-office-worker-posture-warning-analysis"
 description: "Using a fixed camera in the office (aimed at the workstation), the system analyzes office workers' sitting-posture video in real time, detecting continuous sitting duration, neck forward angle (head offset relative to shoulders), and back curvature (hunchback degree). | 通过办公区固定摄像头（对准工位）实时分析办公人员的坐姿视频，检测连续坐姿时间、颈部前倾角度（头部相对于肩部的偏移）、背部弯曲度（驼背程度）。当久坐时间超过预设阈值（默认1小时）且未起身活动时，输出'久坐提醒'；当颈部前倾角>20°或背部弯曲超过阈值时，输出'姿态异常提醒'。"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # 💻 Office Prolonged Sitting & Posture Warning | 成人久坐/姿态预警（办公室）
@@ -155,7 +155,7 @@ python -m scripts.smyx_office_worker_posture_warning_analysis --list
 | 🔏 隐私合规 | 隐私合规：办公场景视频涉及个人隐私，使用前需取得员工知情同意，企业部署应遵循当地隐私法规并妥善保管/加密相关录像 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples
