@@ -1,7 +1,7 @@
 ---
 name: "visual-qa-analysis"
 description: "Conducts open-ended Q&A on image content based on computer vision and large language models, supporting any questions to receive natural language responses. | 大模型视觉问答（VQA）技能，基于计算机视觉和大语言模型对图片内容进行开放式问答，支持任意提问得到自然语言回答"
-version: "1.0.5"
+version: "1.0.6"
 ---
 
 # ❓ Large Model Visual Question Answering Skill | 大模型视觉问答技能
@@ -155,7 +155,7 @@ python -m scripts.visual_qa_analysis --list
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
 | 🧑‍⚖️ 结果性质 | 本技能依赖大模型生成，回答仅供参考，重要信息请核实后再使用 |
-| 📁 格式支持 | 当显示历史问答清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含" |
+| 📁 格式支持 | 当显示历史问答清单的时候，从数据 json 中提取字段  作为超链接地址，使用 Markdown 表格格式输出，包含" |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples
