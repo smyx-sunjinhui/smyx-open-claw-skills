@@ -1,7 +1,7 @@
 ---
 name: "smyx-elderly-facial-asymmetry-analysis"
 description: "Using a fixed home camera to capture frontal facial images or short videos of the elderly, the system uses AI facial-landmark detection to analyze features such as the height difference between left/right mouth corners, the symmetry of nasolabial folds (smile lines), and the asymmetry of eyebrow lifts, and computes a facial asymmetry index (0-100%). | 通过家庭固定摄像头拍摄老年人正面面部图像或视频，利用AI面部关键点检测技术分析左右嘴角的高度差、鼻唇沟（法令纹）的对称性、眉毛抬高的差异等特征，计算面部不对称指数（0-100%）。该技能可作为脑卒中（中风）前兆的辅助筛查工具，提示家属或护理人员关注老年人是否存在面瘫、口角歪斜等神经系统异常，及时就医。"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # 🙂 Elderly Facial Asymmetry / Mouth-Corner Deviation Detection | 老年人面部不对称/口角歪斜识别
@@ -152,7 +152,7 @@ python -m scripts.smyx_elderly_facial_asymmetry_analysis --list
 | 🔏 隐私合规 | 隐私合规：面部数据涉及生物特征隐私，使用前需取得被监护人或家属知情同意，并妥善保管/加密相关图像 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples
