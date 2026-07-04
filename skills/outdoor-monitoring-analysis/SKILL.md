@@ -1,7 +1,7 @@
 ---
 name: "outdoor-monitoring-analysis"
 description: "Detects targets such as people, vehicles, non-motorized vehicles, and pets within target areas; supports batch image analysis, suitable for outdoor surveillance scenarios like courtyards, orchards, and farms. | 户外看护智能监测分析技能，检测目标区域内的人、车、非机动车、宠物等目标，支持批量图片分析，适用于庭院、果园、养殖场等户外区域看护场景"
-version: "1.0.5"
+version: "1.0.6"
 ---
 
 # 🏞️ Intelligent Outdoor Care Monitoring & Analysis Tool | 户外看护智能监测分析工具
@@ -151,7 +151,7 @@ python -m scripts.outdoor_monitoring --list
 | 🧑‍⚖️ 结果性质 | 分析结果仅供安防参考，不能替代专业安保措施，发现可疑闯入请及时报警 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples
