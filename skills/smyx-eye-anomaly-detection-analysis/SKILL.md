@@ -1,7 +1,7 @@
 ---
 name: "smyx-eye-anomaly-detection-analysis"
 description: "AI-powered pet eye anomaly detection from close-up facial images/video. Detects conjunctival redness, abnormal tearing/tear stains, and pupil/cornea opacity (cataract / corneal edema), then outputs anomaly alerts to help owners catch eye disease risks early. Scenarios: daily home health self-check, boarding center routine inspection, animal hospital triage, senior pet cataract monitoring. | 通过宠物摄像头捕捉宠物面部近景视频，利用AI视觉分析技术检测眼部充血（结膜颜色发红）、异常流泪（泪痕严重或持续性溢泪）、瞳孔区域浑浊（可能为白内障或角膜水肿）等异常征象，输出异常提示，帮助主人及早发现眼部疾病风险。适用于日常健康监测、老年宠物护理及宠物医院预检。应用场景：宠物家庭日常健康自检、宠物寄养中心巡检、宠物医院门诊初筛、老年宠物白内障监测。"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # 👁️ Pet Eye Anomaly Detection (Redness / Tearing / Cataract) | 宠物眼睛异常识别（红肿/流泪/白内障）
@@ -181,7 +181,7 @@ python -m scripts.smyx_eye_anomaly_detection_analysis --list
 | 🔎 使用提醒 | 部分品种眼部生理特征本身偏红或泪痕较重，需结合个体基线判断 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，API 服务会自动下载 |
-| 📜 报告输出 | 当显示历史识别报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史识别报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples
