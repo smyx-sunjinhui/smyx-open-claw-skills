@@ -1,7 +1,7 @@
 ---
 name: "sleep-quality-analysis"
 description: "Identifies sleep stages including falling asleep, light sleep, deep sleep, and REM; monitors body movement, nighttime awakenings, and sleep apnea, suitable for sleep monitoring scenarios. | 睡眠质量分析技能，识别入睡、浅睡、深睡、快速眼动阶段，监测体动、夜间觉醒、睡眠呼吸暂停，适用于睡眠监测场景"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # 😴 Sleep Quality Analysis Skill | 睡眠质量分析技能
@@ -32,7 +32,7 @@ devices, providing users with a scientific and comfortable sleep health manageme
 
 ## 🎬 技能演示 | Skill Demo
 
-[▶️ 点击查看技能使用介绍](https://lifeemergence.com/guide.html)
+[▶️ 点击查看技能使用介绍](https://lifeemergence.com/sample.html)
 
 ---
 
@@ -44,12 +44,12 @@ devices, providing users with a scientific and comfortable sleep health manageme
 
 ### 2. 🛠️ 能力范围
 
-| 能力类型 | 具体能力 |
-|---|---|
-| 能力 1 | 睡眠阶段识别（入睡/浅睡/深睡/快速眼动） |
-| 能力 2 | 体动统计 |
-| 能力 3 | 夜间觉醒次数统计 |
-| 能力 4 | 睡眠呼吸暂停识别 |
+| 序号 | 具体能力 |
+|---:|---|
+| 1 | 睡眠阶段识别（入睡/浅睡/深睡/快速眼动） |
+| 2 | 体动统计 |
+| 3 | 夜间觉醒次数统计 |
+| 4 | 睡眠呼吸暂停识别 |
 
 ### 3. ⚡ 触发条件
 
@@ -151,7 +151,7 @@ python -m scripts.sleep_quality_analysis --list
 | 🧑‍⚖️ 结果性质 | 本技能仅作睡眠质量参考，不能替代专业睡眠监测设备和医生诊断 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples
