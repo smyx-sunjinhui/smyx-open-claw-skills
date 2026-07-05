@@ -1,7 +1,7 @@
 ---
 name: "staff-absence-detection-analysis"
 description: "Real-time monitoring of personnel on-duty status in specific areas based on computer vision and human pose estimation, automatically detects abnormal statuses such as leaving posts and absent from work, supports custom threshold settings, and triggers early warning immediately when abnormality is detected. | 人员离岗实时监测技能，基于计算机视觉与人体姿态估计算法，实时监测特定区域内人员的在岗状态，自动判断离岗、缺岗等异常状态，支持自定义判定阈值，异常发生立即触发预警，适用于工厂车间、监控室、服务窗口等岗位监管场景"
-version: "1.0.5"
+version: "1.0.6"
 ---
 
 # 👤 Staff Absence Detection Skill | 人员离岗实时监测技能
@@ -158,7 +158,7 @@ python -m scripts.staff_absence_detection_analysis --list
 | 🧑‍⚖️ 结果性质 | 分析结果仅供岗位管理参考，具体处置请结合实际管理制度 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📁 格式支持 | 当显示历史监测报告清单的时候，从数据 json 中提取字段 reportImageUrl 作为超链接地址，使用 Markdown 表格格式输出，包含" |
+| 📁 格式支持 | 当显示历史监测报告清单的时候，从数据 json 中提取字段  作为超链接地址，使用 Markdown 表格格式输出，包含" |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples
