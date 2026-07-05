@@ -1,7 +1,7 @@
 ---
 name: "fall-detection-image-analysis"
 description: "Detects whether anyone has fallen within a specified target area. Supports both image and short video analysis. Suitable for scenarios such as home care for elderly people living alone and safety monitoring in nursing homes. | 检测目标区域内是否有人跌倒，支持图片和短视频检测，适用于独居老人居家看护、养老院安全监测等场景"
-version: "1.0.5"
+version: "1.0.6"
 ---
 
 # 🚨 Fall Detection & Analysis Skill | 跌倒检测分析技能
@@ -148,7 +148,7 @@ python -m scripts.fall_detection_image --list
 | 🧑‍⚖️ 结果性质 | **重要提示**：分析结果仅供安全参考，不能替代人工确认，发现疑似跌倒请立即联系确认并应急处置 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples
