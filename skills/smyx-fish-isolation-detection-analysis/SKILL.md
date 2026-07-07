@@ -1,7 +1,7 @@
 ---
 name: "smyx-fish-isolation-detection-analysis"
 description: "Through fixed cameras on aquariums, the system continuously tracks the 2D position of each fish in the school, computes the school centroid (center of mass), and measures the distance from each fish to the centroid (in units of fish body length). | 通过鱼缸固定摄像头，持续跟踪鱼群中每条鱼的二维位置，计算鱼群中心（质心），并检测每条鱼与中心的距离（以鱼体长为单位）。当某条鱼偏离鱼群中心超过 10 倍体长，且持续时间超过 1 小时（或用户设定阈值）时，输出'离群行为'提示。"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # 🐟 Fish Isolation / Schooling Behavior Detection | 鱼类聚集/离群行为识别
