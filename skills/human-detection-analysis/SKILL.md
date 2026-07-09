@@ -1,7 +1,7 @@
 ---
 name: "human-detection-analysis"
 description: "Automatically detects personnel in target areas based on computer vision. Supports real-time video stream detection and is suitable for monitoring personnel access in parks, offices, and restricted areas. | 区域人形检测技能，基于计算机视觉自动检测目标区域内出现的人员，支持视频流实时检测，适用于园区、办公室、禁入区域等人员出入监测场景"
-version: "1.0.8"
+version: "1.0.9"
 ---
 
 # 🚶 Regional Humanoid Detection Skill | 区域人形检测技能
