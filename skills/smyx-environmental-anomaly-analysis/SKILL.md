@@ -1,7 +1,7 @@
 ---
 name: "smyx-environmental-anomaly-analysis"
 description: "Combines livestock behavior in continuous barn videos with environmental sensor data (temperature, humidity, ammonia, etc.) to identify group stress responses caused by abnormal in-barn conditions. | 结合畜禽行为与环境传感器，识别温湿度异常时的群体应激反应。"
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # 🌡️ Livestock Barn Environmental Anomaly Correlation | 畜禽舍环境异常联动
