@@ -1,7 +1,7 @@
 ---
 name: "smyx-estrus-mating-behavior-detect-analysis"
 description: "Detects estrus behavior in female livestock from continuous barn videos — including mounting acceptance, standing reflex, restlessness, appetite drop and vulva changes — and outputs an estrus recognition result with the optimal mating time window. | 识别母畜发情期行为特征（爬跨、静立反射等），优化配种时机。"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # 💞 Livestock Estrus & Mating Behavior Detection | 畜禽发情/配种行为识别
