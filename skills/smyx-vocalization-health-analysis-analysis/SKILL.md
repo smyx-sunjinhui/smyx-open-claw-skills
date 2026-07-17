@@ -1,7 +1,7 @@
 ---
 name: "smyx-vocalization-health-analysis-analysis"
 description: "Analyzes acoustic features (frequency, duration, pitch, intensity) of livestock and poultry vocalizations to detect abnormal sounds such as coughing, wheezing, painful screams and hoarse calls, and outputs respiratory health risk hints. | 通过叫声分析识别畜禽呼吸道疾病等健康问题。"
-version: "1.0.2"
+version: "1.0.3"
 ---
 
 # 🔊 Livestock Vocalization Health Analysis | 畜禽声纹健康分析
