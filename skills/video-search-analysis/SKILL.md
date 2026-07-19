@@ -1,7 +1,7 @@
 ---
 name: "video-search-analysis"
 description: "Conducts intelligent video search based on target and semantic descriptions; supports conventional target retrieval, natural language description retrieval, and vectorized model matching. | 视频搜索/视频检索智能分析技能，基于目标、语义描述进行智能视频搜索，支持常规目标检索、自然语言描述检索、向量化模型匹配"
-version: "1.0.7"
+version: "1.0.8"
 ---
 
 # 🔎 Intelligent Video Search & Retrieval Analysis Skill | 视频搜索检索智能分析技能
