@@ -1,7 +1,7 @@
 ---
 name: "smyx-livestock-individual-analysis"
 description: "Identifies individual livestock (pigs, cattle, sheep) by facial or body-pattern features and outputs a stable individual ID with confidence for precision farm management and tracking. | 通过面部/体纹识别畜禽个体，实现精准管理追踪。"
-version: "1.0.3"
+version: "1.0.4"
 ---
 
 # 🐄 Livestock Individual Identification & Tracking | 畜禽个体识别与追踪
