@@ -1,7 +1,7 @@
 ---
 name: "elderly-bed-exit-wandering-monitoring-analysis"
 description: "Identifies abnormal behaviors such as getting out of bed at night, prolonged wandering, and remaining motionless for extended periods. It is suitable for night-time safety monitoring in nursing homes and for elderly people living alone. | 老人离床徘徊监测技能，识别夜间起床离床、长时间徘徊、长时间静止不动异常行为，适用于养老院、独居老人夜间安全监测"
-version: "1.0.8"
+version: "1.0.9"
 ---
 
 # 🛏️ Elderly Bed-Exit & Wandering Monitor | 老人离床徘徊监测技能
