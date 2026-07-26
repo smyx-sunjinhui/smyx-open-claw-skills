@@ -1,7 +1,7 @@
 ---
 name: "smyx-crop-yield-prediction-analysis"
 description: "Predicts expected yield of economic crops such as tomato, corn and potato by combining growth stage, nutrition status, environmental data and historical yield references. | 结合生长阶段、营养状况、环境数据与历史产量数据，预测番茄/玉米/土豆等经济作物的预期产量。"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # 🌾 Crop Yield Prediction | 经济作物产量预测
