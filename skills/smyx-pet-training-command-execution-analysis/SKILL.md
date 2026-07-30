@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-training-command-execution-analysis"
 description: "Triggers when a user provides a training-area video of a pet for analysis; supports local uploads or network URLs to call server-side APIs for command-execution recognition, detecting whether the pet's body posture matches the issued commands (Sit / Down / Stay), comparing posture timing against command timestamps, and judging execution success. When the command is not executed, the result can trigger an external voice repeat-prompt signal (not a medical / behavior-therapy advice). Application scenarios: smart dog-training devices, remote pet training, behavior correction. | 当用户提供训练区域视频时，触发本技能进行姿态-指令匹配分析；支持通过上传本地视频或网络视频URL，调用服务端API检测宠物身体姿态是否符合“坐/卧/等”指令标准，对比指令发出时间，判断是否执行成功；未执行时可由外部设备触发声控重复提示信号（不提供疾病诊断或行为治疗方案）。应用场景：智能训狗设备、宠物远程训练、行为矫正。"
-version: "1.0.6"
+version: "1.0.7"
 ---
 
 # 🎓 Pet Training Command Execution Recognition | 宠物训练指令执行识别（坐/卧/等）
