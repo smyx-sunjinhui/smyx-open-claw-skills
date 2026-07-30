@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-treadmill-intensity-analysis"
 description: "AI-powered pet treadmill exercise intensity analysis combined with optional heart-rate band data. Detects stride frequency, limb extension, and respiratory rate from treadmill video to assess current exercise load (Low/Medium/High) and provide real-time pacing suggestions. Scenarios: smart pet treadmills (dog/cat), pet weight-loss training centers, pet rehabilitation. | 通过宠物跑步机内置或外置摄像头实时分析宠物跑步视频，检测步频、四肢伸展幅度、呼吸频率等运动姿态指标，并结合可选的心率带数据（蓝牙心率监测），综合评估当前运动强度等级（低/中/高），辅助宠物主人科学控制运动量，防止过度疲劳或运动损伤。应用场景：宠物跑步机（犬用/猫用）、宠物减肥训练中心、宠物康复理疗。"
-version: "1.0.7"
+version: "1.0.8"
 ---
 
 # 🏃 Pet Treadmill Intensity & Heart Rate Analysis | 宠物跑步机运动强度与心率关联
