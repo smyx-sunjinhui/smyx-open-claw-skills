@@ -1,7 +1,7 @@
 ---
 name: "smyx-feed-drink-behavior-monitor-analysis"
 description: "Analyzes fixed-camera videos of feeders and waterers to quantify livestock feeding duration, feeding bouts and drinking frequency, comparing them against individual baselines to raise behavior anomaly alerts. | 通过视频统计畜禽采食时长、饮水频次，异常时预警。"
-version: "1.0.4"
+version: "1.0.5"
 ---
 
 # 🐖 Livestock Feeding & Drinking Behavior Monitor | 畜禽采食/饮水行为监测
