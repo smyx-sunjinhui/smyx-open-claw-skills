@@ -1,7 +1,7 @@
 ---
 name: "smyx-farmland-weed-identification-analysis"
 description: "Identifies weed species and coverage density from field top-view images, and outputs a weed distribution heatmap dataset to support precision weeding decisions. | 通过田间图像识别杂草种类与覆盖密度，生成除草建议区域热力图。"
-version: "1.0.5"
+version: "1.0.6"
 ---
 
 # 🌾 Farmland Weed Identification & Density Assessment | 农田杂草识别与密度评估
