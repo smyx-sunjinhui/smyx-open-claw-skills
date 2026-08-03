@@ -1,7 +1,7 @@
 ---
 name: "smyx-elderly-night-bed-exit-wandering-analysis"
 description: "Using fixed cameras (infrared night vision) in nursing-home or home bedrooms, the system continuously monitors elderly bed-exit status and activity trajectory at night. | 通过养老院或居家卧室的固定摄像头（红外夜视），夜间连续监测老年人的离床状态和活动轨迹。输出异常预警，可联动护理人员手机或护士站大屏，防止老人走失、跌倒或发生意外。"
-version: "1.0.7"
+version: "1.0.8"
 ---
 
 # 🛏️ Elderly Night Bed-Exit & Wandering Detection | 老年人夜间离床时长与徘徊识别
