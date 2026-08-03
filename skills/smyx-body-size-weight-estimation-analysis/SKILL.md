@@ -1,7 +1,7 @@
 ---
 name: "smyx-body-size-weight-estimation-analysis"
 description: "Estimates livestock body length and body weight from side-view videos or frames, tracking fattening progress in a contactless manner. | 通过视频视觉估测体长、体重，追踪育肥进度。"
-version: "1.0.5"
+version: "1.0.6"
 ---
 
 # 📏 Livestock Body Size & Weight Estimation | 畜禽体长/体重估测
