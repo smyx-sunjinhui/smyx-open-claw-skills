@@ -1,7 +1,7 @@
 ---
 name: "smyx-farrowing-hatching-monitoring-analysis"
 description: "Monitors farrowing and poultry hatching events from continuous videos of farrowing pens or hatching areas — detecting key milestones such as water breaking, straining, piglet delivery, egg pipping and chick emergence — and outputs real-time event reminders. | 识别母猪产仔、禽类孵化等关键繁殖事件，实时提醒。"
-version: "1.0.5"
+version: "1.0.6"
 ---
 
 # 🐣 Farrowing & Hatching Monitoring | 产仔/孵化监控
