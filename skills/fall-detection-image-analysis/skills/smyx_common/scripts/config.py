@@ -115,7 +115,7 @@ class ConstantEnum(BaseEnum):
 
     APP__ID = ""
 
-    APP__SOURCE = SourceEnum.GIT_HUB.value
+    APP__SOURCE = SourceEnum.CLAW_HUB.value
 
     IS_DEBUG = False
 
